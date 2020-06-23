@@ -104,9 +104,15 @@
                                     <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
-                            <!-- Login -->
-                            <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                             @if(Session::get('name'))                           
+                            <!-- Login -->                          
                             <!-- Submit Video -->
+                            <p>{{Session::get('name')}}</p>
+                             <a href="{{URL::to('/user-logout')}}" style="position:relative;margin-top: 15px;margin-right: 30px">
+                                <i class="fa fa-sign-out"></i>Logout</a>
+                            @else
+                             <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                            @endif
                             <a href="submit-video.html" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Submit Video</span></a>
                         </div>
                     </div>
