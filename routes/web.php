@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::get('/admin','AdminController@getLogin');
 Route::post('/dashboard','AdminController@getIndex');
+Route::get('/logout','AdminController@getLogout');
 //Home
 Route::get('/','HomeController@index');
 //User
