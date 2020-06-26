@@ -19,4 +19,8 @@ Route::get('/logout','AdminController@getLogout');
 //Home
 Route::get('/','HomeController@index');
 //User
-Route::get('/login','UserController@getLogin');
+Route::any('/login','UserController@getLogin');
+Route::post('/login/check','UserController@Login');
+Route::any('/signup','UserController@getSignup');
+Route::post('/signup/check','UserController@Signup');
+Route::get('/user-logout','UserController@Logout');

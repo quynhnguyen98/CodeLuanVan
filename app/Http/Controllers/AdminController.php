@@ -20,18 +20,15 @@ class AdminController extends Controller
 			'adtext'=>'required',
 			'adpassword'=>'required'
 		];
-		$admess=[
-			'adtext.required'=>'Tai Khoan khong duoc trong',
-			'adpassword.required'=>'Mat khau khong duoc trong',
-		];
-		$validator=Validator::make($request->all(),$adrule,$admess);
+		
+		$validator=Validator::make($request->all(),$adrule);
 		if ($validator->fails()) {
             return redirect('admin')->withErrors($validator);
         } else {
           $adtext = $request->input('adtext');
           $adpassword = md5($request->input('adpassword'));
 		  $result=DB::table('taikhoan')->join('nguoi','taikhoan.id_nguoi','=','nguoi.id_nguoi')
-		  ->where('tendangnhap',$adtext)->where('matkhau',$adpassword)->first();	
+		  ->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
 			if($result!='')
 			{
 				Session::put('hoten',$result->hoten);

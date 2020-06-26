@@ -15,7 +15,7 @@
             {{$errors->first('adtext')}}
         @endif
         
-        <input type="password" name="adpassword" placeholder="Password">
+        <input type="password" name="adpassword" placeholder="Password" required>
         @if($errors->has('adpassword'))
             {{$errors->first('adpassword')}}
         @endif
