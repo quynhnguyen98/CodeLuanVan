@@ -10,15 +10,8 @@
     <form class="box" action="{{URL::to('/dashboard')}}" method="post">
     	<h1>Login</h1>
     	@csrf
-        <input type="text" name="adtext" placeholder="Username">
-        @if($errors->has('adtext'))
-            {{$errors->first('adtext')}}
-        @endif
-        
+        <input type="text" name="adtext" placeholder="Username" required >
         <input type="password" name="adpassword" placeholder="Password" required>
-        @if($errors->has('adpassword'))
-            {{$errors->first('adpassword')}}
-        @endif
     	<input type="submit" name="" value="Login">
     </form>
 </body>
