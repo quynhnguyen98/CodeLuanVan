@@ -1,5 +1,29 @@
 @extends('welcome')
 @section('content')
+<div class="hero-area owl-carousel">
+        <!-- Single Blog Post -->
+
+        @foreach($slide as $s)
+        <div class="hero-blog-post bg-img bg-overlay" style="background-image: url('public/frontend/images/bg-img/{{$s->url}}');">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <!-- Post Contetnt -->
+                        <div class="post-content text-center">
+                            <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
+                                <a href="archive.html">Quản Lý</a>
+                            </div>
+                            <a href="video-post.html" class="post-title" data-animation="fadeInUp" data-delay="300ms">{{$s->noidung}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <!-- Single Blog Post --
+
+        <!-- Single Blog Post -->
+    </div>
 <section class="mag-posts-area d-flex flex-wrap">
 
         <!-- >>>>>>>>>>>>>>>>>>>>
@@ -187,63 +211,24 @@
             <div class="trending-now-posts mb-30">
                 <!-- Section Title -->
                 <div class="section-heading">
-                    <h5>TRENDING NOW</h5>
+                    <h5>HÌNH ẢNH</h5>
                 </div>
-
+   
                 <div class="trending-post-slides owl-carousel">
                     <!-- Single Trending Post -->
+                    @foreach($hinhanh as $ha)
                     <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/19.jpg')}}" alt="">
+                        <img src="public/frontend/images/bg-img/{{$ha->tenhinh}}" alt="">
                         <div class="post-content">
                             <a href="#" class="post-cata">Video</a>
                             <a href="video-post.html" class="post-title">Big Savings On Gas While You Travel</a>
                         </div>
                     </div>
+                    @endforeach
+                    <!-- Single Trending Post -->
+                    
 
                     <!-- Single Trending Post -->
-                    <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/20.jpg')}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">TV Show</a>
-                            <a href="video-post.html" class="post-title">A Guide To Rocky Mountain Vacations</a>
-                        </div>
-                    </div>
-
-                    <!-- Single Trending Post -->
-                    <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/21.jpg')}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">Sports</a>
-                            <a href="video-post.html" class="post-title">The Health Benefits Of Sunglasses</a>
-                        </div>
-                    </div>
-
-                    <!-- Single Trending Post -->
-                    <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/19.jpg')}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">Video</a>
-                            <a href="video-post.html" class="post-title">Big Savings On Gas While You Travel</a>
-                        </div>
-                    </div>
-
-                    <!-- Single Trending Post -->
-                    <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/20.jpg')}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">TV Show</a>
-                            <a href="video-post.html" class="post-title">A Guide To Rocky Mountain Vacations</a>
-                        </div>
-                    </div>
-
-                    <!-- Single Trending Post -->
-                    <div class="single-trending-post">
-                        <img src="{{('public/frontend/images/bg-img/21.jpg')}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">Sports</a>
-                            <a href="video-post.html" class="post-title">The Health Benefits Of Sunglasses</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -251,9 +236,8 @@
             <div class="feature-video-posts mb-30">
                 <!-- Section Title -->
                 <div class="section-heading">
-                    <h5>Featured Videos</h5>
+                    <h5>TIN TỨC</h5>
                 </div>
-
                 <div class="featured-video-posts">
                     <div class="row">
                         <div class="col-12 col-lg-7">
@@ -261,17 +245,29 @@
                             <div class="single-featured-post">
                                 <!-- Thumbnail -->
                                 <div class="post-thumbnail mb-50">
-                                    <img src="{{('public/frontend/images/bg-img/22.jpg')}}" alt="">
-                                    <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
+                                    <img src="public/frontend/images/bg-img/{{$tintuc[0]->images}}" alt="">
                                 </div>
                                 <!-- Post Contetnt -->
                                 <div class="post-content">
                                     <div class="post-meta">
-                                        <a href="#">MAY 8, 2018</a>
-                                        <a href="archive.html">lifestyle</a>
+                                        <a href="#"><!-- {{$tintuc[0]->ngaydang}} -->
+                                            <?php
+                                            $end=date('d-m-Y',strtotime($tintuc[0]->ngaydang));
+                                            echo $end;
+                                            ?>
+                                        </a>
                                     </div>
-                                    <a href="video-post.html" class="post-title">A Closer Look At Our Front Porch Items From Lowe’s</a>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                                    <a href="video-post.html" class="post-title">{{$tintuc[0]->tieude}}</a>
+                                    <p>
+                                        <?php
+                                            function mysubstr($str,$limit=500){
+                                                    if(strlen($str)<=$limit) return $str;
+                                                    return substr($str,0,$limit).'...';
+                                                }
+                                            echo mysubstr($tintuc[0]->noidung_tt,200);        
+                                        ?>
+
+                                    </p>
                                 </div>
                                 <!-- Post Share Area -->
                                 <div class="post-share-area d-flex align-items-center justify-content-between">
@@ -295,34 +291,23 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-12 col-lg-5">
+
                             <!-- Featured Video Posts Slide -->
                             <div class="featured-video-posts-slide owl-carousel">
-
+                               
                                 <div class="single--slide">
                                     <!-- Single Blog Post -->
+                                     @for($i=1;$i<count($tintuc);$i++)
                                     <div class="single-blog-post d-flex style-3">
                                         <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/23.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">Global Resorts Network Grn Putting Timeshares To Shame</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/24.jpg')}}" alt="">
+                                            <img src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
+                                                   echo $data[0];
+                                            ?>" alt="">
                                         </div>
                                         <div class="post-content">
-                                            <a href="single-post.html" class="post-title">A Guide To Rocky Mountain Vacations</a>
+                                            <a href="single-post.html" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                             <div class="post-meta d-flex">
                                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
@@ -330,130 +315,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/25.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">American Standards And European Culture How To Avoid</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/26.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">Mother Earth Hosts Our Travels</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/27.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">From Wetlands To Canals And Dams Amsterdam Is Alive</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  @endfor                                
                                 </div>
-
-                                <div class="single--slide">
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/23.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">Global Resorts Network Grn Putting Timeshares To Shame</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/24.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">A Guide To Rocky Mountain Vacations</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/25.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">American Standards And European Culture How To Avoid</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/26.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">Mother Earth Hosts Our Travels</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post d-flex style-3">
-                                        <div class="post-thumbnail">
-                                            <img src="{{('public/frontend/images/bg-img/27.jpg')}}" alt="">
-                                        </div>
-                                        <div class="post-content">
-                                            <a href="single-post.html" class="post-title">From Wetlands To Canals And Dams Amsterdam Is Alive</a>
-                                            <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
-                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+  
                             </div>
                         </div>
                     </div>

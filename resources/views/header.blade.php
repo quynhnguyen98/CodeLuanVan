@@ -35,62 +35,11 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li class="active"><a href="index.html">Home</a></li>
-                                    <li><a href="archive.html">Archive</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="archive.html">Archive</a></li>
-                                            <li><a href="video-post.html">Single Video Post</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="submit-video.html">Submit Video</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Mega</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="archive.html">Archive</a></li>
-                                                <li><a href="video-post.html">Single Video Post</a></li>
-                                                <li><a href="single-post.html">Single Post</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="archive.html">Archive</a></li>
-                                                <li><a href="video-post.html">Single Video Post</a></li>
-                                                <li><a href="single-post.html">Single Post</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="archive.html">Archive</a></li>
-                                                <li><a href="video-post.html">Single Video Post</a></li>
-                                                <li><a href="single-post.html">Single Post</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="archive.html">Archive</a></li>
-                                                <li><a href="video-post.html">Single Video Post</a></li>
-                                                <li><a href="single-post.html">Single Post</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                                <li><a href="login.html">Login</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li class="active"><a href="{{URL::to('/')}}">Trang Chủ</a></li>
+                                    <li><a href="{{URL::to('/tin-tuc')}}">Tin Tức</a></li>
+                                    <li><a href="#">Phả Đồ</a> </li>
+                                    <li><a href="#">Lịch</a></li>
+                                    <li><a href="{{URL::to('/gioi-thieu')}}">Giới Thiệu</a></li>
                                 </ul>
                             </div>
                             <!-- Nav End -->
@@ -100,20 +49,20 @@
                             <!-- Top Search Area -->
                             <div class="top-search-area">
                                 <form action="index.html" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search and hit enter...">
+                                    <input type="search" name="top-search" id="topSearch" placeholder="Tìm họ tộc...">
                                     <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
                              @if(Session::get('name'))                           
                             <!-- Login -->                          
                             <!-- Submit Video -->
-                            <p>{{Session::get('name')}}</p>
-                             <a href="{{URL::to('/user-logout')}}" style="position:relative;margin-top: 15px;margin-right: 30px">
-                                <i class="fa fa-sign-out"></i>Logout</a>
+                                 <p style="margin-right: -65px">{{Session::get('name')}}</p>
+                                 <a href="{{URL::to('/user-logout')}}" style="position:relative;margin-top: 25px;margin-right: 30px">
+                                    <i class="fa fa-sign-out"></i>Logout</a>
                             @else
-                             <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
-                            <a href="submit-video.html" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Submit Video</span></a>
+                            <a href="{{URL::to('/gop-y')}}" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Góp Ý</span></a>
                         </div>
                     </div>
                 </nav>

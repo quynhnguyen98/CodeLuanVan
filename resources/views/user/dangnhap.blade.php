@@ -20,7 +20,7 @@
     		<div class="show-password fas fa-eye-slash" style="margin-top:25px;"></div>
     	</div>
     	<div class="checkbox">
-    		<input type="checkbox">
+    		<input type="checkbox" value="remember">
     		<div class="fas fa-check"></div>
     		Stay signed in
     	</div>

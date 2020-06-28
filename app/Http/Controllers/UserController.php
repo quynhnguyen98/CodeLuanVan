@@ -25,11 +25,12 @@ class UserController extends Controller
             'tendangnhap'=>$user,
             'password'=>$pass,
         ];
-        if(Auth::attempt($arr))
+        $remember=$rq->has('remember')?true:false;
+        if(Auth::attempt($arr,$remember))
         {
             Session::put('name',$user);
             return redirect('/');
-            // return view('pages.home',['user'=>Auth::user()]);
+            // return view('pages.home',['user'=>Auth::user()]);\
         }
         else
             return view('user.dangnhap',['loi'=>'Sai mật khẩu hoặc tài khoản']);
@@ -50,6 +51,7 @@ class UserController extends Controller
             'tendangnhap'=>$user,
             'password'=>bcrypt($pass),
             'email'=>$ema,
+            'vaitro'=>0,
         ];
         $user = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user)
