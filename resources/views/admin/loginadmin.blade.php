@@ -9,9 +9,9 @@
 <body>
     <form class="box" action="{{URL::to('/dashboard')}}" method="post">
     	<h1>Login</h1>
-    	{{ csrf_field() }}
-    	<input type="text" name="" placeholder="Username">
-    	<input type="password" name="" placeholder="Password">
+    	@csrf
+        <input type="text" name="adtext" placeholder="Username" required >
+        <input type="password" name="adpassword" placeholder="Password" required>
     	<input type="submit" name="" value="Login">
     </form>
 </body>
