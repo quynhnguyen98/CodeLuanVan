@@ -19,11 +19,21 @@ class HomeController extends Controller
         //return $tintuc;
         return view('pages.home',compact('slide','tintuc','hinhanh'));
     }
-    public function getPost(){
-        return view('pages.singlepost');
+    public function getPost($id){
+        $tintuc=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->where('tintuc.id_tintuc',$id)
+            ->groupBy('tintuc.id_tintuc','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')
+            ->get();
+        return view('pages.singlepost',compact('tintuc'));
     }
     public function getTinTuc(){
-        return view('pages.tintuc');
+         $tintuc=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
+            ->groupBy('tintuc.id_tintuc','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')
+            ->get();
+        return view('pages.tintuc',compact('tintuc'));
     }
      public function getGioithieu(){
         return view('pages.gioithieu');

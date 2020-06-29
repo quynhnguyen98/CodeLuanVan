@@ -1,16 +1,18 @@
 @extends('welcome')
 @section('content')
-<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url(./public/frontend/images/bg-img/49.jpg);">
+
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url('../public/frontend/images/bg-img/49.jpg');">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content">
-                        <h2>Single Post</h2>
+                        <h2>TIN TỨC</h2>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @foreach($tintuc as $tt)
     <div class="mag-breadcrumb py-5">
         <div class="container">
             <div class="row">
@@ -18,8 +20,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Features</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Single Post</li>
+                            <li class="breadcrumb-item"><a href="#">Tin Tức</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$tt->tieude}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -33,14 +35,19 @@
                 <div class="col-12 col-xl-8">
                     <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                         <div class="blog-thumb mb-30">
-                            <img src="{{('public/frontend/images/bg-img/50.jpg')}}" alt="">
+                            <img src="../public/frontend/images/bg-img/<?php $data=(explode(',',$tt->images));
+                                                   echo $data[0];
+                                            ?>" alt="">
                         </div>
                         <div class="blog-content">
                             <div class="post-meta">
-                                <a href="#">MAY 8, 2018</a>
+                                <a href="#"><?php
+                                            $end=date('d-m-Y',strtotime($tt->ngaydang));
+                                            echo $end;
+                                            ?></a>
                                 <a href="archive.html">lifestyle</a>
                             </div>
-                            <h4 class="post-title">From Wetlands To Canals And Dams Amsterdam Is Alive</h4>
+                            <h4 class="post-title">{{$tt->tieude}}</h4>
                             <!-- Post Meta -->
                             <div class="post-meta-2">
                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
@@ -160,6 +167,7 @@
 
                         </div>
                     </div>
+                    @endforeach
 
                     <!-- Comment Area Start -->
                     <div class="comment_area clearfix bg-white mb-30 p-30 box-shadow">

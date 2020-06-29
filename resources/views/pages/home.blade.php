@@ -11,7 +11,7 @@
                         <!-- Post Contetnt -->
                         <div class="post-content text-center">
                             <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                                <a href="archive.html">Quản Lý</a>
+                                <a href="archive.html">{{$s->title}}</a>
                             </div>
                             <a href="video-post.html" class="post-title" data-animation="fadeInUp" data-delay="300ms">{{$s->noidung}}</a>
                         </div>
@@ -219,10 +219,6 @@
                     @foreach($hinhanh as $ha)
                     <div class="single-trending-post">
                         <img src="public/frontend/images/bg-img/{{$ha->tenhinh}}" alt="">
-                        <div class="post-content">
-                            <a href="#" class="post-cata">Video</a>
-                            <a href="video-post.html" class="post-title">Big Savings On Gas While You Travel</a>
-                        </div>
                     </div>
                     @endforeach
                     <!-- Single Trending Post -->
@@ -245,7 +241,8 @@
                             <div class="single-featured-post">
                                 <!-- Thumbnail -->
                                 <div class="post-thumbnail mb-50">
-                                    <img src="public/frontend/images/bg-img/{{$tintuc[0]->images}}" alt="">
+                                    <a href="{{URL::to('/tin-tuc/'.$tintuc[0]->id_tintuc)}}">
+                                    <img src="public/frontend/images/bg-img/{{$tintuc[0]->images}}" alt=""></a>
                                 </div>
                                 <!-- Post Contetnt -->
                                 <div class="post-content">
@@ -257,7 +254,7 @@
                                             ?>
                                         </a>
                                     </div>
-                                    <a href="video-post.html" class="post-title">{{$tintuc[0]->tieude}}</a>
+                                    <a href="{{URL::to('/tin-tuc/'.$tintuc[0]->id_tintuc)}}" class="post-title">{{$tintuc[0]->tieude}}</a>
                                     <p>
                                         <?php
                                             function mysubstr($str,$limit=500){
@@ -301,13 +298,14 @@
                                      @for($i=1;$i<count($tintuc);$i++)
                                     <div class="single-blog-post d-flex style-3">
                                         <div class="post-thumbnail">
-
+                                            <a href="{{URL::to('/tin-tuc/'.$tintuc[$i]->id_tintuc)}}">
                                             <img src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
                                                    echo $data[0];
-                                            ?>" alt="" style="display: block;height:65%;">
+                                            ?>" alt="">
+                                            </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="single-post.html" class="post-title">{{$tintuc[$i]->tieude}}</a>
+                                            <a href="{{URL::to('/tin-tuc/'.$tintuc[$i]->id_tintuc)}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                             <div class="post-meta d-flex">
                                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
