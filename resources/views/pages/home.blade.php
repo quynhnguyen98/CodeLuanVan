@@ -304,7 +304,7 @@
 
                                             <img src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
                                                    echo $data[0];
-                                            ?>" alt="">
+                                            ?>" alt="" style="display: block;height:65%;">
                                         </div>
                                         <div class="post-content">
                                             <a href="single-post.html" class="post-title">{{$tintuc[$i]->tieude}}</a>
