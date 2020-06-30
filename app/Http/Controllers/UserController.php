@@ -41,17 +41,28 @@ class UserController extends Controller
                 'password' => 'required_with:password_confirmation|same:password_confirmation',
                 'password_confirmation' => 'min:6',
                 'email'=>'email',
+                'ngaysinh'=>'before:today|nullable',
                 'checkbox'=>'required',
                 ]);
         $user=$rq->username;
         $pass=$rq->password;
         $cfpass=$rq->cfpassword;
         $ema=$rq->email;
+        $ht=$rq->hoten;
+        $ns=$rq->ngaysinh;
+        $sex=$rq->gioitinh;
+        $tthn=$rq->tinhtranghonnhan;
         $arr=[
             'tendangnhap'=>$user,
             'password'=>bcrypt($pass),
             'email'=>$ema,
             'vaitro'=>0,
+        ];
+        $arr1=[
+            'hoten'=>$ht,
+            'gioitinh'=>$sex,
+            'ngaysinh'=>$ns,
+            'tinhtrang_honnhan'=>$tthn,
         ];
         $user = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user)
@@ -60,6 +71,7 @@ class UserController extends Controller
         }
         else
         {
+            DB::table('nguoi')->insert($arr1);
             DB::table('taikhoan')->insert($arr);
              return view('user.dangky',['mess'=>'Đăng Ký thành công']);
         }
