@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function getLogin(){
-    	return view('user.dangnhap');
+    	return view('user.login');
     }
      public function getSignup(){
-        return view('user.dangky');
+        return view('user.signup');
     }
     public function Login(Request $rq){
         $validatedData = $rq->validate([
@@ -33,7 +33,7 @@ class UserController extends Controller
             // return view('pages.home',['user'=>Auth::user()]);\
         }
         else
-            return view('user.dangnhap',['loi'=>'Sai mật khẩu hoặc tài khoản']);
+            return view('user.login',['loi'=>'Sai mật khẩu hoặc tài khoản']);
     }
     public function Signup(Request $rq){
               $validatedData = $rq->validate([
@@ -52,28 +52,31 @@ class UserController extends Controller
         $ns=$rq->ngaysinh;
         $sex=$rq->gioitinh;
         $tthn=$rq->tinhtranghonnhan;
-        $arr=[
-            'tendangnhap'=>$user,
-            'password'=>bcrypt($pass),
-            'email'=>$ema,
-            'vaitro'=>0,
-        ];
         $arr1=[
             'hoten'=>$ht,
             'gioitinh'=>$sex,
             'ngaysinh'=>$ns,
             'tinhtrang_honnhan'=>$tthn,
         ];
-        $user = DB::table('taikhoan')->where('tendangnhap', $user)->first();
-        if($user)
+        $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();
+        if($user1)
         {
-             return view('user.dangky',['mess'=>'Tài khoản đã có người sử dụng']);
+             return view('user.signup',['mess'=>'Tài khoản đã có người sử dụng']);
         }
         else
         {
             DB::table('nguoi')->insert($arr1);
+            $new=DB::table('nguoi')->latest('id_nguoi')->first();
+
+            $arr=[
+            'tendangnhap'=>$user,
+            'password'=>bcrypt($pass),
+            'email'=>$ema,
+            'vaitro'=>0,
+            'id_nguoi'=>$new->id_nguoi,
+            ];
             DB::table('taikhoan')->insert($arr);
-             return view('user.dangky',['mess'=>'Đăng Ký thành công']);
+             return view('user.signup',['mess'=>'Đăng Ký thành công']);
         }
     }
     public function Logout()

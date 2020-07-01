@@ -56,8 +56,8 @@
                              @if(Session::get('name'))                           
                             <!-- Login -->                          
                             <!-- Submit Video -->
-                                 <p style="margin-right: -65px">{{Session::get('name')}}</p>
-                                 <a href="{{URL::to('/user-logout')}}" style="position:relative;margin-top: 25px;margin-right: 30px">
+                                 <p style="margin-right: -55px">{{Session::get('name')}}</p>
+                                 <a href="{{URL::to('/user-logout')}}" style="margin-top: 25px;margin-right: 30px">
                                     <i class="fa fa-sign-out"></i>Logout</a>
                             @else
                                 <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>

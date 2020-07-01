@@ -377,7 +377,7 @@ input:focus {
     .header-area .mag-main-menu .top-search-area {
       position: relative;
       z-index: 1;
-      margin-left: 30px; }
+      margin-left: 30px;}
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .header-area .mag-main-menu .top-search-area {
           margin-left: 15px; } }
@@ -2214,7 +2214,44 @@ textarea.form-control {
     @media only screen and (max-width: 767px) {
       .map-area iframe {
         height: 250px; } }
-
+.form-group .icons{
+  position: absolute;
+  margin-left: 300px;
+  margin-bottom: -10px;
+}
+.form-group .icons a{
+  display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #ed3974;
+      text-align: center;
+      font-size: 15px;
+      color: #ffffff;
+      line-height: 40px;
+      margin-right: 5px;
+      border-radius: 50%;
+}
+.form-group .icons a:hover,.form-group .icons a:focus {
+        background-color: #ed3974; }
+      .form-group .icons a:hover,.form-group .icons a.facebook {
+        background-color: #4b6cd0; }
+      .form-group .icons a:hover,.form-group .icons a.google-plus {
+        background-color: #f03b3b; }
+      .form-group .icons a:hover,.form-group .icons a.instagram {
+        background-color: #bb8950; }
+.qwe{
+  text-align: center;
+}
+.qwe a{
+  font-size:20px;
+  font-weight: 600;
+}
+.qwe a:hover,.qwe a:focus{
+  color:#d4af37;
+}
+.form-group .asd{
+  width: 100px;
+}
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */
