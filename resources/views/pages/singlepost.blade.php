@@ -1,7 +1,7 @@
 @extends('welcome')
 @section('content')
 
-<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url('../public/frontend/images/bg-img/49.jpg');">
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({{URL::to('public/frontend/images/bg-img/49.jpg')}});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -35,9 +35,7 @@
                 <div class="col-12 col-xl-8">
                     <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                         <div class="blog-thumb mb-30">
-                            <img src="../public/frontend/images/bg-img/<?php $data=(explode(',',$tt->images));
-                                                   echo $data[0];
-                                            ?>" alt="">
+                            <img src="{{URL::to('public/frontend/images/bg-img/'.$tt->images)}}" alt="">
                         </div>
                         <div class="blog-content">
                             <div class="post-meta">
@@ -98,12 +96,14 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="single-blog-post style-4 mb-30">
                                     <div class="post-thumbnail">
-                                       <img src="public/frontend/images/bg-img/<?php $data=(explode(',',$ttlq->images));
-                                            echo $data[0];
+                                        <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.$ttlq->tieudekhongdau.'.html')}}">
+                                       <img src="../public/frontend/images/bg-img/<?php $data=(explode(',',$ttlq->images));
+                                                   echo $data[0];
                                             ?>" alt="">
+                                            </a>
                                     </div>
                                     <div class="post-content">
-                                        <a href="single-post.html" class="post-title">{{$ttlq->tieude}}</a>
+                                        <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.$ttlq->tieudekhongdau.'.html')}}" class="post-title">{{$ttlq->tieude}}</a>
                                         <div class="post-meta d-flex">
                                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>

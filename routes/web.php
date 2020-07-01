@@ -36,7 +36,7 @@ Route::get('/post','HomeController@getPost');
 Route::get('/tin-tuc','HomeController@getTintuc');
 Route::get('/gop-y','HomeController@getGopy');
 Route::get('/gioi-thieu','HomeController@getGioithieu');
-Route::get('/tin-tuc/{id}','HomeController@getPost');
+Route::get('/tintuc/{id}{tieudekhongdau}.html','HomeController@getPost');
 
 
 //User
