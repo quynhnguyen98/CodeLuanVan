@@ -43,5 +43,5 @@ Route::get('/tin-tuc/{id}','HomeController@getPost');
 Route::any('/login','UserController@getLogin');
 Route::post('/login/check','UserController@Login');
 Route::get('/signup','UserController@getSignup');
-Route::post('/signup/check','UserController@Signup');
+Route::any('/signup/check','UserController@Signup');
 Route::get('/user-logout','UserController@Logout');

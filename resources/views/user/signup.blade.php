@@ -62,10 +62,10 @@
                                     </ul>
                                 </div>
                             @endif
-                            @if(isset($mess))
+                            @if(session('mess'))
                                  <div class="alert alert-danger">
                                     <ul>                    
-                                            <li>{{ $mess }}</li>
+                                            <li>{{ session('mess') }}</li>
                                     </ul>
                                 </div>
                             @endif

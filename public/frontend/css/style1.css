@@ -302,7 +302,7 @@ input:focus {
   transition-duration: 500ms;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15); }
   #scrollUp:hover, #scrollUp:focus {
-    background-color: #ed3974;
+    background-color: #d4af37;
     color: #ffffff; }
   @media only screen and (max-width: 767px) {
     #scrollUp {
@@ -314,7 +314,7 @@ input:focus {
 
 /* :: 3.7.0 mag Button */
 .mag-btn {
-  background-color: #ed3974;
+  background-color: #d4af37;
   -webkit-transition-duration: 500ms;
   -o-transition-duration: 500ms;
   transition-duration: 500ms;

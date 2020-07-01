@@ -61,7 +61,7 @@ class UserController extends Controller
         $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user1)
         {
-             return view('user.signup',['mess'=>'Tài khoản đã có người sử dụng']);
+             return redirect('/signup')->with('mess','Tài khoản có người sử dụng');
         }
         else
         {
@@ -76,7 +76,7 @@ class UserController extends Controller
             'id_nguoi'=>$new->id_nguoi,
             ];
             DB::table('taikhoan')->insert($arr);
-             return view('user.signup',['mess'=>'Đăng Ký thành công']);
+              return redirect('/signup')->with('mess','Đăng Ký Thành Công');
         }
     }
     public function Logout()
