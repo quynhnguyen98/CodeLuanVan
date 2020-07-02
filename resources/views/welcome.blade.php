@@ -12,10 +12,10 @@
     <title>WEBSITE GIA PHẢ</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{('public/frontend/images/core-img/favicon.ico')}}">
+    <link rel="icon" href="{{asset('public/frontend/images/core-img/favicon.ico')}}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('public/frontend/css/style1.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">
 
 </head>
 

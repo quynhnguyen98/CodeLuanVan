@@ -53,15 +53,18 @@
                                     <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
-                             @if(Session::get('name'))                           
+                             @if(Session::has('tk'))                           
                             <!-- Login -->                          
                             <!-- Submit Video -->
-                                 <p style="margin-right: -55px">{{Session::get('name')}}</p>
-                                 <a href="{{URL::to('/user-logout')}}" style="margin-top: 25px;margin-right: 30px">
+                            <div class="user">
+                                 <p >{{Session::get('tk')->tendangnhap}}</p>
+                                <img src="{{asset('public/frontend/images/core-img/'.Session::get('tk')->avatar)}}" alt="">
+                                 <a href="{{URL::to('/user-logout')}}">
                                     <i class="fa fa-sign-out"></i>Logout</a>
                             @else
                                 <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
+                             </div>
                             <a href="{{URL::to('/gop-y')}}" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Góp Ý</span></a>
                         </div>
                     </div>

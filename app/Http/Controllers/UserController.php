@@ -28,9 +28,9 @@ class UserController extends Controller
         $remember=$rq->has('remember')?true:false;
         if(Auth::attempt($arr,$remember))
         {
-            Session::put('name',$user);
+            $taikhoan=Auth::user();
+            Session::put('tk',$taikhoan);
             return redirect('/');
-            // return view('pages.home',['user'=>Auth::user()]);\
         }
         else
             return view('user.login',['loi'=>'Sai mật khẩu hoặc tài khoản']);
@@ -73,6 +73,7 @@ class UserController extends Controller
             'password'=>bcrypt($pass),
             'email'=>$ema,
             'vaitro'=>0,
+            'avatar'=>"user.png",
             'id_nguoi'=>$new->id_nguoi,
             ];
             DB::table('taikhoan')->insert($arr);

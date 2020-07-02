@@ -2252,6 +2252,23 @@ textarea.form-control {
 .form-group .asd{
   width: 100px;
 }
+.header-area .mag-main-menu .user{
+  position: relative;
+  z-index: 1;
+  margin-right: 50px;
+}
+.header-area .mag-main-menu .user p{
+  height: 10px;
+}
+
+.header-area .mag-main-menu .user img{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-top: -20px;
+  margin-left: 70px;
+}
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */
