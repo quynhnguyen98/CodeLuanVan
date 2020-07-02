@@ -35,7 +35,9 @@
                 <div class="col-12 col-xl-8">
                     <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                         <div class="blog-thumb mb-30">
-                            <img src="{{URL::to('public/frontend/images/bg-img/'.$tt->images)}}" alt="">
+                            <img src="../public/frontend/images/bg-img/<?php $data=(explode(',',$tt->images));
+                                                   echo $data[0];
+                                            ?>" alt="">
                         </div>
                         <div class="blog-content">
                             <div class="post-meta">
@@ -53,7 +55,7 @@
                                 <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                             </div>
 
-                            <p>{{$tt->noidung_tt}}</p>
+                            {!!$tt->noidung_tt!!}
 
                             <div class="row">
                                 <div class="col-12 col-lg-8">
