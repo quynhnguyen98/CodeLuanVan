@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 use DB;
+use Mail;
 use Session;
+use URL;
 use Auth,Redirect;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function getLogin(){
-    	return view('user.login');
+        return view('user.login');
     }
      public function getSignup(){
         return view('user.signup');
@@ -83,7 +85,40 @@ class UserController extends Controller
     public function Logout()
     {
         Auth::Logout();
-        Session::forget('name');
+        Session::forget('tk');
         return redirect('/');
+    }
+    public function getForgot(){
+        return view('user.forgot');
+    }
+    public function getResest($id_taikhoan =null){
+        return view('user/resestpass')->with('id_taikhoan',$id_taikhoan);
+    }
+    public function sendMail(Request $rq){
+        $user=DB::table('taikhoan')->where('email',$rq->email)->first();
+        if(($user)==null)
+        {
+            return Redirect()->back()->with(['error'=>'Email không tồn tại']);
+        }
+        else
+        {   
+            $url=URL::to('/resest-pass/'.$user->id_taikhoan);
+            $data=['url'=>$url,
+                    'email'=>$user->email,
+                ];
+            Mail::to($user->email)->send(new \App\Mail\MailNotify($data));
+            return redirect()->back()->with(['success' => 'Email đã được gửi. Vui lòng kiểm tra mail để lấy lại mật khẩu.']);
+        }   
+    }
+    public function ResestPass(Request $rq)
+    {
+        $validatedData = $rq->validate([
+                'password' => 'required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6',
+                ]);
+        $input=$rq->all();
+        $result=DB::table('taikhoan')->where('id_taikhoan',$input['id_taikhoan'])->update(['password'=>bcrypt($input['password'])]);
+        return redirect()->back()->with('mess','Đổi Mật Khẩu Thành Công');
+
     }
 }

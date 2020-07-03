@@ -34,34 +34,34 @@
                                     <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
                                 </div>
                                 <div class="icons">
-                                	<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-		                            <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-		                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                             	</div>
+                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                                </div>
 
                             </div>
  
                               @if ($errors->any())
-					            <div class="alert alert-danger">
-					                <ul>
-					                    @foreach ($errors->all() as $error)
-					                        <li>{{ $error }}</li>
-					                    @endforeach
-					                </ul>
-					            </div>
-					        @endif
-					        @if(isset($loi))
-					             <div class="alert alert-danger">
-					                <ul>                    
-					                        <li>{{ $loi }}</li>
-					                </ul>
-					            </div>
-					        @endif
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(isset($loi))
+                                 <div class="alert alert-danger">
+                                    <ul>                    
+                                            <li>{{ $loi }}</li>
+                                    </ul>
+                                </div>
+                            @endif
                             <button type="submit" class="btn mag-btn mt-30">Login</button>
                             <div class="qwe">
-	                            <a href="#">Can't Sign in?</a><br>
-	    						<a href="{{URL::to('/signup')}}">Create Account</a>
-    						</div>
+                                <a href="{{URL::to('/forgot-password')}}">Can't Sign in?</a><br>
+                                <a href="{{URL::to('/signup')}}">Create Account</a>
+                            </div>
                         </form>
                     </div>
                 </div>

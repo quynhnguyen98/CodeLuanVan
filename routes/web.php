@@ -45,3 +45,7 @@ Route::post('/login/check','UserController@Login');
 Route::get('/signup','UserController@getSignup');
 Route::any('/signup/check','UserController@Signup');
 Route::get('/user-logout','UserController@Logout');
+Route::get('/forgot-password','UserController@getForgot');
+Route::post('/forgot-password/check','UserController@sendMail');
+Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
+Route::post('/resest-pass/check','UserController@ResestPass');
