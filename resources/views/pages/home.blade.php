@@ -242,7 +242,9 @@
                                 <!-- Thumbnail -->
                                 <div class="post-thumbnail mb-50">
                                     <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.$tintuc[0]->tieudekhongdau.'.html')}}">
-                                    <img src="public/frontend/images/bg-img/{{$tintuc[0]->images}}" alt=""></a>
+                                    <img src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[0]->images));
+                                                   echo $data[0];
+                                            ?>" alt=""></a>
                                 </div>
                                 <!-- Post Contetnt -->
                                 <div class="post-content">

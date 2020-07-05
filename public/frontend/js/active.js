@@ -172,5 +172,10 @@
     if (browserWindow.width() > 767) {
         new WOW().init();
     }
-
+    $("#detail").hide();
+    $('#js-show-detail').on('click',function()
+    {
+        $("#detail").toggle();
+    });
 })(jQuery);
+
