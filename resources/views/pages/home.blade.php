@@ -11,7 +11,7 @@
                         <!-- Post Contetnt -->
                         <div class="post-content text-center">
                             <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
-                                <a href="archive.html"></a>
+                                <a href="archive.html">{{$s->title}}</a>
                             </div>
                             <a href="video-post.html" class="post-title" data-animation="fadeInUp" data-delay="300ms">{{$s->noidung}}</a>
                         </div>

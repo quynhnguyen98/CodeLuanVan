@@ -53,11 +53,9 @@
                                 </td>
                                 
                                 {{-- <td>{{$a->hoten}}</td> --}}
-                                <td>sfdb</td>
-                                
+                                     <td></td>
+ 
                                 <td>UnKnown</td>
-
-
                                 <td>
                                     @if($k->tinhtrang=='Sống')
                                     

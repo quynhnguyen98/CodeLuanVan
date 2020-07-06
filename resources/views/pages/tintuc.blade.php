@@ -48,7 +48,7 @@
                                             ?></a>
                                     <a href="archive.html">lifestyle</a>
                                 </div>
-                                <a href="video-post.html" class="post-title">{{$tintuc[$i]->tieude}}</a>
+                                <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                 <!-- Post Meta -->
                                 <div class="post-meta-2">
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>

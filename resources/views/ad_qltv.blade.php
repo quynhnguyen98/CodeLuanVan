@@ -84,12 +84,14 @@
                   var viewModel = {
                       id: parseInt(personID)
                   };
+                     console.log(viewModel);
                   $.ajax({
                       type: "GET",
-                      url: "{{URL::to('/xoa-thanh-vien/+id')}}",
+                      url: "xoa-thanh-vien/"+viewModel.id,
                       data: JSON.stringify(viewModel),
                       contentType: "application/json; charset=utf-8",
                       success: function (data) {
+                       
                           var tableRow = $button.closest('tr');
                           tableRow.remove();
                           swal("Deleted!", "Selected person has been deleted.", "success");
