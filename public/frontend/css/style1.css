@@ -302,7 +302,7 @@ input:focus {
   transition-duration: 500ms;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15); }
   #scrollUp:hover, #scrollUp:focus {
-    background-color: #ed3974;
+    background-color: #d4af37;
     color: #ffffff; }
   @media only screen and (max-width: 767px) {
     #scrollUp {
@@ -314,7 +314,7 @@ input:focus {
 
 /* :: 3.7.0 mag Button */
 .mag-btn {
-  background-color: #ed3974;
+  background-color: #d4af37;
   -webkit-transition-duration: 500ms;
   -o-transition-duration: 500ms;
   transition-duration: 500ms;
@@ -377,7 +377,7 @@ input:focus {
     .header-area .mag-main-menu .top-search-area {
       position: relative;
       z-index: 1;
-      margin-left: 30px; }
+      margin-left: 30px;}
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .header-area .mag-main-menu .top-search-area {
           margin-left: 15px; } }
@@ -538,7 +538,7 @@ input:focus {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 720px; }
+  height: 650px; }
   @media only screen and (min-width: 1200px) and (max-width: 1499px) {
     .hero-blog-post {
       height: 650px; } }
@@ -2214,7 +2214,81 @@ textarea.form-control {
     @media only screen and (max-width: 767px) {
       .map-area iframe {
         height: 250px; } }
+.form-group .icons{
+  position: absolute;
+  margin-left: 300px;
+  margin-top: -28px;
+}
+.form-group .icons a{
+  display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #ed3974;
+      text-align: center;
+      font-size: 15px;
+      color: #ffffff;
+      line-height: 40px;
+      margin-right: 5px;
+      border-radius: 50%;
+}
+.form-group .icons a:hover,.form-group .icons a:focus {
+        background-color: #ed3974; }
+      .form-group .icons a:hover,.form-group .icons a.facebook {
+        background-color: #4b6cd0; }
+      .form-group .icons a:hover,.form-group .icons a.google-plus {
+        background-color: #f03b3b; }
+      .form-group .icons a:hover,.form-group .icons a.instagram {
+        background-color: #bb8950; }
+.qwe{
+  text-align: center;
+}
+.qwe a{
+  font-size:20px;
+  font-weight: 600;
+}
+.qwe a:hover,.qwe a:focus{
+  color:#d4af37;
+}
+.form-group .asd{
+  width: 100px;
+}
+.header-area .mag-main-menu .user{
+  position: relative;
+  z-index: 1;
+  margin-right: 50px;
+}
+.header-area .mag-main-menu .user p{
+  height: 10px;
+}
 
+.header-area .mag-main-menu .user img{
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-top: -20px;
+  margin-left: 70px;
+}
+#detail{
+  position: absolute;
+  padding: 10px auto;
+  width: 100px;
+  height: 50px;
+  background-color: #FDF5E6;
+  border: 1px #A0522D;
+  border-radius: 7px;
+}
+#detail ul{
+  padding-top:6px;
+  padding-bottom: : 6px;
+  padding-left: 8px;
+}
+#detail ul li{
+  font-weight: 700;
+  text-align: center;
+  padding: 5px auto;
+  font-size: 13px;
+}
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */

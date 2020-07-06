@@ -41,12 +41,16 @@ Route::get('/post','HomeController@getPost');
 Route::get('/tin-tuc','HomeController@getTintuc');
 Route::get('/gop-y','HomeController@getGopy');
 Route::get('/gioi-thieu','HomeController@getGioithieu');
-Route::get('/tin-tuc/{id}','HomeController@getPost');
+Route::get('/tintuc/{id}{tieudekhongdau}.html','HomeController@getPost');
 
 
 //User
 Route::any('/login','UserController@getLogin');
 Route::post('/login/check','UserController@Login');
-Route::any('/signup','UserController@getSignup');
-Route::post('/signup/check','UserController@Signup');
+Route::get('/signup','UserController@getSignup');
+Route::any('/signup/check','UserController@Signup');
 Route::get('/user-logout','UserController@Logout');
+Route::get('/forgot-password','UserController@getForgot');
+Route::post('/forgot-password/check','UserController@sendMail');
+Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
+Route::post('/resest-pass/check','UserController@ResestPass');
