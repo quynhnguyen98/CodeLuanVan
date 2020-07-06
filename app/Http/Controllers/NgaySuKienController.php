@@ -14,4 +14,5 @@ class NgaySuKienController extends Controller
         }else
 		    return Redirect('/login_');
     }
+    
 }

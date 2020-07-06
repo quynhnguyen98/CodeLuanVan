@@ -15,4 +15,6 @@ class ThemThanhVienController extends Controller
         }else
 		    return Redirect('/login_');
     }
+
+    
 }

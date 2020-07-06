@@ -85,24 +85,17 @@
                       id: parseInt(personID)
                   };
                   $.ajax({
-                      type: "POST",
-                      url: "/Person/Delete",
+                      type: "GET",
+                      url: "{{URL::to('/xoa-thanh-vien/+id')}}",
                       data: JSON.stringify(viewModel),
                       contentType: "application/json; charset=utf-8",
                       success: function (data) {
                           var tableRow = $button.closest('tr');
                           tableRow.remove();
-  
                           swal("Deleted!", "Selected person has been deleted.", "success");
                       }
                   });
-                  //var tableRow = $button.closest('tr');
-                  //tableRow.addClass("bg-dark");
-                  //tableRow.find('td').fadeOut('slow',
-                  //    function () {
-                  //        tableRow.remove();
-                  //    }
-                  //);
+                 
               } else {
                   swal("Hủy Thao tác", "Xóa Thành viên không thành công", "error");
               }

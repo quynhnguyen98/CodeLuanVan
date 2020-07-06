@@ -27,14 +27,6 @@ class AdminController extends Controller
 	}
     public function getIndex(Request $request)
     {
-	
-		// $admin = Session::get('hoten');
-        // if($admin){
-		// 	return view('admin.dashboard');
-        // }else
-		// return view('admin.loginadmin');
-
-
 		$adtext = $request->input('adtext');
 		$adpassword = md5($request->input('adpassword'));
 		$result=DB::table('taikhoan')->join('nguoi','taikhoan.id_nguoi','=','nguoi.id_nguoi')
