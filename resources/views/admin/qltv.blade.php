@@ -42,6 +42,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            // $mqh=DB::table('nguoi')->select('hoten')->join('nguongoc','nguoi.id_nguoi','=','nguongoc.id_nguoi')
+                            //     ->where('nguongoc.id_nguoi_moiquanhe',2)->first();
+                         
+                                ?>
                             @foreach($all_thanhvien as $k)
                             <tr>
                                 <td>
@@ -52,11 +57,52 @@
                                     <a class="alert-link" href="{{URL::to('/thong-tin-thanh-vien')}}">{{$k->hoten}}</a>
                                 </td>
                                 
-                                {{-- <td>{{$a->hoten}}</td> --}}
-                                <td>sfdb</td>
+                              <?php
+                              
+                                // $mqh=DB::table('nguoi')->join('nguongoc','nguoi.id_nguoi','=','nguongoc.id_nguoi')
+                                // ->where('nguongoc.id_nguoi_moiquanhe',$k->id_nguoi)->value('hoten');
+                              
+                              ?>
+                             <td>
+                               
+                                <?php
+                                $fl = false;
+                                foreach($nguongoc as $gt){
+                                    if($gt->id_nguoi_moiquanhe == $k->id_nguoi){
+                                        
+                                        foreach($all_thanhvien as $v){
+                                            if($gt->id_nguoi == $v->id_nguoi && $v->gioitinh=="Nam"){
+                                                echo $v->hoten;
+                                                $fl = true;
+                                            }
+                                            
+                                        }
+                                       
+                                    }
+                                }
+                                if(!$fl) 
+                                    echo "Không có";
+                                ?>
+                            </td>
+                            <td>
+                               
+                                <?php
+                                $fl = false;
+                                foreach($nguongoc as $gt){
+                                    if($gt->id_nguoi_moiquanhe == $k->id_nguoi){
+                                        
+                                        foreach($all_thanhvien as $v){
+                                            if($gt->id_nguoi == $v->id_nguoi && $v->gioitinh=="Nữ"){
+                                                echo $v->hoten;
+                                                $fl = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                if(!$fl) echo "Không có";
+                                ?>
+                            </td>
                                 
-                                <td>UnKnown</td>
-
 
                                 <td>
                                     @if($k->tinhtrang=='Sống')
