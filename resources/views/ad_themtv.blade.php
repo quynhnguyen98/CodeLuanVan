@@ -74,7 +74,8 @@
     filebrowserUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
     filebrowserImageUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
     filebrowserFlashUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-}); </script>
+}); 
+</script>
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/bootstrap-datepicker.min.js')}}"></script>
 

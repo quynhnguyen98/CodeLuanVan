@@ -57,7 +57,7 @@
       var oTable = $('#peopleTable').DataTable({
           dom: 'Blfrtip',
           //"searching": false,
-          "lengthMenu": [[10, 20, 25, 50, -1], [10, 20, 25, 50, "All"]],
+          "lengthMenu": [[6, 10, 20, 40, -1], [6, 10, 20, 40, "All"]],
           "DisplayLength": 5,
       });
       $(".dataTables_filter").hide(); //hide search
