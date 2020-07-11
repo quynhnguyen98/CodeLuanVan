@@ -2,7 +2,7 @@
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&family=MuseoModerno:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap');
 /* :: 2.0 Import All CSS */
 @import url(bootstrap.min.css);
 @import url(classy-nav.css);
@@ -38,7 +38,8 @@ p {
   color: #777777;
   font-size: 14px;
   line-height: 2;
-  font-weight: 400; }
+  font-weight: 400;
+  margin-bottom: -15px; }
 
 a,
 a:hover,
@@ -63,6 +64,11 @@ ol {
 img {
   height: auto;
   max-width: 100%; }
+#hinhtintuc{
+  width: 99%;
+  height: 500px;
+  max-width: 100%;
+}
 
 /* :: 3.1.0 Spacing */
 .mt-15 {
@@ -356,10 +362,10 @@ input:focus {
           padding-left: 15px;
           height: 60px; } }
       .header-area .mag-main-menu .classy-navbar .classynav ul li a {
-      font-family: 'Josefin Sans', sans-serif;
-        font-weight: 500;
+      font-family: 'Alegreya Sans SC', sans-serif;
+        font-weight: 700;
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 1px; }
         @media only screen and (min-width: 992px) and (max-width: 1199px) {
           .header-area .mag-main-menu .classy-navbar .classynav ul li a {
@@ -557,7 +563,7 @@ input:focus {
   .hero-blog-post .post-content .post-meta {
     position: relative;
     z-index: 1;
-    margin-bottom: 20px; }
+    margin-bottom: 0px; }
     .hero-blog-post .post-content .post-meta a {
       position: relative;
       z-index: 1;
@@ -716,10 +722,10 @@ input:focus {
   z-index: 1;
   background-color: #ffffff;
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 calc(100% - 690px);
-  flex: 0 0 calc(100% - 690px);
-  max-width: calc(100% - 690px);
-  width: calc(100% - 690px);
+  -ms-flex: 0 0 calc(100% - 400px);
+  flex: 0 0 calc(100% - 400px);
+  max-width: calc(100% - 400px);
+  width: calc(100% - 400px);
   margin-left: 15px;
   margin-right: 15px; }
   @media only screen and (min-width: 1200px) and (max-width: 1499px) {
@@ -802,11 +808,14 @@ input:focus {
     max-width: 70px;
     width: 70px; }
     .single-blog-post .post-thumbnail img {
+      width: 100%;
+    }
+    .single-blog-post .post-thumbnail #hinhtintuccon {
       display: block;
-      width: auto;
-      height: auto;
+      width: 120%;
+      height: 150px;
       max-height: 100px;
-      max-width: 100%;
+      max-width: 200%;
     }
   .single-blog-post .post-content {
     padding-left: 15px;
@@ -881,12 +890,12 @@ input:focus {
           max-width: 80px;
           width: 80px; } }
     .single-blog-post.style-3 .post-content {
-      padding-left: 15px; }
+      padding-left: 35px; }
       @media only screen and (min-width: 1200px) and (max-width: 1499px) {
         .single-blog-post.style-3 .post-content {
           padding-left: 10px; } }
       .single-blog-post.style-3 .post-content .post-title {
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: 15px; }
         @media only screen and (min-width: 1200px) and (max-width: 1499px) {
           .single-blog-post.style-3 .post-content .post-title {
@@ -1111,9 +1120,7 @@ input:focus {
     top: 0;
     left: 0; }
   .single-trending-post img {
-    display: block;
-    width: 100%;
-    height: 200px;
+    height: 350px;
     -webkit-transition-duration: 600ms;
     -o-transition-duration: 600ms;
     transition-duration: 600ms; }
@@ -1258,11 +1265,12 @@ input:focus {
   .single-featured-post .post-content {
     line-height:30px;
     position: relative;
-    z-index: 1; }
+    z-index: 1;
+    margin-top:-35px; }
     .single-featured-post .post-content .post-meta {
       position: relative;
       z-index: 1;
-      margin-bottom: 15px; }
+      margin-bottom: 10px; }
       .single-featured-post .post-content .post-meta a {
         position: relative;
         z-index: 1;
@@ -1285,7 +1293,7 @@ input:focus {
     .single-featured-post .post-content .post-title {
       font-size: 30px;
       display: block;
-      margin-bottom: 15px; }
+      margin-bottom: 20px; }
       .single-featured-post .post-content .post-title:hover, .single-featured-post .post-content .post-title:focus {
         color: #d4af37; }
       @media only screen and (min-width: 1200px) and (max-width: 1499px) {

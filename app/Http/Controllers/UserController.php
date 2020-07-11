@@ -5,7 +5,9 @@ use DB;
 use Mail;
 use Session;
 use URL;
-use Auth,Redirect;
+use Redirect;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -30,12 +32,12 @@ class UserController extends Controller
         $remember=$rq->has('remember')?true:false;
         if(Auth::attempt($arr,$remember))
         {
-            $taikhoan=Auth::user();
-            Session::put('tk',$taikhoan);
+            Session::put('tk',auth()->user());
             return redirect('/');
+            
         }
         else
-            return view('user.login',['loi'=>'Sai mật khẩu hoặc tài khoản']);
+            return redirect()->back()->with('loi','Sai mật khẩu và tai khoản');
     }
     public function Signup(Request $rq){
               $validatedData = $rq->validate([
@@ -84,9 +86,9 @@ class UserController extends Controller
     }
     public function Logout()
     {
-        Auth::Logout();
+        Auth::logout();
         Session::forget('tk');
-        return redirect('/');
+        return redirect('/login');
     }
     public function getForgot(){
         return view('user.forgot');

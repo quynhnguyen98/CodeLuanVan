@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-
+use URL;
+use Illuminate\Support\Facades\Auth;
+use Redirect;
+use App\Comment;
+use App\User;
+use Session;
 class HomeController extends Controller
 {
     public function index(){
@@ -27,7 +32,8 @@ class HomeController extends Controller
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->whereNotIn('tintuc.id_tintuc',[$id])
             ->limit(3)->get();
-        return view('pages.singlepost',compact('tintuc','tintuclq'));
+        $comment=DB::table('gopy')->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')->where('gopy.id_tintuc',$id)->get();
+        return view('pages.singlepost',compact('tintuc','tintuclq','comment'));
     }
     public function getTinTuc(){
          $tintuc=DB::table('tintuc')
@@ -43,6 +49,14 @@ class HomeController extends Controller
         return view('pages.gopy');
     }
 
-    
+    public function postComment($id,Request $rq)
+    {
+        $comment=new Comment;
+        $comment->id_tintuc=$id;
+        $comment->noidung=$rq->noidung;
+        $comment->id_taikhoan=Session::get('tk')->id_taikhoan;
+        $comment->save();
+        return back();
+    }
 
 }

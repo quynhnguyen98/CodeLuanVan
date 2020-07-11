@@ -21,7 +21,7 @@
                             <h5>Great to have you back!</h5>
                         </div>
 
-                        <form action="{{URL::to('/login/check')}}" method="post">@csrf
+                        <form action="{{route('login')}}" method="post">@csrf
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="User Name" required>
                             </div>
@@ -50,10 +50,10 @@
                                     </ul>
                                 </div>
                             @endif
-                            @if(isset($loi))
-                                 <div class="alert alert-danger">
+                            @if(Session::has('flag'))
+                                 <div class="alert alert-{{Session::get('flag')}}">
                                     <ul>                    
-                                            <li>{{ $loi }}</li>
+                                            <li>{{Session::get('message')}}</li>
                                     </ul>
                                 </div>
                             @endif

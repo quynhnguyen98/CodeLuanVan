@@ -69,7 +69,7 @@
                             </div>
 
                             @else
-                                <a href="{{URL::to('/login')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                                                <a href="{{route('getLogin')}}" class="login-btn"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
                              </div>
                             <a href="{{URL::to('/gop-y')}}" class="submit-video"><span><i class="fa fa-cloud-upload"></i></span> <span class="video-text">Góp Ý</span></a>
