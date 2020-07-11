@@ -51,12 +51,19 @@ class HomeController extends Controller
 
     public function postComment($id,Request $rq)
     {
-        $comment=new Comment;
-        $comment->id_tintuc=$id;
-        $comment->noidung=$rq->noidung;
-        $comment->id_taikhoan=Session::get('tk')->id_taikhoan;
-        $comment->save();
-        return back();
+        if(Session::has('tk'))
+        {
+                $comment=new Comment;
+                $comment->id_tintuc=$id;
+                $comment->noidung=$rq->noidung;
+                $comment->id_taikhoan=Session::get('tk')->id_taikhoan;
+                $comment->save();
+                return back();
+        }
+        else
+        {
+            return Redirect('/login')->with('loi','Đăng Nhập khi bình luận');
+        }
     }
 
 }

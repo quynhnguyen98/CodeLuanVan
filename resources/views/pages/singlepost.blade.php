@@ -29,15 +29,12 @@
         </div>
     </div>
 
-        <div class="container">
-            <div class="row justify-content-center">
+        <div class="container" style="width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: 120px;" >
+            <div class="row justify-content-center" style="flex-wrap: wrap;margin-right:-15px;margin-left: -15px">
                 <!-- Post Details Content Area -->
                 <div class="col-12 col-xl-8">
                     <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                         <div class="blog-thumb mb-30">
-                            <img src=".../public/frontend/images/bg-img/<?php $data=(explode(',',$tt->images));
-                                                   echo $data[0];
-                                            ?>" alt="">
                             <img src="{{URL::to('public/frontend/images/bg-img')}}/<?php $data=(explode(',',$tt->images));
                                                    echo $data[0];
                                             ?>" alt="">
@@ -58,9 +55,9 @@
                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
                                 <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                             </div>
-
+                            <p style="font-size: 15px;">
                             {!!$tt->noidung_tt!!}
-
+                            </p>
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                 </div>
@@ -102,10 +99,10 @@
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="single-blog-post style-4 mb-30">
                                     <div class="post-thumbnail">
-                                        <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.$ttlq->tieudekhongdau.'.html')}}">
+                                        <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.'/'.$ttlq->tieudekhongdau.'.html')}}">
                                        <img src="{{URL::to('public/frontend/images/bg-img')}}/<?php $data=(explode(',',$ttlq->images));
                                                    echo $data[0];
-                                            ?>" alt="">
+                                            ?>" alt="" style="height: 300px;">
 
                                             </a>
                                     </div>
@@ -139,29 +136,41 @@
                         </div>
 
                         <ol>
-                            @foreach($comment as $cmt)
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->avatar)}}" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($cmt->created_at))}}</a>
-                                        <h6>{{$cmt->tendangnhap}}</h6>
-                                        <p>{{$cmt->noidung}}</p>
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" class="like">like</a>
-                                            <a href="#" class="reply">Reply</a>
+                            @if(!count($comment)==0)
+                                @foreach($comment as $cmt)
+                                <!-- Single Comment Area -->
+                                <li class="single_comment_area">
+                                    <!-- Comment Content -->
+                                    <div class="comment-content d-flex">
+                                        <!-- Comment Author -->
+                                        <div class="comment-author">
+                                            <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->avatar)}}" alt="author">
+                                        </div>
+                                        <!-- Comment Meta -->
+                                        <div class="comment-meta">
+                                            <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($cmt->created_at))}}</a>
+                                            <h6>{{$cmt->tendangnhap}}</h6>
+                                            <p>{{$cmt->noidung}}</p>
+                                            <div class="d-flex align-items-center">
+                                                <a href="#" class="like">like</a>
+                                                <a href="#" class="reply">Reply</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                </li>
+                                @endforeach
+                            @else
+                           <li class="single_comment_area">
+                                  <li class="single_comment_area">
+                                    <!-- Comment Content -->
+                                    <p>Chưa Có Bình Luận</p>
+
+                                </li>
 
                             </li>
-                            @endforeach
+                            @endif
+
 
                             <!-- Single Comment Area -->
 
@@ -169,7 +178,7 @@
                     </div>
 
                     <!-- Post A Comment Area -->
-                    <div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix">
+                    <div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix" style="width: 180%;">
                         <!-- Section Title -->
                         <div class="section-heading">
                             <h5>LEAVE A REPLY</h5>
@@ -192,128 +201,7 @@
                 </div>
 
                 <!-- Sidebar Widget -->
-                <div class="col-12 col-md-6 col-lg-5 col-xl-4">
-                    <div class="sidebar-area bg-white mb-30 box-shadow">
-                        <!-- Sidebar Widget -->
-                        <div class="single-sidebar-widget p-30">
-                            <!-- Social Followers Info -->
-                            <div class="social-followers-info">
-                                <!-- Facebook -->
-                                <a href="#" class="facebook-fans"><i class="fa fa-facebook"></i> 4,360 <span>Fans</span></a>
-                                <!-- Twitter -->
-                                <a href="#" class="twitter-followers"><i class="fa fa-twitter"></i> 3,280 <span>Followers</span></a>
-                                <!-- YouTube -->
-                                <a href="#" class="youtube-subscribers"><i class="fa fa-youtube"></i> 1250 <span>Subscribers</span></a>
-                                <!-- Google -->
-                                <a href="#" class="google-followers"><i class="fa fa-google-plus"></i> 4,230 <span>Followers</span></a>
-                            </div>
-                        </div>
-
-                        <!-- Sidebar Widget -->
-                        <div class="single-sidebar-widget p-30">
-                            <!-- Section Title -->
-                            <div class="section-heading">
-                                <h5>Categories</h5>
-                            </div>
-
-                            <!-- Catagory Widget -->
-                            <ul class="catagory-widgets">
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Life Style</span> <span>35</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Travel</span> <span>30</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Foods</span> <span>13</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Game</span> <span>06</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Sports</span> <span>28</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Football</span> <span>08</span></a></li>
-                                <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> TV Show</span> <span>13</span></a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Sidebar Widget -->
-                        <div class="single-sidebar-widget">
-                            <a href="#" class="add-img"><img src="img/bg-img/add2.png" alt=""></a>
-                        </div>
-
-                        <!-- Sidebar Widget -->
-                        <div class="single-sidebar-widget p-30">
-                            <!-- Section Title -->
-                            <div class="section-heading">
-                                <h5>Hot Channels</h5>
-                            </div>
-
-                            <!-- Single YouTube Channel -->
-                            <div class="single-youtube-channel d-flex">
-                                <div class="youtube-channel-thumbnail">
-                                    <img src="img/bg-img/14.jpg" alt="">
-                                </div>
-                                <div class="youtube-channel-content">
-                                    <a href="single-post.html" class="channel-title">TV Show</a>
-                                    <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Subscribe</a>
-                                </div>
-                            </div>
-
-                            <!-- Single YouTube Channel -->
-                            <div class="single-youtube-channel d-flex">
-                                <div class="youtube-channel-thumbnail">
-                                    <img src="img/bg-img/15.jpg" alt="">
-                                </div>
-                                <div class="youtube-channel-content">
-                                    <a href="single-post.html" class="channel-title">Game Channel</a>
-                                    <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Subscribe</a>
-                                </div>
-                            </div>
-
-                            <!-- Single YouTube Channel -->
-                            <div class="single-youtube-channel d-flex">
-                                <div class="youtube-channel-thumbnail">
-                                    <img src="img/bg-img/16.jpg" alt="">
-                                </div>
-                                <div class="youtube-channel-content">
-                                    <a href="single-post.html" class="channel-title">Sport Channel</a>
-                                    <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Subscribe</a>
-                                </div>
-                            </div>
-
-                            <!-- Single YouTube Channel -->
-                            <div class="single-youtube-channel d-flex">
-                                <div class="youtube-channel-thumbnail">
-                                    <img src="img/bg-img/17.jpg" alt="">
-                                </div>
-                                <div class="youtube-channel-content">
-                                    <a href="single-post.html" class="channel-title">Travel Channel</a>
-                                    <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Subscribe</a>
-                                </div>
-                            </div>
-
-                            <!-- Single YouTube Channel -->
-                            <div class="single-youtube-channel d-flex">
-                                <div class="youtube-channel-thumbnail">
-                                    <img src="img/bg-img/18.jpg" alt="">
-                                </div>
-                                <div class="youtube-channel-content">
-                                    <a href="single-post.html" class="channel-title">LifeStyle Channel</a>
-                                    <a href="#" class="btn subscribe-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Subscribe</a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Sidebar Widget -->
-                        <div class="single-sidebar-widget p-30">
-                            <!-- Section Title -->
-                            <div class="section-heading">
-                                <h5>Newsletter</h5>
-                            </div>
-
-                            <div class="newsletter-form">
-                                <p>Subscribe our newsletter gor get notification about new updates, information discount, etc.</p>
-                                <form action="#" method="get">
-                                    <input type="search" name="widget-search" placeholder="Enter your email">
-                                    <button type="submit" class="btn mag-btn w-100">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 @endsection

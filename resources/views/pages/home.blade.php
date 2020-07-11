@@ -257,13 +257,13 @@
                                         </a>
                                     </div>
                                     <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[0]->tieude}}</a>
-                                    <p>
+                                    <p id="noidung">
                                         <?php
                                             function mysubstr($str,$limit=500){
                                                     if(strlen($str)<=$limit) return $str;
                                                     return substr($str,0,$limit).'...';
                                                 }
-                                            echo mysubstr($tintuc[0]->noidung_tt,200);        
+                                            echo mysubstr($tintuc[0]->noidung_tt,350);        
                                         ?>
 
                                     </p>
@@ -300,14 +300,14 @@
                                      @for($i=1;$i<count($tintuc);$i++)
                                     <div class="single-blog-post d-flex style-3">
                                         <div class="post-thumbnail">
-                                            <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}">
+                                            <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}">
                                             <img id="hinhtintuccon" src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
                                                    echo $data[0];
                                             ?>" alt="">
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
+                                            <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                             <div class="post-meta d-flex">
                                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>

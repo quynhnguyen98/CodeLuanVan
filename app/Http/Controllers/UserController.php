@@ -37,7 +37,7 @@ class UserController extends Controller
             
         }
         else
-            return redirect()->back()->with('loi','Sai mật khẩu và tai khoản');
+            return redirect()->back()->with('loi','Sai mật khẩu và tài khoản');
     }
     public function Signup(Request $rq){
               $validatedData = $rq->validate([

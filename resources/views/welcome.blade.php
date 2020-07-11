@@ -15,7 +15,7 @@
     <link rel="icon" href="{{asset('public/frontend/images/core-img/favicon.ico')}}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{asset('public/frontend/css/style1.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/style2.css')}}">
 
 </head>
 

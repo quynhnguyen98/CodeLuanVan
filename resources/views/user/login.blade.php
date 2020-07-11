@@ -50,10 +50,10 @@
                                     </ul>
                                 </div>
                             @endif
-                            @if(Session::has('flag'))
-                                 <div class="alert alert-{{Session::get('flag')}}">
+                            @if(session('loi'))
+                                 <div class="alert alert-danger">
                                     <ul>                    
-                                            <li>{{Session::get('message')}}</li>
+                                            <li>{{session('loi')}}</li>
                                     </ul>
                                 </div>
                             @endif

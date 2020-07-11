@@ -33,13 +33,20 @@ h6 {
   line-height: 1.3;
   font-weight: 500; }
 
+#noidung{
+    font-family: "Roboto", sans-serif;
+  color: #777777;
+  font-size: 14px;
+  line-height: 2;
+  font-weight: 400;
+  margin-bottom: -15px;
+}
 p {
   font-family: "Roboto", sans-serif;
   color: #777777;
   font-size: 14px;
   line-height: 2;
-  font-weight: 400;
-  margin-bottom: -15px; }
+  font-weight: 400;; }
 
 a,
 a:hover,
@@ -1499,7 +1506,8 @@ input:focus {
 
 .post-details-content {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  width: 180%;}
   .post-details-content .post-meta {
     position: relative;
     z-index: 1;
@@ -1526,7 +1534,8 @@ input:focus {
   .post-details-content .post-title {
     font-size: 24px;
     margin-bottom: 15px;
-    display: block; }
+    display: block;
+    font-size: 35px; }
     @media only screen and (max-width: 767px) {
       .post-details-content .post-title {
         font-size: 20px; } }
@@ -1651,7 +1660,8 @@ blockquote {
 
 .related-post-area {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  width: 180%; }
   .related-post-area .single-blog-post.style-4 .post-content .post-title {
     font-size: 16px; }
 
@@ -1882,7 +1892,8 @@ blockquote {
 
 .comment_area {
   border-bottom: 1px solid #ebebeb;
-  padding-bottom: 50px; }
+  padding-bottom: 50px;
+  width: 180%; }
   .comment_area .comment-content .comment-author {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 70px;
@@ -1969,6 +1980,7 @@ blockquote {
 .mag-breadcrumb .breadcrumb {
   padding: 0;
   margin-bottom: 0;
+  margin-left: -60px;
   background-color: transparent;
   border-radius: 0; }
   .mag-breadcrumb .breadcrumb .breadcrumb-item a:hover, .mag-breadcrumb .breadcrumb .breadcrumb-item a:focus {
