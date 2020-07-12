@@ -30,7 +30,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-xl-8">
                     <div class="archive-posts-area bg-white p-30 mb-30 box-shadow">
-                       @for($i=1;$i<count($tintuc);$i++)
+                       @for($i=0;$i<count($tintuc);$i++)
                         <!-- Single Catagory Post -->
                         <div class="single-catagory-post d-flex flex-wrap">
                             <!-- Thumbnail -->

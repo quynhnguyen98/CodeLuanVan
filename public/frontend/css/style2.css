@@ -73,7 +73,7 @@ img {
   max-width: 100%; }
 #hinhtintuc{
   width: 99%;
-  height: 500px;
+  height: 500px auto;
   max-width: 100%;
 }
 
@@ -738,10 +738,10 @@ input:focus {
   @media only screen and (min-width: 1200px) and (max-width: 1499px) {
     .mag-posts-content {
       -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(100% - 650px);
-      flex: 0 0 calc(100% - 650px);
-      max-width: calc(100% - 650px);
-      width: calc(100% - 650px); } }
+      -ms-flex: 0 0 calc(100% - 350px);
+      flex: 0 0 calc(100% - 350px);
+      max-width: calc(100% - 350px);
+      width: calc(100% - 350px); } }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .mag-posts-content {
       -webkit-box-flex: 0;
@@ -819,10 +819,8 @@ input:focus {
     }
     .single-blog-post .post-thumbnail #hinhtintuccon {
       display: block;
-      width: 120%;
-      height: 150px;
-      max-height: 100px;
-      max-width: 200%;
+      width: auto;
+      height: auto;
     }
   .single-blog-post .post-content {
     padding-left: 15px;

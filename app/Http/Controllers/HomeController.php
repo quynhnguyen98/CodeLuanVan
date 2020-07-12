@@ -39,7 +39,7 @@ class HomeController extends Controller
          $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
-            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->paginate(4);
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->paginate(5);
         return view('pages.tintuc',compact('tintuc'));
     }
      public function getGioithieu(){
