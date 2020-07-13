@@ -29,6 +29,7 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 
 
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
+Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
 
 
 
