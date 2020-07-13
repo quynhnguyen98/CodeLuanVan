@@ -1,59 +1,15 @@
 @extends('ad_caygiapha')
 @section('content')
-
-
-<header>
-    <a class="sr-only" href="#content">Skip to main content</a>
-    <div class="navbar navbar-default navbar-fixed-top">
-       <div class="container">
-          <div class="navbar-header">
-             <a href="../" class="navbar-brand">jChart 2.0</a>
-             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-             </button>
-          </div>
-          <div class="navbar-collapse collapse" id="navbar-main">
-             <ul class="nav navbar-nav navbar-right">
-
-             </ul>
-          </div>
-       </div>
+    <div class="app-title" style="width:90%;margin-left:190px;padding:20px 70px;margin-top: 0px;">
+      <div>
+        <h1><i class="fa fa-edit"></i> Cây Gia Phả</h1>
+        <p>Full Calander page for managing events</p>
+      </div>
+      <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Calendar</a></li>
+      </ul>
     </div>
-    <div class="container">
-       <div class="row">
-          <div class="col-lg-4">
-             <div style="padding:10px 0px 15px 0px;">
-                <a href='/' title="">
-                   <img src='../assets/images/logo.png' alt="" />
-                </a>
-             </div>
-          </div>
-          <div class="col-lg-8">
-
-          </div>
-       </div>
-    </div>
-    <div class="container">
-       <div class="navbar navbar-inverse">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-          </button>
-          <div class="navbar-collapse collapse navbar-inverse-collapse" id="navbar-collapse-1">
-             <ul id="tabs1_lsec" class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="started.html">Getting Started</a></li>
-
-             </ul>
-             </ul>
-          </div>
-       </div>
-    </div>
- </header>
  <div class="container">
     <p>
     <h3>Chart Tree - Editable Mode</h3>
@@ -189,7 +145,7 @@
                 var plupload_flash_url="assets/plugins/plupload/js/plupload.flash.swf";
                 var plupload_silverlight_url="assets/plugins/plupload/js/plupload.silverlight.xap";
                 var maxFileSize="10mb";
-                var defaultThumbUrl="../assets/images/holder.png"</script>
+                var defaultThumbUrl="public/project/assets/images/holder.png"</script>
 
                 <div class="modal fade" id="cModal">
 
@@ -247,7 +203,7 @@
                                                     <div id="_tThumb" class="vd" style="width:100px;\">
                                                        <a href="#" title="user profile">
                                                           <img class="img-rounded" id="modaledchange"
-                                                             src="../assets/images/holder.png"
+                                                            
                                                              style="width:100px; height:100px;" alt="Profile Photo">
                                                        </a>
                                                        <div class="dur mini-text ui-corner-all"
@@ -485,37 +441,7 @@
        </div>
     </div>
 
-    <footer id="footer">
-
-       <div class="footer-copyright">
-          <div class="container">
-             <div class="row">
-                <div class="col-md-1">
-                   <a href="/" class="logo">
-                      <img alt="" class="img-responsive" src="../assets/images/mkit.png">
-                   </a>
-                </div>
-                <div class="col-md-7">
-                   <p class="mini-text">&copy; Copyright © 2015 by Mediasoftpro. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-4">
-                   <nav>
-                      <ul>
-                         <li><a class="mini-text" href='#'>
-                               Terms of use</a></li>
-                         <li><a class="mini-text" href='#'>
-                               Privacy</a></li>
-                         <li><a class="mini-text" href='#'>
-                               Sitemap</a></li>
-                         <li><a class="mini-text" href='#'>
-                               Contact Us</a></li>
-                      </ul>
-                   </nav>
-                </div>
-             </div>
-          </div>
-       </div>
-    </footer>
+    
 
     <!-- jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
