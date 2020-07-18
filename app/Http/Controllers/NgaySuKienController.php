@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class NgaySuKienController extends Controller
 {
     public function ngay_su_kien(){
@@ -14,5 +14,6 @@ class NgaySuKienController extends Controller
         }else
 		    return Redirect('/login_');
     }
-    
+        }
+    }
 }

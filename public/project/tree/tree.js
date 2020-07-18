@@ -119,9 +119,9 @@ $(function () {
 		browse_button: 'tchange',
 		container: 'modaledthumb',
 		max_file_size: maxFileSize,
-		url: dn + plUploadHandler,
-		flash_swf_url: dn + plupload_flash_url,
-		silverlight_xap_url: dn + plupload_silverlight_url,
+		url: dn,
+		flash_swf_url: dn,
+		silverlight_xap_url: dn,
 		filters: [{
 			title: "Image files",
 			extensions: "jpg,gif,png"

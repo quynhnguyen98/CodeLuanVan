@@ -13,6 +13,9 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    protected $commands=[
+        'App\Console\Commands\EventMail'
+    ];
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -22,7 +25,11 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
-
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('event:mail')
+                 ->dailyAt('00:00');
+    }
     /**
      * The application's route middleware groups.
      *
