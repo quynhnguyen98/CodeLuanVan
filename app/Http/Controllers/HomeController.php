@@ -26,16 +26,17 @@ class HomeController extends Controller
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
         {
-            $po=date('d-m',strtotime($sk->ngaymat)).'-2020';
-            $event=strtotime($po);
-            if($event>$now)
-                {
+            $start=date('d-m',strtotime($sk->ngaymat)).'-2020 00:00:00';
+            $end=date('d-m',strtotime($sk->ngaymat)).'-2020 23:59:59';
+            $eventstart=strtotime($start);
+            $eventend=strtotime($end);
+            if($eventend>=$now)
+            {
                     $mang1[]=$sk;
-                    }                
-                    
-            
+            }                        
         }
-        return view('pages.home',compact('slide','tintuc','hinhanh','mang1'));
+        //return $mang1;
+        return view('pages.home',compact('slide','tintuc','hinhanh','mang1','now'));
     }
     public function sort($mang1,$mang2)
     {

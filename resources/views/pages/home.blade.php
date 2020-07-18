@@ -43,7 +43,18 @@
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">{{$sk->tensukien}}</a>
                         <div class="post-meta d-flex justify-content-between">
-                            Ngày:{{date('d/m',strtotime($sk->ngaymat))}}
+                            Ngày:
+                            <?php
+                                $start=strtotime(date('d-m',strtotime($sk->ngaymat)).'-2020 00:00:00');
+                                $end=strtotime(date('d-m',strtotime($sk->ngaymat)).'-2020 23:59:59');
+                                if(($start<=$now)&&($now<=$end))
+                                {
+ 
+                                    echo 'Hôm Nay';
+                                }
+                                else
+                                    echo date('d-m',strtotime($sk->ngaymat));
+                            ?>
                         </div>
                     </div>
                 </div>

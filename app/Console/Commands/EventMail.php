@@ -44,15 +44,17 @@ class EventMail extends Command
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
         {
-            $po=date('d-m',strtotime($sk->ngaymat)).'-2020';
-            $event=strtotime($po);
-            if($event==$now)
+            $end=date('d-m',strtotime($sk->ngaymat)).'-2020 23:59:59';
+            $start=date('d-m',strtotime($sk->ngaymat)).'-2020 00:00:00';
+            $eventstart=strtotime($start);
+            $eventend=strtotime($end);
+            if(($eventstart<=$now)&&($now<=$eventend))
                 {
                     foreach($nguoi as $ng)
                     {
                         $data=[
                             'email'=>$ng->email,
-                            'ngaymat'=>$po,
+                            'ngaymat'=>$start,
                             'hoten'=>$sk->hoten,
                         ];
                         Mail::to($ng->email)->send(new \App\Mail\GioToMail($data));
