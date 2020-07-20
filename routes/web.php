@@ -19,6 +19,9 @@ Route::post('/dashboard','AdminController@getIndex');
 Route::get('/logout','AdminController@getLogout');
 
 Route::get('/ngay-su-kien','NgaySuKienController@ngay_su_kien');
+Route::get('/load-su-kien','NgaySuKienController@load_su_kien');
+
+
 Route::get('/dashboard','AdminController@getLogin');
 Route::get('/tim-kiem-thong-tin','TimKiemThongTinController@tim_kiem_thong_tin');
 Route::get('/thong-tin-thanh-vien','ThongTinThanhVienController@thong_tin_thanh_vien');
@@ -30,7 +33,9 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
-Route::post('/mail-event','NgaySuKienController@mailevent');
+Route::get('/nguoi','TreeController@getnguoi');
+Route::post('/save-person','ThemThanhVienController@save_person');
+
 
 
 

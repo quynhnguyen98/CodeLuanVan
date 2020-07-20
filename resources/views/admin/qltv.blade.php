@@ -118,7 +118,7 @@
                                 <td>
                                     <a class="btn btn-danger btn-sm DeletePerson" href="javascript:void(0);"><i
                                             class="fa fa-trash-o"></i> Xóa</a>
-                                            <a href="{{URL::to('/xoa-thanh-vien/'.$k->id_nguoi)}}">Xoa</a>
+                                         
                                 </td>
                             </tr>
                            @endforeach

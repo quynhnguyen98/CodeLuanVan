@@ -41,7 +41,7 @@
     <script src="{{asset('public/adminFE/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/adminFE/js/main.js')}}"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="/content/js/plugins/pace.min.js"></script>
+    <script src="{{asset('public/adminFE/js/plugins/pace.min.js')}}"></script>
 
     <script>
         if ($("link[href='/content/css/main-rtl.css']").length) {
@@ -74,7 +74,7 @@
     filebrowserUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
     filebrowserImageUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
     filebrowserFlashUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
-}); 
+});
 </script>
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/bootstrap-datepicker.min.js')}}"></script>

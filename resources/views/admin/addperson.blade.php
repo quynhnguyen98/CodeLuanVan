@@ -12,7 +12,8 @@
         </ul>
     </div>
 
-    <form action="/Person/Create" enctype="multipart/form-data" method="post">
+    <form action="{{URL::to('/save-person')}}" enctype="multipart/form-data" method="post">
+        @csrf
         <div class="tile mt-4 mb-4">
             <div class="row">
                 <div class="col-lg-12">
@@ -31,9 +32,9 @@
                                 <div class="col-lg-4 pt-1 pb-1">
                                     <img id="photo"
                                         style="height: 320px;width: 100%;margin:0px;padding: 2px;display:block;border: 3px solid #cccccc;"
-                                        src="/content/images/no-image.jpg" alt="Photo">
+                                        src="public/adminFE/images/no-image.jpg" alt="Photo">
                                     <input class="form-control d-none" id="PhotoFileSelector" name="PhotoFileSelector"
-                                        type="file" value="" />
+                                        type="file" value=""/>
                                     <input id="PhotoFileName" name="PhotoFileName" type="hidden" value="" />
                                 </div>
                                 <div class="col-lg-8">
@@ -42,8 +43,8 @@
                                         <div class="col-lg-10">
                                             <div class="form-group">
                                                 <label class="control-label">Họ và tên</label>
-                                                <input class="form-control" id="PersonName" name="PersonName"
-                                                    placeholder="Nhập họ tên" type="text" value="" />
+                                                <input class="form-control" id="PersonName" name="hoten"
+                                                    placeholder="Nhập họ tên" type="text" value=""/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -66,51 +67,27 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="control-label">Cha</label>
+                                                <label class="control-label">Người Thân</label>
                                                 <select class="form-control" data-val="true"
                                                     data-val-number="The field FatherID must be a number." id="FatherID"
                                                     name="FatherID">
-                                                    <option value="">----Select----</option>
-                                                    <option value="4">Marco Peacock</option>
-                                                    <option value="5">Steven Buchanan</option>
-                                                    <option value="7">Robert Kong</option>
-                                                    <option value="10">Hunold Alexander</option>
-                                                    <option value="22">Mike Bongiorno</option>
-                                                    <option value="38">Time Oldman</option>
-                                                    <option value="50">Sakharam Bhabal</option>
-                                                    <option value="51">Gangadhar Bhabal</option>
-                                                    <option value="54">Sanket Bhabal</option>
-                                                    <option value="55">blublub</option>
-                                                    <option value="56">G</option>
-                                                    <option value="57"></option>
-                                                    <option value="58">Test</option>
-                                                    <option value="60">Test now</option>
-                                                    <option value="61">Test now&#39;s son</option>
-                                                    <option value="62">sdas</option>
-                                                    <option value="64">Test Abbas</option>
-                                                    <option value="65">NEERAJ</option>
-                                                    <option value="66">testtttt</option>
-                                                    <option value="67">hassan</option>
-                                                    <option value="70">Test Abbas</option>
+                                                    @foreach($all_thanhvien as $k)
+                                                        <option value="{{$k->id_nguoi}}">{{$k->hoten}}</option>
+                                                    @endforeach
                                                 </select>
-                                                <span class="field-validation-valid" data-valmsg-for="FatherID"
+                                                <span class="field-validation-valid" data-valmsg-for="Cha"
                                                     data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="control-label">Mẹ</label>
+                                                <label class="control-label">Quê quán</label>
                                                 <select class="form-control" data-val="true"
                                                     data-val-number="The field MotherID must be a number." id="MotherID"
-                                                    name="MotherID">
-                                                    <option value="">----Select----</option>
-                                                    <option value="2">Nancy Davolio</option>
-                                                    <option value="3">Janet Leverling</option>
-                                                    <option value="6">Michele Suyamatest</option>
-                                                    <option value="8">Laura Callahan</option>
-                                                    <option value="9">Anne Dodsworth</option>
-                                                    <option value="53">Darpana Bhabal</option>
-                                                    <option value="68">fans</option>
+                                                    name="tinh">
+                                                    @foreach($tinh as $k)
+                                                        <option value="{{$k->id_tinh}}">{{$k->tinh_tp}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <span class="field-validation-valid" data-valmsg-for="MotherID"
                                                     data-valmsg-replace="true"></span>
@@ -122,47 +99,50 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="control-label">Giới tính</label>
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option value="">----Select----</option>
-                                                    <option value="Male">Nam</option>
-                                                    <option value="Female">Nữ</option>
+                                                <select class="form-control" id="Gender" name="gioitinh">
+                                                    <option value="Nam">Nam</option>
+                                                    <option value="Nữ">Nữ</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                         {{-- <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="control-label">Ngày sinh</label>
-                                                <input class="form-control" data-val="true"
-                                                    data-val-date="The field DateOfBirth must be a date."
-                                                    id="DateOfBirth" name="DateOfBirth" placeholder="Chọn Ngày"
-                                                    type="text" value="" />
-                                                <span class="field-validation-valid" data-valmsg-for="DateOfBirth"
+                                                <label class="control-label">Trạng thái hôn nhân</label>
+                                                <input class="form-control" id="Occation" name="trangthai_honnhan"
+                                                    placeholder="Nhập tại đây" type="text" value="" />
+                                                <span class="field-validation-valid" data-valmsg-for="Occation"
                                                     data-valmsg-replace="true"></span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="control-label">Trạng thái hôn nhân</label>
-                                                <input class="form-control" id="Occation" name="Occation"
-                                                    placeholder="Nhập tại đây" type="text" value="" />
-                                                <span class="field-validation-valid" data-valmsg-for="Occation"
+                                                <label class="control-label">Ngày sinh</label>
+                                                <input class="form-control" data-val="true"
+                                                    data-val-date="The field DateOfBirth must be a date."
+                                                    id="DateOfBirth" name="ngaysinh" placeholder="Chọn Ngày"
+                                                    type="text" value="" />
+                                                <span class="field-validation-valid" data-valmsg-for="DateOfBirth"
                                                     data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="control-label">Quê quán</label>
-
-                                                <input class="form-control" id="CurrentResidence"
-                                                    name="CurrentResidence" placeholder="Nhập quê quán" type="text"
-                                                    value="" />
-                                                <span class="field-validation-valid" data-valmsg-for="CurrentResidence"
+                                                <label class="control-label">Ngày mất</label>
+                                                <input name="ngaymat" type="checkbox" id="ckb" onclick="deathclick()">
+                                                
+                                                    <input class="form-control" data-val="true"
+                                                    id="DateOfDeath" name="ngaymat" placeholder="Chọn Ngày"
+                                                    type="date" value="null" disabled/>
+                                                    <span class="field-validation-valid" data-valmsg-for="DateOfDeath"
                                                     data-valmsg-replace="true"></span>
+                                               
+                                                
                                             </div>
                                         </div>
+
                                     </div>
 
                                 
@@ -171,15 +151,15 @@
 
                             <div class="form-group">
                                 <label for="exampleTextarea">Tiểu sử</label>
-                                <textarea class="form-control" id="editor1" rows="15"></textarea>
+                                <textarea class="form-control" id="editor1" rows="15" name="tieusu"></textarea>
                             </div>
 
                             <div class="tile-footer">
                                 <button class="btn btn-primary" type="submit"><i
-                                        class="fa fa-fw fa-lg fa-check-circle"></i>Thêm mới</button>
-                                &nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-danger" href="/Person"><i
-                                        class="fa fa-fw fa-lg fa-times-circle"></i>Hủy</a>
+                                    class="fa fa-fw fa-lg fa-check-circle"></i>Thêm mới</button>
+                            
+                                
+                                
                             </div>
 
                         </div>
@@ -189,4 +169,19 @@
         </div>
     </form>
 </main>
+<script>
+    function deathclick(){
+        var checkBox = document.getElementById("ckb");
+        var txtdate=document.getElementById("DateOfDeath");
+        if(checkBox.checked==true)
+            txtdate.disabled=false;
+        else
+        {
+            txtdate.disabled=true;
+            txtdate.value="null";
+
+        }
+           
+    }
+</script>
 @endsection
