@@ -39,7 +39,7 @@
                 @foreach($mang1 as $sk)
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
-                    <i class="fa fa-calender"></i>
+                    <i class="fa fa-calendar" style="font-size: 20px;"></i>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">{{$sk->tensukien}}</a>
                         <div class="post-meta d-flex justify-content-between">
@@ -82,7 +82,7 @@
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Coventry City Guide Including Coventry</a>
                         <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
+                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
                         </div>
@@ -221,7 +221,7 @@
                                 <div class="post-share-area d-flex align-items-center justify-content-between">
                                     <!-- Post Meta -->
                                     <div class="post-meta pl-3">
-                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
+                                        <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{$tintuc[0]->luotxem}}</a>
                                         <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
                                         <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                                     </div>
@@ -258,7 +258,7 @@
                                         <div class="post-content">
                                             <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                             <div class="post-meta d-flex">
-                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
+                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> {{$tintuc[$i]->luotxem}}</a>
                                                 <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
                                                 <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                                             </div>

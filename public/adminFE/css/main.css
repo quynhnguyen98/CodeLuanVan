@@ -16732,3 +16732,12 @@ be a descendant of the grid when it is being dragged.
 .user .user-settings label {
   color: #666;
 }
+
+span.fa-thumbs-styling.fa.fa-thumbs-up{
+  font-size:20px;
+  color:red;
+}
+span.fa-thumbs-styling.fa.fa-thumbs-down{
+  font-size:20px;
+  color:green;
+}

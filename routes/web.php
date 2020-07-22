@@ -31,11 +31,9 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
 Route::post('/mail-event','NgaySuKienController@mailevent');
-
-
-
-
-
+Route::get('/quan-ly-comment','CommentController@getComment');
+Route::get('/active/{id_gopy}','CommentController@active');
+Route::get('/unactive/{id_gopy}','CommentController@unactive');
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');
@@ -56,3 +54,5 @@ Route::get('/forgot-password','UserController@getForgot');
 Route::post('/forgot-password/check','UserController@sendMail');
 Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
 Route::post('/resest-pass/check','UserController@ResestPass');
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');

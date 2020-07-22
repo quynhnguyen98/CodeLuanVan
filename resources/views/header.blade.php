@@ -57,7 +57,11 @@
                             <!-- Login -->                          
                             <!-- Submit Video -->
                             <div class="user">
-                                 <p >{{Session::get('tk')->tendangnhap}}</p>
+                                 <p >@if(Session::get('tk')->tendangnhap!=null)
+                                            {{Session::get('tk')->tendangnhap}}
+                                        @else
+                                            {{Session::get('tk')->email}}
+                                    @endif</p>
                                 <img src="{{asset('public/frontend/images/core-img/'.Session::get('tk')->avatar)}}" id="js-show-detail" alt="">
                                  <a href="{{URL::to('/user-logout')}}">
                                     <i class="fa fa-sign-out"></i>Logout</a>
