@@ -19,6 +19,9 @@ Route::post('/dashboard','AdminController@getIndex');
 Route::get('/logout','AdminController@getLogout');
 
 Route::get('/ngay-su-kien','NgaySuKienController@ngay_su_kien');
+Route::get('/load-su-kien','NgaySuKienController@load_su_kien');
+
+
 Route::get('/dashboard','AdminController@getLogin');
 Route::get('/tim-kiem-thong-tin','TimKiemThongTinController@tim_kiem_thong_tin');
 Route::get('/thong-tin-thanh-vien','ThongTinThanhVienController@thong_tin_thanh_vien');
@@ -30,10 +33,15 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
+
 Route::post('/mail-event','NgaySuKienController@mailevent');
 Route::get('/quan-ly-comment','CommentController@getComment');
 Route::get('/active/{id_gopy}','CommentController@active');
 Route::get('/unactive/{id_gopy}','CommentController@unactive');
+Route::get('/nguoi','TreeController@getnguoi');
+Route::post('/save-person','ThemThanhVienController@save_person');
+
+
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');
@@ -53,6 +61,8 @@ Route::get('/user-logout','UserController@Logout')->name('logout');
 Route::get('/forgot-password','UserController@getForgot');
 Route::post('/forgot-password/check','UserController@sendMail');
 Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
+
 Route::post('/resest-pass/check','UserController@ResestPass');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
+Route::post('/resest-pass/check','UserController@ResestPass');
