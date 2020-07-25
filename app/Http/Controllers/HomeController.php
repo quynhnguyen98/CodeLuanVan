@@ -12,7 +12,8 @@ use Session;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $rq){
+        $url_canonical=$rq->url();
         $slide=DB::table('slide')->get();
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
@@ -44,7 +45,7 @@ class HomeController extends Controller
         return (strtotime($po)-strtotime($po1));
 
     }
-    public function getPost($id){
+    public function getPost($id,Request $rq){
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->where('tintuc.id_tintuc',$id)
@@ -63,8 +64,9 @@ class HomeController extends Controller
              Session::put($sessionKey, 1);
              DB::table('tintuc')->where('tintuc.id_tintuc',$id)->increment('luotxem');
         }
-        //print_r($data);
-        return view('pages.singlepost',compact('tintuc','tintuclq','comment'));
+        $url_canonical=$rq->url();
+        //return $url_canonical;
+        return view('pages.singlepost',compact('tintuc','tintuclq','comment','url_canonical'));
     }
     public function getTinTuc(){
          $tintuc=DB::table('tintuc')

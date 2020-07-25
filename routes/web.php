@@ -40,7 +40,8 @@ Route::get('/active/{id_gopy}','CommentController@active');
 Route::get('/unactive/{id_gopy}','CommentController@unactive');
 Route::get('/nguoi','TreeController@getnguoi');
 Route::post('/save-person','ThemThanhVienController@save_person');
-
+Route::get('/quan-ly-tin-tuc','TinTucController@getIndex');
+Route::get('/xoa-tin-tuc/{id1_tintuc}','TinTucController@xoa_post');
 
 //Home
 Route::get('/','HomeController@index');
