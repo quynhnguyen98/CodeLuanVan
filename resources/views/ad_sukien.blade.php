@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
@@ -19,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('public/adminFE/css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/adminFE/css/fullcalendar.css')}}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -34,62 +36,123 @@
     <script src="{{asset('public/adminFE/js/popper.min.js')}}"></script>
     <script src="{{asset('public/adminFE/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/adminFE/js/main.js')}}"></script>
+    
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{asset('public/adminFE/js/plugins/pace.min.js')}}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jquery-ui.custom.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/fullcalendar.min.js')}}"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-      
-      	$('#external-events .fc-event').each(function() {
-      
-      		// store data so the calendar knows to render an event upon drop
-      		$(this).data('event', {
-      			title: $.trim($(this).text()), // use the element's text as the event title
-      			stick: true // maintain when user navigates (see docs on the renderEvent method)
-      		});
-      
-      		// make the event draggable using jQuery UI
-      		$(this).draggable({
-      			zIndex: 999,
-      			revert: true,      // will cause the event to go back to its
-      			revertDuration: 0  //  original position after the drag
-      		});
-      
-      	});
-      
-      	$('#calendar').fullCalendar({
-      		header: {
-      			left: 'prev,next today',
-      			center: 'title',
-      			right: 'month,agendaWeek,agendaDay'
-      		},
-      		editable: true,
-      		droppable: true, // this allows things to be dropped onto the calendar
-      		drop: function() {
-      			// is the "remove after drop" checkbox checked?
-      			if ($('#drop-remove').is(':checked')) {
-      				// if so, remove the element from the "Draggable Events" list
-      				$(this).remove();
-      			}
-      		}
-      	});
-      
-      
-      });
-    </script>
-    <!-- Google analytics script-->
-    <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
-      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      	ga('create', 'UA-72504830-1', 'auto');
-      	ga('send', 'pageview');
-      }
-    </script>
+    {{-- <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/fullcalendar.min.js')}}"></script> --}}
+
+
+
+
+
+
+
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" /> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" /> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" ></script>
+    <script src="{{asset('public/adminFE/js/fullcalendar.js')}}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script> --}}
+
+
+
+
+
+
+<script>
+  
+  $(document).ready(function () {
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        var calendar = $('#calendar').fullCalendar({
+            editable: true,
+            events:"fullcalendar",
+            
+            displayEventTime: true,
+            editable: true,
+            
+            eventRender: function (event, element, view) {
+                
+                if (event.allDay == 'true') {
+                    event.allDay = true;
+                } else {
+                    event.allDay = false;
+                }
+            },
+            selectable: true,
+            selectHelper: true,
+            select: function (start, end, allDay) {
+                var title = prompt('Nhập tên sự kiện:');
+
+                if (title) {
+                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                    
+                    
+
+                    $.ajax({
+                        url: "fullcalendar/create",
+                        data: {'title' : title, 'start': start},
+                        type: "POST",
+                       
+                        success: function (data) {
+                            displayMessage("Thêm thành công");
+                        }
+                    });
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            allDay: allDay
+                        },
+                        true
+                    );
+                }
+                calendar.fullCalendar('unselect');
+            },
+
+            eventDrop: function (event, delta) {
+                var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+              
+                $.ajax({
+                    url: 'fullcalendar/update',
+                    data: {'title': event.title, 'start': start, 'id': event.id},
+                    type: "POST",
+                    success: function (response) {
+                        displayMessage("Cập nhật thành công");
+                    }
+                });
+            },
+            eventClick: function (event) {
+                var deleteMsg = confirm("Bạn có muốn chắc xóa sự kiện này?");
+                if (deleteMsg) {
+                    $.ajax({
+                        type: "POST",
+                        url:'fullcalendar/delete',
+                        data: {'id': event.id},
+                        success: function (response) {
+                            if(parseInt(response) > 0) {
+                                $('#calendar').fullCalendar('removeEvents', event.id);
+                                displayMessage("Xóa thành công");
+                            }
+                        }
+                    });
+                }
+            }
+
+        });
+    });
+
+    function displayMessage(message) {
+        $(".response").html("<div class='success'>"+message+"</div>");
+        setInterval(function() { $(".success").fadeOut(); }, 1000);
+    }
+    
+</script>
   </body>
 </html>
