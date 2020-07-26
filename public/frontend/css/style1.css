@@ -870,16 +870,15 @@ input:focus {
         .single-blog-post.style-3 .post-thumbnail {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-          max-width: 50px;
-          width: 50px; } }
+          max-width: auto;
+          width: auto; } }
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
         .single-blog-post.style-3 .post-thumbnail {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 100;
           flex: 0 0 100;
-          max-width: 100;
-          width: 100; } }
+          max-width: auto;
+          width: auto; } }
       @media only screen and (max-width: 767px) {
         .single-blog-post.style-3 .post-thumbnail {
           -webkit-box-flex: 0;
@@ -1505,7 +1504,7 @@ input:focus {
 .post-details-content {
   position: relative;
   z-index: 1;
-  width: 180%;}
+  }
   .post-details-content .post-meta {
     position: relative;
     z-index: 1;
@@ -1658,8 +1657,7 @@ blockquote {
 
 .related-post-area {
   position: relative;
-  z-index: 1;
-  width: 180%; }
+  z-index: 1; }
   .related-post-area .single-blog-post.style-4 .post-content .post-title {
     font-size: 16px; }
 
@@ -1891,7 +1889,7 @@ blockquote {
 .comment_area {
   border-bottom: 1px solid #ebebeb;
   padding-bottom: 50px;
-  width: 180%; }
+   }
   .comment_area .comment-content .comment-author {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 70px;
@@ -1978,7 +1976,6 @@ blockquote {
 .mag-breadcrumb .breadcrumb {
   padding: 0;
   margin-bottom: 0;
-  margin-left: -60px;
   background-color: transparent;
   border-radius: 0; }
   .mag-breadcrumb .breadcrumb .breadcrumb-item a:hover, .mag-breadcrumb .breadcrumb .breadcrumb-item a:focus {
@@ -2270,31 +2267,36 @@ textarea.form-control {
 .form-group .asd{
   width: 100px;
 }
-.header-area .mag-main-menu .user{
-  position: relative;
-  z-index: 1;
-  margin-right: 50px;
+.header-area .mag-main-menu .user
+{
+  display:table;
+  width: auto;
 }
-.header-area .mag-main-menu .user p{
-  height: 10px;
+.header-area .mag-main-menu .user #thongtin{
+  width: auto;
+  float: left;
+}
+.header-area .mag-main-menu .user #thongtin p{
+  margin-bottom: -2px;
+}
+.header-area .mag-main-menu .user #js-show-detail{
+  width: 50px;
+  float:right;
+}
+.header-area .mag-main-menu .user #js-show-detail img{
+  border-radius: 50%;
+  width: 42px;
+  margin-left: 5px;
 }
 
-.header-area .mag-main-menu .user img{
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  margin-top: -20px;
-  margin-left: 70px;
-}
-#detail{
-  position: absolute;
-  padding: 10px auto;
+.header-area .mag-main-menu .user #detail{
+  position: absolute; 
   width: 100px;
   height: 50px;
   background-color: #FDF5E6;
   border: 1px #A0522D;
   border-radius: 7px;
+  margin-top:15px;
 }
 #detail ul{
   padding-top:6px;

@@ -29,7 +29,7 @@
         </div>
     </div>
 
-        <div class="container" style="width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: 120px;" >
+        <div class="container">
             <div class="row justify-content-center" style="flex-wrap: wrap;margin-right:-15px;margin-left: -15px">
                 <!-- Post Details Content Area -->
                 <div class="col-12 col-xl-8">
@@ -68,9 +68,7 @@
 
                             <!-- Like Dislike Share -->
                             <div class="like-dislike-share my-5">
-                                <h4 class="share">240<span>Share</span></h4>
-                                <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
-                                <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Share on Twitter</a>
+                                <div class="fb-share-button" data-href="http://localhost/CodeLuanVan/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                             </div>
 
                             <!-- Post Author -->
@@ -178,7 +176,7 @@
                     </div>
 
                     <!-- Post A Comment Area -->
-                    <div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix" style="width: 180%;">
+                    <div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix" >
                         <!-- Section Title -->
                         <div class="section-heading">
                             <h5>LEAVE A REPLY</h5>

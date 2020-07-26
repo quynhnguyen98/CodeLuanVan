@@ -80,6 +80,7 @@
         </li>
         <li><a class="app-menu__item {{'quan-ly-thanh-vien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-thanh-vien')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Thành Viên</span></a></li>
         <li><a class="app-menu__item {{'quan-ly-comment' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-comment')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Comment</span></a></li>
+        <li><a class="app-menu__item {{'quan-ly-tin-tuc' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tin-tuc')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tin Tức</span></a></li>
         <li><a class="app-menu__item {{'' == request()->path() ? 'active' : ''}}" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
       </ul>
     </aside>

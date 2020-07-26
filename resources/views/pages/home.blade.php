@@ -41,7 +41,7 @@
                 <div class="single-blog-post d-flex">
                     <i class="fa fa-calendar" style="font-size: 20px;"></i>
                     <div class="post-content">
-                        <a href="single-post.html" class="post-title">{{$sk->tensukien}}</a>
+                        <a href="" class="post-title">{{$sk->tensukien}}</a>
                         <div class="post-meta d-flex justify-content-between">
                             Ngày:
                             <?php
@@ -163,10 +163,10 @@
                     <h5>HÌNH ẢNH</h5>
                 </div>
    
-                <div class="trending-post-slides owl-carousel">
+                <div class="trending-post-slides owl-carousel" >
                     <!-- Single Trending Post -->
                     @foreach($hinhanh as $ha)
-                    <div class="single-trending-post">
+                    <div class="single-trending-post" style="height: 310px;">
                         <img src="public/frontend/images/bg-img/{{$ha->tenhinh}}" alt="">
                     </div>
                     @endforeach
