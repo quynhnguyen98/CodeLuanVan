@@ -44,7 +44,7 @@ Route::get('/unactive/{id_gopy}','CommentController@unactive');
 Route::get('/nguoi','TreeController@getnguoi');
 Route::post('/save-person','ThemThanhVienController@save_person');
 Route::get('/quan-ly-tin-tuc','TinTucController@getIndex');
-Route::get('/xoa-tin-tuc/{id1_tintuc}','TinTucController@xoa_post');
+Route::get('/xoa-tin-tuc/{id_tintuc}','TinTucController@xoa_post');
 
 //Home
 Route::get('/','HomeController@index');

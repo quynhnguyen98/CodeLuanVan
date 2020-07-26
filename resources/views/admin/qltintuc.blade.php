@@ -28,7 +28,6 @@
                       <th>Người đăng</th>
                       <th>Lượt xem</th>
                       <th></th>
-                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -42,10 +41,11 @@
                       <td>{{$tt->ngaydang}}</td>
                       <td>{{$tt->tendangnhap}}</td>
                       <td>{{$tt->luotxem}}</td>
-                      <td>{{$tt->tendangnhap}}</td>
                       <td> <a class="btn btn-danger btn-sm DeletePost" href="javascript:void(0);"><i
-                                            class="fa fa-trash-o"></i> Xóa</a></td>
-
+                                            class="fa fa-trash-o"></i> Xóa</a>
+                                            {{-- <a  href="{{URL::to('/xoa-tin-tuc/'.$tt->id_tintuc)}}"> Xóa</a> --}}
+                                          </td>
+                     
                     </tr>                     
                     @endforeach
 

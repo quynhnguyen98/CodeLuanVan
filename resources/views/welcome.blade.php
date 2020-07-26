@@ -10,14 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta property="og:image" content="{{URL::to('public/frontend/images/bg-img')}}/<?php $data=(explode(',',$tintuc[0]->images));
-                                                   echo $data[0];
-                                            ?>" />
-    <meta property="og:site_name" content="http://localhost/CodeLuanVan/" />
+
+    {{-- <meta property="og:site_name" content="http://localhost/CodeLuanVan/" />
     <meta property="og:description" content="{{$tintuc[0]->noidung_tt}}" />
-    <meta property="og:title" content="{{$tintuc[0]->tieude}}" />
-    <meta property="og:url" content="{{$url_canonical}}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{$tintuc[0]->tieude}}" /> --}}
+    {{-- <meta property="og:url" content="{{$url_canonical}}" /> --}}
     <!-- Title -->
     <title>WEBSITE GIA PHẢ</title>
 

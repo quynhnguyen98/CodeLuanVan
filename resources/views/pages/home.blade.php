@@ -41,7 +41,7 @@
                 <div class="single-blog-post d-flex">
                     <i class="fa fa-calendar" style="font-size: 20px;"></i>
                     <div class="post-content">
-                        <a href="" class="post-title">{{$sk->tensukien}}</a>
+                        <a href="" class="post-title">{{$sk->title}}</a>
                         <div class="post-meta d-flex justify-content-between">
                             Ngày:
                             <?php

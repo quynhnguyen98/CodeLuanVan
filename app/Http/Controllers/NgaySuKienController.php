@@ -10,21 +10,7 @@ class NgaySuKienController extends Controller
 {
     public function ngay_su_kien(){
         $admin = Session::get('hoten');
-        if($admin){
-           
-         $data = DB::table('nguoi')->orderBy('ngaysinh','desc','ngaymat','desc')->first();
-         $date= DB::table('sukien')->join('nguoi','nguoi.id_nguoi','=','sukien.id_nguoi')->get();
-        //  dd($data->hoten);
-        //  if($date->start==$data->ngaysinh)
-        //  {
-            // $insertArr = [ 'title' => 'Sinh nhật của '+ $data->hoten,
-            //            'start' => $data->ngaysinh,
-            //            'end' => $data->ngaysinh
-            //         ];
-            //         dd($insertArr);
-            // DB::table('sukien')->insert($insertArr); 
-        //  }
-         
+        if($admin){       
 			 return view('admin.event');
         }else{
 		    return Redirect('/login_');
@@ -36,11 +22,8 @@ class NgaySuKienController extends Controller
     {
         if(request()->ajax()) 
         {
-         $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
-        
-            
-         $data = DB::table('sukien')->whereDate('start', '>=', $start)
-        ->get();
+
+         $data = DB::table('sukien')->get();
         
         return response()->json($data);
         }

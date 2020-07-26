@@ -34,7 +34,6 @@ class AdminController extends Controller
 		if($result!='')
 		{
 			Session::put('hoten',$result->hoten);
-			
 			return view('admin.dashboard');
 		}else {
 			return Redirect('/admin');

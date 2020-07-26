@@ -92,9 +92,6 @@
 
                 if (title) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                    
-                    
-
                     $.ajax({
                         url: "fullcalendar/create",
                         data: {'title' : title, 'start': start},
