@@ -34,7 +34,7 @@
                                     <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
                                 </div>
                                 <div class="icons">
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="{{URL::to('/auth/redirect/facebook')}}" class="facebook"><i class="fa fa-facebook"></i></a>
                                     <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
                                     <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
                                 </div>

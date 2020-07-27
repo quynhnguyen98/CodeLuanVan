@@ -12,16 +12,16 @@ use Session;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
-    public function index(){
-        $i=0;
+    public function index(Request $rq){
+        $url_canonical=$rq->url();
         $slide=DB::table('slide')->get();
         $tintuc=DB::table('tintuc')
-            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
-            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
-        $sukien=DB::table('sukien')->select('sukien.tensukien','nguoi.ngaymat')->join('nguoi','sukien.id_nguoi','=','nguoi.id_nguoi')->orderBy('nguoi.ngaymat','asc')->get();
+        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id_nguoi','=','nguoi.id_nguoi')->orderBy('nguoi.ngaymat','asc')->get();
         $mang1 = array();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
@@ -35,7 +35,7 @@ class HomeController extends Controller
                     $mang1[]=$sk;
             }                        
         }
-        //return $mang1;
+        //return $tintuc;
         return view('pages.home',compact('slide','tintuc','hinhanh','mang1','now'));
     }
     public function sort($mang1,$mang2)
@@ -45,7 +45,7 @@ class HomeController extends Controller
         return (strtotime($po)-strtotime($po1));
 
     }
-    public function getPost($id){
+    public function getPost($id,Request $rq){
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->where('tintuc.id_tintuc',$id)
@@ -56,8 +56,17 @@ class HomeController extends Controller
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->whereNotIn('tintuc.id_tintuc',[$id])
             ->limit(3)->get();
-        $comment=DB::table('gopy')->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')->where('gopy.id_tintuc',$id)->get();
-        return view('pages.singlepost',compact('tintuc','tintuclq','comment'));
+        $comment=DB::table('gopy')->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')->where('gopy.id_tintuc',$id)->where('gopy.status','1')->get();
+        $sessionKey='tintuc_'.$id;
+        $sessionview=Session::get('sessionKey');
+        if(!$sessionview)
+        {
+             Session::put($sessionKey, 1);
+             DB::table('tintuc')->where('tintuc.id_tintuc',$id)->increment('luotxem');
+        }
+        $url_canonical=$rq->url();
+        return $url_canonical;
+        //return view('pages.singlepost',compact('tintuc','tintuclq','comment','url_canonical'));
     }
     public function getTinTuc(){
          $tintuc=DB::table('tintuc')

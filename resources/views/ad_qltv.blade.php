@@ -103,6 +103,42 @@
               }
           });
       });
+      $(document).on("click", ".DeletePost", function () {
+          var $button = $(this);
+          swal({
+              title: "Bạn có chắc muốn xóa?",
+              text: "Thành viên này sẽ không phục hồi lại được!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonText: "Có, xóa tin tức này!",
+              cancelButtonText: "Không, hủy thao tác!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          }, function (isConfirm) {
+              if (isConfirm) {
+                  var postID = $button.closest("tr").find("#PostID").val();
+                  var viewModel1 = {
+                      id: parseInt(postID)
+                  };
+                     console.log(viewModel1);
+                  $.ajax({
+                      type: "GET",
+                      url: "xoa-tin-tuc/"+viewModel1.id,
+                      data: JSON.stringify(viewModel1),
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data) {
+                       
+                          var tableRow = $button.closest('tr');
+                          tableRow.remove();
+                          swal("Deleted!", "Selected post has been deleted.", "success");
+                      }
+                  });
+                 
+              } else {
+                  swal("Hủy Thao tác", "Xóa Tin Tức không thành công", "error");
+              }
+          });
+      });
       </script>
   </body>
 </html>

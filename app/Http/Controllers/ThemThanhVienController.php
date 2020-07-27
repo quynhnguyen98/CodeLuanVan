@@ -6,60 +6,86 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
 use DB;
+use Carbon\Carbon;
 
 class ThemThanhVienController extends Controller
 {
-    public function them_thanh_vien(){
+    public function them_thanh_vien()
+    {
         $admin = Session::get('hoten');
-        if($admin){
-            $all_thanhvien=DB::table('nguoi')->join('tinh','nguoi.id_tinh','=','tinh.id_tinh')->get();
-            $tinh=DB::table('tinh')->get();
-			return view('admin.addperson',compact('all_thanhvien','tinh'));
-        }else
-		    return Redirect('/login_');
+        if ($admin) {
+            $all_thanhvien = DB::table('nguoi')->join('tinh', 'nguoi.id_tinh', '=', 'tinh.id_tinh')->get();
+            $tinh = DB::table('tinh')->get();
+            return view('admin.addperson', compact('all_thanhvien', 'tinh'));
+        } else
+            return Redirect('/login_');
     }
 
-    public function save_person(Request $request){
+    public function save_person(Request $request)
+    {
         //  dd($request->all());
-        
+
         $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
         $_id_nguoi = $_nguoi[0]->Auto_increment;
-        $id_nguoi = (int)$_id_nguoi;
-        if($request->IsAlive)
-            $t='Sống';
+        $id_nguoi = (int) $_id_nguoi;
+        if ($request->IsAlive)
+            $t = 'Sống';
         else
-            $t='Chết'; 
+            $t = 'Chết';
 
 
-        if(strtotime($request->ngaymat)=='')
-        {
-            $ngay=null;
+        if (strtotime($request->ngaymat) == '') {
+            $ngay = null;
+        } else {
+            $ngay = date('yy-m-d', strtotime($request->ngaymat));
         }
-        else{
-            $ngay=date('yy-m-d',strtotime($request->ngaymat));
-        }
-        
-        $arr=[
-            'hoten'=>$request->hoten,
-            'gioitinh'=>$request->gioitinh,
-            'ngaysinh'=>date('yy-m-d',strtotime($request->ngaysinh)),
-            'ngaymat'=>$ngay,
-            'hinh'=>$request->PhotoFileName,
-            'tieusu'=>$request->tieusu,
-            'id_tinh'=>$request->tinh,
-            'tinhtrang'=>$t,
-            ];
-            // print_r($request->all());
-            print_r($arr);
+
+        $arr = [
+            'hoten' => $request->hoten,
+            'gioitinh' => $request->gioitinh,
+            'ngaysinh' => date('yy-m-d', strtotime($request->ngaysinh)),
+            'ngaymat' => $ngay,
+            'hinh' => $request->PhotoFileName,
+            'tieusu' => $request->tieusu,
+            'id_tinh' => $request->tinh,
+            'tinhtrang' => $t,
+        ];
+        // print_r($request->all());
+        print_r($arr);
         // print_r($arr);
         DB::table('nguoi')->insert($arr);
-      
+
+
         $dataNguonGoc['id_nguoi'] = $request->FatherID;
         $dataNguonGoc['id_nguoi_moiquanhe'] = $id_nguoi;
         DB::table('nguongoc')->insert($dataNguonGoc);
-        return redirect('/quan-ly-thanh-vien');
-       
-    }
 
-    
+        if ($request->ngaymat == null) {
+            $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
+            $insertArr = [
+                'title' => 'Sinh nhật của ' . $request->hoten,
+                'start' => $start,
+                'id_nguoi' => $id_nguoi,
+            ];
+            DB::table('sukien')->insert($insertArr);
+        } else {
+            $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
+            $insertArr = [
+                'title' => 'Sinh nhật của ' . $request->hoten,
+                'start' => $start,
+                'id_nguoi' => $id_nguoi,
+            ];
+            DB::table('sukien')->insert($insertArr);
+            $end = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaymat));
+            $insertArr_ = [
+                'title' => 'Giổ tổ của ' . $request->hoten,
+                'start' => $end,
+                'id_nguoi' => $id_nguoi,
+            ];
+            DB::table('sukien')->insert($insertArr_);
+        }
+
+        
+        return redirect('/quan-ly-thanh-vien');
+    }
 }
