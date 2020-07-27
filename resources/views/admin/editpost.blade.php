@@ -3,13 +3,10 @@
 <main class="app-content">
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-home"></i> THÊM TIN TỨC</h1>
+            <h1><i class="fa fa-home"></i> SỬA TIN TỨC</h1>
             <p>Add person to include in our family tree.</p>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Add Person</a></li>
-        </ul>
+        
     </div>
 
     <form action="{{URL::to('/save-post')}}" enctype="multipart/form-data" method="post">
@@ -23,6 +20,7 @@
                             <span class="pull-right"><button class="btn btn-secondary" type="button">Quay lại danh
                                     sách</button></span>
                         </h4>
+                        @foreach($tintuc as $tt)
                         <div class="card-body">
                             <input name="__RequestVerificationToken" type="hidden"
                                 value="-Tjtj3rvfWRi1-lKMVSSxn-JpR1wu7WgI-XqsZ2RMsBhcJCZdlDKNLG0_ApUlRxxwaAporj49f9simfmLu7Rg830_gTgoRjR_v31j0q7xd41" />
@@ -37,7 +35,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tiêu Đề</label>
                                                 <input class="form-control" id="PersonName" name="tieude"
-                                                    placeholder="Nhập tiêu đề" type="text" value=""/>
+                                                    placeholder="Nhập tiêu đề" type="text" value="{{$tt->tieude}}"/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -47,7 +45,34 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <div class="form-group">
-                                                <label class="control-label">Hình Thumbnail</label> 
+                                                <label class="control-label">Tiêu đề không dấu</label>
+                                                <input class="form-control" id="PersonName" name="tieude"
+                                                    placeholder="Nhập tiêu đề" type="text" value="{{$tt->tieudekhongdau}}"/>
+                                                <span class="field-validation-valid" data-valmsg-for="PersonName"
+                                                    data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Ngày đăng</label>
+                                                <input class="form-control" data-val="true"
+                                                    data-val-date="The field DateOfBirth must be a date."
+                                                    id="DateOfBirth" name="ngaysinh" placeholder="Chọn Ngày"
+                                                    type="text" value="{{$tt->ngaydang}}" />
+                                                <span class="field-validation-valid" data-valmsg-for="DateOfBirth"
+                                                    data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <div class="form-group">
+                                                <label class="control-label">Hình Thumbnail</label>
+                                                @if($tt->tenhinh)
+                                                    <img src="{{URL::to('public/frontend/images/bg-img')}}/{{$tt->tenhinh}}" alt="" style="width: auto;height: 200px;">
+                                                @endif
                                                 <input name="filehinh" type="file" value=""/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
@@ -60,7 +85,7 @@
 
                             <div class="form-group">
                                 <label for="exampleTextarea">Nội Dung</label>
-                                <textarea class="form-control" id="editor1" rows="15" name="noidung_tt"></textarea>
+                                <textarea class="form-control" id="editor1" rows="15" name="noidung_tt">{{$tt->noidung_tt}}</textarea>
                             </div>
 
                             <div class="tile-footer">
@@ -72,6 +97,7 @@
                             </div>
 
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

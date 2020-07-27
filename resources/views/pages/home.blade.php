@@ -45,15 +45,15 @@
                         <div class="post-meta d-flex justify-content-between">
                             Ngày:
                             <?php
-                                $start=strtotime(date('d-m',strtotime($sk->ngaymat)).'-2020 00:00:00');
-                                $end=strtotime(date('d-m',strtotime($sk->ngaymat)).'-2020 23:59:59');
+                                $start=strtotime(date('d-m',strtotime($sk->start)).'-'.Carbon\Carbon::now()->year.'00:00:00');
+                                $end=strtotime(date('d-m',strtotime($sk->start)).'-'.Carbon\Carbon::now()->year.'23:59:59');
                                 if(($start<=$now)&&($now<=$end))
                                 {
  
                                     echo 'Hôm Nay';
                                 }
                                 else
-                                    echo date('d-m',strtotime($sk->ngaymat));
+                                    echo date('d-m',strtotime($sk->start));
                             ?>
                         </div>
                     </div>

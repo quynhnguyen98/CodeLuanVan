@@ -12,13 +12,12 @@ use Session;
 use Carbon\Carbon;
 class HomeController extends Controller
 {
-    public function index(Request $rq){
-        $url_canonical=$rq->url();
+    public function index(){
         $slide=DB::table('slide')->get();
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
-            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->limit(8)
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
         $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id','=','nguoi.id')->orderBy('nguoi.ngaymat','asc')->get();
@@ -26,8 +25,8 @@ class HomeController extends Controller
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
         {
-            $start=date('d-m',strtotime($sk->ngaymat)).'-2020 00:00:00';
-            $end=date('d-m',strtotime($sk->ngaymat)).'-2020 23:59:59';
+            $start=date('d-m',strtotime($sk->start)).'-'.Carbon::now()->year.'00:00:00';
+            $end=date('d-m',strtotime($sk->start)).'-'.Carbon::now()->year.'23:59:59';
             $eventstart=strtotime($start);
             $eventend=strtotime($end);
             if($eventend>=$now)
@@ -64,15 +63,23 @@ class HomeController extends Controller
              Session::put($sessionKey, 1);
              DB::table('tintuc')->where('tintuc.id_tintuc',$id)->increment('luotxem');
         }
-        $url_canonical=$rq->url();
-        return $url_canonical;
-        //return view('pages.singlepost',compact('tintuc','tintuclq','comment','url_canonical'));
+        foreach($tintuc as $tt)
+        {
+            $data=(explode(',',$tt->images));
+            $meta_desc=$tt->tieude;
+            $url_canonical=$rq->url();
+            $meta_content=$tt->noidung_tt;
+            $meta_img=$data[0];
+        }
+        //  return $url_canonical;
+        return view('pages.singlepost',compact('meta_desc','meta_content','meta_img','tintuc','tintuclq','comment','url_canonical'));
     }
     public function getTinTuc(){
+
          $tintuc=DB::table('tintuc')
-            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
-            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->paginate(5);
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->paginate(5);
         return view('pages.tintuc',compact('tintuc'));
     }
      public function getGioithieu(){

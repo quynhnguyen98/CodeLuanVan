@@ -46,7 +46,9 @@ Route::get('/nguoi','TreeController@getnguoi');
 Route::post('/save-person','ThemThanhVienController@save_person');
 Route::get('/quan-ly-tin-tuc','TinTucController@getIndex');
 Route::get('/xoa-tin-tuc/{id_tintuc}','TinTucController@xoa_post');
-
+Route::get('/them-tin-tuc','TinTucController@save_post');
+Route::post('/save-post','TinTucController@save');
+Route::get('/sua-tin-tuc/{id_tintuc}','TinTucController@edit_post');
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');

@@ -7,7 +7,6 @@
  </head>
  <body>
      <h2>Chào bạn {{$data['email']}},</h2>
-     <p>Hôm nay là ngày {{$data['ngaymat']}} là ngày giỗ tổ của cụ {{$data['hoten']}}</p>
-     <p>Hãy chuẩn bị những đồ cúng</p>
+     <p>Hôm nay là ngày {{$data['ngaymat']}} là ngày {{$data['noidung']}} của cụ {{$data['hoten']}}</p>
  </body>
  </html>

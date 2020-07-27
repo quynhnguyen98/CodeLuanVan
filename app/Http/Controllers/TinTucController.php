@@ -5,13 +5,14 @@ use DB,Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect;
-
+use Carbon\Carbon;
+use File;
 class TinTucController extends Controller
 {
 
     public function ck_login()
     {
-        $admin = Session::get('hoten');
+        $admin = Session::get('admin')->tendangnhap;
         if ($admin!='') {
             return view('admin.qltintuc');
         } else {
@@ -36,5 +37,74 @@ class TinTucController extends Controller
         DB::table('tintuc')->where('id_tintuc',$id_tintuc)->delete();
         //return Redirect::to('/quan-ly-thanh-vien');
     	}
-    
+    public function save_post()
+    {
+        return view('admin.addpost');
+    }
+    public function utf8convert($str) {
+
+                if(!$str) return false;
+
+                $utf8 = array(
+
+            'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ|Á|À|Ả|Ã|Ạ|Ă|Ắ|Ặ|Ằ|Ẳ|Ẵ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
+
+            'd'=>'đ|Đ',
+
+            'e'=>'é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
+
+            'i'=>'í|ì|ỉ|ĩ|ị|Í|Ì|Ỉ|Ĩ|Ị',
+
+            'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
+
+            'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
+
+            'y'=>'ý|ỳ|ỷ|ỹ|ỵ|Ý|Ỳ|Ỷ|Ỹ|Ỵ',
+
+                                                );
+
+                foreach($utf8 as $ascii=>$uni) $str = preg_replace("/($uni)/i",$ascii,$str);
+
+                        return $str;
+
+}
+    public function utf8tourl($text){
+        $text = strtolower($this->utf8convert($text));
+        $text = preg_replace("/[^_a-zA-Z0-9 -] /", "",$text);
+        $text = str_replace(array('%20', ' '), '-', $text);
+        $text = str_replace("----","-",$text);
+        $text = str_replace("---","-",$text);
+        $text = str_replace("--","-",$text);
+        return $text;
+}
+    public function save(Request $rq){
+        $noidung= htmlentities($rq->noidung_tt) ;
+        $a=html_entity_decode($noidung);
+        $file=$rq->file('filehinh');
+        $name=$file->getClientOriginalName();
+        $hinh=rand(0,1000).$name;
+        $file->move("public/frontend/images/bg-img",$hinh);
+        $array=[
+            'tieude'=>$rq->tieude,
+            'tieudekhongdau'=>$this->utf8tourl($rq->tieude),
+            'noidung_tt'=>$a,
+            'ngaydang'=>Carbon::now('Asia/Ho_Chi_Minh'),
+            'id_taikhoan'=>Session::get('admin')->id_taikhoan,
+            'luotxem'=>0,
+        ];
+        DB::table('tintuc')->insert($array);
+        $id=DB::table('tintuc')->latest('id_tintuc')->first();
+        $array1=['tenhinh'=>$hinh,
+                'id_tintuc'=>$id->id_tintuc,
+        ];
+        DB::table('hinhanh')->insert($array1);
+        return Redirect('/quan-ly-tin-tuc')->with('mess','Thêm thành công');;
+    }
+    public function edit_post($id_tintuc)
+    {
+        $tintuc=DB::table('tintuc')->join('hinhanh','tintuc.id_tintuc','=','hinhanh.id_tintuc')->where('tintuc.id_tintuc',$id_tintuc)->get();
+        //return $tintuc;
+        return view('admin.editpost',compact('tintuc'));
+    }
+
 }
