@@ -21,7 +21,7 @@ class HomeController extends Controller
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
-        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id_nguoi','=','nguoi.id_nguoi')->orderBy('nguoi.ngaymat','asc')->get();
+        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id','=','nguoi.id')->orderBy('nguoi.ngaymat','asc')->get();
         $mang1 = array();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)

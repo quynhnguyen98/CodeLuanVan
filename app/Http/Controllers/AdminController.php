@@ -29,7 +29,7 @@ class AdminController extends Controller
     {
 		$adtext = $request->input('adtext');
 		$adpassword = md5($request->input('adpassword'));
-		$result=DB::table('taikhoan')->join('nguoi','taikhoan.id_nguoi','=','nguoi.id_nguoi')
+		$result=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')
 		->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
 		if($result!='')
 		{

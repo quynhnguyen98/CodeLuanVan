@@ -50,8 +50,8 @@
                             @foreach($all_thanhvien as $k)
                             <tr>
                                 <td>
-                                    {{$k->id_nguoi}}
-                                    <input id="PersonID" name="PersonID" type="hidden" value="{{$k->id_nguoi}}" />
+                                    {{$k->id}}
+                                    <input id="PersonID" name="PersonID" type="hidden" value="{{$k->id}}" />
                                 </td>
                                 <td>
                                     <a class="alert-link" href="{{URL::to('/thong-tin-thanh-vien')}}">{{$k->hoten}}</a>
@@ -68,10 +68,10 @@
                                 <?php
                                 $fl = false;
                                 foreach($nguongoc as $gt){
-                                    if($gt->id_nguoi_moiquanhe == $k->id_nguoi){
+                                    if($gt->pid == $k->id){
                                         
                                         foreach($all_thanhvien as $v){
-                                            if($gt->id_nguoi == $v->id_nguoi && $v->gioitinh=="Nam"){
+                                            if($gt->id == $v->id && $v->gioitinh=="Nam"){
                                                 echo $v->hoten;
                                                 $fl = true;
                                             }
@@ -89,10 +89,10 @@
                                 <?php
                                 $fl = false;
                                 foreach($nguongoc as $gt){
-                                    if($gt->id_nguoi_moiquanhe == $k->id_nguoi){
+                                    if($gt->pid == $k->id){
                                         
                                         foreach($all_thanhvien as $v){
-                                            if($gt->id_nguoi == $v->id_nguoi && $v->gioitinh=="Nữ"){
+                                            if($gt->id == $v->id && $v->gioitinh=="Nữ"){
                                                 echo $v->hoten;
                                                 $fl = true;
                                             }

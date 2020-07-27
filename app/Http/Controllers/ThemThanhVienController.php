@@ -26,8 +26,8 @@ class ThemThanhVienController extends Controller
         //  dd($request->all());
 
         $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
-        $_id_nguoi = $_nguoi[0]->Auto_increment;
-        $id_nguoi = (int) $_id_nguoi;
+        $_id = $_nguoi[0]->Auto_increment;
+        $id = (int) $_id;
         if ($request->IsAlive)
             $t = 'Sống';
         else
@@ -56,8 +56,8 @@ class ThemThanhVienController extends Controller
         DB::table('nguoi')->insert($arr);
 
 
-        $dataNguonGoc['id_nguoi'] = $request->FatherID;
-        $dataNguonGoc['id_nguoi_moiquanhe'] = $id_nguoi;
+        $dataNguonGoc['id'] = $request->FatherID;
+        $dataNguonGoc['pid'] = $id;
         DB::table('nguongoc')->insert($dataNguonGoc);
 
         if ($request->ngaymat == null) {
@@ -65,7 +65,7 @@ class ThemThanhVienController extends Controller
             $insertArr = [
                 'title' => 'Sinh nhật của ' . $request->hoten,
                 'start' => $start,
-                'id_nguoi' => $id_nguoi,
+                'id' => $id,
             ];
             DB::table('sukien')->insert($insertArr);
         } else {
@@ -73,14 +73,14 @@ class ThemThanhVienController extends Controller
             $insertArr = [
                 'title' => 'Sinh nhật của ' . $request->hoten,
                 'start' => $start,
-                'id_nguoi' => $id_nguoi,
+                'id' => $id,
             ];
             DB::table('sukien')->insert($insertArr);
             $end = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaymat));
             $insertArr_ = [
                 'title' => 'Giổ tổ của ' . $request->hoten,
                 'start' => $end,
-                'id_nguoi' => $id_nguoi,
+                'id' => $id,
             ];
             DB::table('sukien')->insert($insertArr_);
         }

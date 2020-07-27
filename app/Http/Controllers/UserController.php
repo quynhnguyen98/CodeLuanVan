@@ -70,7 +70,7 @@ class UserController extends Controller
         else
         {
             DB::table('nguoi')->insert($arr1);
-            $new=DB::table('nguoi')->latest('id_nguoi')->first();
+            $new=DB::table('nguoi')->latest('id')->first();
 
             $arr=[
             'tendangnhap'=>$user,
@@ -78,7 +78,7 @@ class UserController extends Controller
             'email'=>$ema,
             'vaitro'=>0,
             'avatar'=>"user.png",
-            'id_nguoi'=>$new->id_nguoi,
+            'id'=>$new->id,
             ];
             DB::table('taikhoan')->insert($arr);
               return redirect('/signup')->with('mess','Đăng Ký Thành Công');
