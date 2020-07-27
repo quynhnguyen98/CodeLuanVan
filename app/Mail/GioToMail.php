@@ -29,6 +29,6 @@ class GioToMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thông Báo Giỗ Tổ')->view('mail.eventmail')->with('data',$this->data);
+        return $this->subject('Thông Báo')->view('mail.eventmail')->with('data',$this->data);
     }
 }

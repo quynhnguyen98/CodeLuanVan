@@ -3,12 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Website Gia phả">
+    <meta name="description" content="{{$meta_desc}}">
     <meta name="keywords" content="gia pha,website gia phả,web gia phả"/>
     <meta name="robots" content="INDEX,FOLLOW"/>
+    <link  rel="canonical" href="{{$url_canonical}}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta property="og:image" content="public/frontend/images/bg-img/{{$meta_img}}" />
+    <meta property="og:site_name" content="http://localhost/CodeLuanVan/" />
+    <meta property="og:description" content="{{$meta_content}}" />
+    <meta property="og:title" content="{{$meta_desc}}" />
+    <meta property="og:url" content="{{$url_canonical}}" />
    
     <!-- Title -->
     <title>WEBSITE GIA PHẢ</title>

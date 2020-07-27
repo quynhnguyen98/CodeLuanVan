@@ -48,40 +48,21 @@
                                             ?></a>
                                     <a href="archive.html">lifestyle</a>
                                 </div>
-                                <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
+                                <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                 <!-- Post Meta -->
                                 <div class="post-meta-2">
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
+                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>{{$tintuc[$i]->luotxem}}</a>
                                     <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
                                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                                 </div>
                                 <p> <?php
-                                        if(strlen($tintuc[0]->noidung_tt)<=300) echo $str;
-                                        echo substr($tintuc[0]->noidung_tt,0,300).'...';
+                                        if(strlen($tintuc[$i]->noidung_tt)<=300) echo $str;
+                                        echo substr($tintuc[$i]->noidung_tt,0,300).'...';
 
                                         ?></p>
                             </div>
                         </div>
                         @endfor
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Single Catagory Post -->
-                        
-
-                        <!-- Pagination -->
                         <nav>
                                         {!!$tintuc->links()!!}     
                         </nav>

@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('welcometintuc')
 @section('content')
 
 <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({{URL::to('public/frontend/images/bg-img/49.jpg')}});">
