@@ -13,7 +13,5 @@ class NgaySuKienController extends Controller
 			return view('admin.event');
         }else
 		    return Redirect('/login_');
-    }
-        }
-    }
+    } 
 }
