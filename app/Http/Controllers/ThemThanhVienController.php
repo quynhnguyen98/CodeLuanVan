@@ -56,8 +56,8 @@ class ThemThanhVienController extends Controller
         DB::table('nguoi')->insert($arr);
 
 
-        $dataNguonGoc['id'] = $request->FatherID;
-        $dataNguonGoc['pid'] = $id;
+        $dataNguonGoc['id'] =$id ;
+        $dataNguonGoc['pid'] = $request->FatherID;
         DB::table('nguongoc')->insert($dataNguonGoc);
 
         if ($request->ngaymat == null) {
@@ -65,7 +65,7 @@ class ThemThanhVienController extends Controller
             $insertArr = [
                 'title' => 'Sinh nhật của ' . $request->hoten,
                 'start' => $start,
-                'id' => $id,
+                'id_nguoi' => $id,
             ];
             DB::table('sukien')->insert($insertArr);
         } else {
@@ -73,14 +73,14 @@ class ThemThanhVienController extends Controller
             $insertArr = [
                 'title' => 'Sinh nhật của ' . $request->hoten,
                 'start' => $start,
-                'id' => $id,
+                'id_nguoi' => $id,
             ];
             DB::table('sukien')->insert($insertArr);
             $end = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaymat));
             $insertArr_ = [
                 'title' => 'Giổ tổ của ' . $request->hoten,
                 'start' => $end,
-                'id' => $id,
+                'id_nguoi' => $id,
             ];
             DB::table('sukien')->insert($insertArr_);
         }

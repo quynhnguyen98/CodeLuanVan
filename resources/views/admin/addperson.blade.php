@@ -72,7 +72,7 @@
                                                     data-val-number="The field FatherID must be a number." id="FatherID"
                                                     name="FatherID">
                                                     @foreach($all_thanhvien as $k)
-                                                        <option value="{{$k->id_nguoi}}">{{$k->hoten}}</option>
+                                                        <option value="{{$k->id}}">{{$k->hoten}}</option>
                                                     @endforeach
                                                 </select>
                                                 <span class="field-validation-valid" data-valmsg-for="Cha"
