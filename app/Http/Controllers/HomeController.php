@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->limit(8)
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
-        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id','=','nguoi.id')->orderBy('nguoi.ngaymat','asc')->get();
+        $sukien=DB::table('sukien')->select('sukien.title','sukien.start')->join('nguoi','sukien.id_nguoi','=','nguoi.id')->get();
         $mang1 = array();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
@@ -31,19 +31,15 @@ class HomeController extends Controller
             $eventend=strtotime($end);
             if($eventend>=$now)
             {
-                    $mang1[]=$sk;
-            }                        
+                    array_push($mang1,$sk);
+            }                   
         }
-        //return $tintuc;
+        $sortedArr = collect($mang1)->sortBy('start')->all();
+        //dd($sortedArr);
+        return $mang1;
         return view('pages.home',compact('slide','tintuc','hinhanh','mang1','now'));
     }
-    public function sort($mang1,$mang2)
-    {
-        $po=date('d-m',strtotime($mang1["ngaymat"])).'-2020';
-        $po1=date('d-m',strtotime($mang2["ngaymat"])).'-2020';
-        return (strtotime($po)-strtotime($po1));
 
-    }
     public function getPost($id,Request $rq){
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))

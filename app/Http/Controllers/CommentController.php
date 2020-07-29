@@ -11,8 +11,8 @@ class CommentController extends Controller
 {
      public function getcomment()
     {
-        $admin = Session::get('hoten');
-        if($admin){
+        $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
         	$cmt=DB::table('gopy')
         	->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')
         	->join('tintuc','gopy.id_tintuc','=','tintuc.id_tintuc')

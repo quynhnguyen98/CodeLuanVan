@@ -9,8 +9,8 @@ use Carbon\Carbon;
 class NgaySuKienController extends Controller
 {
     public function ngay_su_kien(){
-        $admin = Session::get('hoten');
-        if($admin){       
+         $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
 			 return view('admin.event');
         }else{
 		    return Redirect('/login_');

@@ -49,6 +49,12 @@ Route::get('/xoa-tin-tuc/{id_tintuc}','TinTucController@xoa_post');
 Route::get('/them-tin-tuc','TinTucController@save_post');
 Route::post('/save-post','TinTucController@save');
 Route::get('/sua-tin-tuc/{id_tintuc}','TinTucController@edit_post');
+Route::post('/sua-tt/{id_tintuc}','TinTucController@edit');
+Route::get('/xoa-hinh-anh/{id_hinh}','HinhAnhController@xoahinh');
+
+Route::get('/them-hinh-anh/{id_tintuc}','TinTucController@themhinh');
+Route::post('/save-image/{id_tintuc}','TinTucController@saveimage');
+
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');

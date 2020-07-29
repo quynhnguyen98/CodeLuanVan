@@ -80,10 +80,8 @@ class TinTucController extends Controller
     public function save(Request $rq){
         $noidung= htmlentities($rq->noidung_tt) ;
         $a=html_entity_decode($noidung);
-        $file=$rq->file('filehinh');
-        $name=$file->getClientOriginalName();
-        $hinh=rand(0,1000).$name;
-        $file->move("public/frontend/images/bg-img",$hinh);
+        $file=$rq->filehinh; 
+        $tenhinh=array();  
         $array=[
             'tieude'=>$rq->tieude,
             'tieudekhongdau'=>$this->utf8tourl($rq->tieude),
@@ -94,17 +92,79 @@ class TinTucController extends Controller
         ];
         DB::table('tintuc')->insert($array);
         $id=DB::table('tintuc')->latest('id_tintuc')->first();
-        $array1=['tenhinh'=>$hinh,
-                'id_tintuc'=>$id->id_tintuc,
-        ];
-        DB::table('hinhanh')->insert($array1);
-        return Redirect('/quan-ly-tin-tuc')->with('mess','Thêm thành công');;
+        if(isset($file))
+        {
+            for($i=0;$i<count($file);$i++)
+            {
+                $name=$file[$i]->getClientOriginalName();
+                $file[$i]->move("public/frontend/images/",$name);
+                array_push($tenhinh, $name);
+            }
+            for($i=0;$i<count($file);$i++)
+            {
+                DB::table('hinhanh')->insert(['tenhinh'=>$tenhinh[$i],'id_tintuc'=>$id->id_tintuc]);
+            }
+        } 
+        //return $tenhinh;
+        return Redirect('/quan-ly-tin-tuc')->with('mess','Thêm thành công');
     }
     public function edit_post($id_tintuc)
     {
-        $tintuc=DB::table('tintuc')->join('hinhanh','tintuc.id_tintuc','=','hinhanh.id_tintuc')->where('tintuc.id_tintuc',$id_tintuc)->get();
-        //return $tintuc;
-        return view('admin.editpost',compact('tintuc'));
+        $tintuc=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','taikhoan.tendangnhap',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
+            ->join('taikhoan','tintuc.id_taikhoan','=','taikhoan.id_taikhoan')->where('tintuc.id_tintuc',$id_tintuc)
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','taikhoan.tendangnhap')
+            ->get();
+        $hinhanh=DB::table('hinhanh')->where('hinhanh.id_tintuc',$id_tintuc)->get();
+        return view('admin.editpost',compact('tintuc','hinhanh'));
+    }
+    public function themhinh($id_tintuc){
+        $id=$id_tintuc;
+        //return $id;
+        return view('admin.addhinh',compact('id'));
+    }
+    public function saveimage(Request $rq,$id_tintuc){
+          $file=$rq->file('filehinh');
+          $name=$file->getClientOriginalName();
+          $file->move("public/frontend/images/bg-img",$name);
+           $array1=['tenhinh'=>$name,
+                'id_tintuc'=>$id_tintuc,
+        ];
+        DB::table('hinhanh')->insert($array1);
+        return redirect('/sua-tin-tuc/'.$id_tintuc);
+    }
+    public function edit(Request $rq,$id_tintuc)
+    {   
+        $file=$rq->filehinh;
+        $tenhinh=array();
+        if(isset($file))
+        {
+            $id=$rq->ImageID;
+            for($i=0;$i<count($file);$i++)
+            {
+                $name=$file[$i]->getClientOriginalName();
+                array_push($tenhinh, $name);
+            }
+            for($i=0;$i<count($file);$i++)
+            {
+                DB::table('hinhanh')->where('id_hinh',$id[$i])->update(['tenhinh'=>$tenhinh[$i]]);
+            }
+
+        }       
+        $tieude=$rq->tieude;
+        $tieudekd=$rq->tieudekhongdau;
+        $ngaydang=$rq->ngaydang;
+        $noidung=$rq->noidung_tt;
+        $arrayinsert=[
+            'tieude'=>$tieude,
+            'tieudekhongdau'=>$this->utf8tourl($rq->tieude),
+            'ngaydang'=>date('yy-m-d', strtotime($ngaydang)),
+            'noidung_tt'=>$noidung,
+        ];
+        DB::table('tintuc')->where('id_tintuc',$id_tintuc)->update($arrayinsert);
+        return Redirect('/quan-ly-tin-tuc');
+        //return $id;
     }
 
 }

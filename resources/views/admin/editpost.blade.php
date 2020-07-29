@@ -8,8 +8,8 @@
         </div>
         
     </div>
-
-    <form action="{{URL::to('/save-post')}}" enctype="multipart/form-data" method="post">
+    @foreach($tintuc as $tt)
+    <form action="{{URL::to('/sua-tt/'.$tt->id_tintuc)}}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="tile mt-4 mb-4">
             <div class="row">
@@ -20,7 +20,7 @@
                             <span class="pull-right"><button class="btn btn-secondary" type="button">Quay lại danh
                                     sách</button></span>
                         </h4>
-                        @foreach($tintuc as $tt)
+            
                         <div class="card-body">
                             <input name="__RequestVerificationToken" type="hidden"
                                 value="-Tjtj3rvfWRi1-lKMVSSxn-JpR1wu7WgI-XqsZ2RMsBhcJCZdlDKNLG0_ApUlRxxwaAporj49f9simfmLu7Rg830_gTgoRjR_v31j0q7xd41" />
@@ -43,21 +43,13 @@
                                         
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-10">
-                                            <div class="form-group">
-                                                <label class="control-label">Tiêu đề không dấu</label>
-                                                <input class="form-control" id="PersonName" name="tieude"
-                                                    placeholder="Nhập tiêu đề" type="text" value="{{$tt->tieudekhongdau}}"/>
-                                                <span class="field-validation-valid" data-valmsg-for="PersonName"
-                                                    data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="control-label">Ngày đăng</label>
                                                 <input class="form-control" data-val="true"
                                                     data-val-date="The field DateOfBirth must be a date."
-                                                    id="DateOfBirth" name="ngaysinh" placeholder="Chọn Ngày"
+                                                    id="DateOfBirth" name="ngaydang" placeholder="Chọn Ngày"
                                                     type="text" value="{{$tt->ngaydang}}" />
                                                 <span class="field-validation-valid" data-valmsg-for="DateOfBirth"
                                                     data-valmsg-replace="true"></span>
@@ -67,15 +59,39 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-10">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label class="control-label">Hình Thumbnail</label>
-                                                @if($tt->tenhinh)
-                                                    <img src="{{URL::to('public/frontend/images/bg-img')}}/{{$tt->tenhinh}}" alt="" style="width: auto;height: 200px;">
-                                                @endif
-                                                <input name="filehinh" type="file" value=""/>
-                                                <span class="field-validation-valid" data-valmsg-for="PersonName"
-                                                    data-valmsg-replace="true"></span>
+                                                <label class="control-label">Hình Tin Tức</label>
+                                                <a  class="btn btn-success icon-btn" href="{{URL::to('/them-hinh-anh/'.$tt->id_tintuc)}}"><i
+                                                        class="fa fa-plus"></i>Thêm Hình Ảnh</a>
+                                               <div class="table-responsive">
+                                                        <table class="table table-hover table-bordered" id="sampleTable">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>STT</th>
+                                                              <th>Hình Ảnh</th>
+                                                              <th>Chọn hình thay thế</th>
+                                                              <th></th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                        @if(isset($hinhanh))  
+                                                        @foreach($hinhanh as $hinh)        
+                                                            <tr>                                                                
+                                                              <td>{{$hinh->id_hinh}}
+                                                               <input id="ImageID" name="ImageID[]" type="hidden" value="{{$hinh->id_hinh}}" /></td>
+                                                              <td><img id="hinhtintuccon" src="{{URL::to('public/frontend/images/'.$hinh->tenhinh)}}" style="width:auto;height: 200px;"></td>
+                                                               <td><input name="filehinh[]" type="file" multiple/></td>
+                                                              <td> <a class="btn btn-danger btn-sm DeleteImage" href="javascript:void(0);"><i
+                                                                         class="fa fa-trash-o"></i> Xóa</a>
+                                                                     </td>
+                                                                                                                    
+                                                            </tr>
+                                                        @endforeach
+                                                        @endif                                
+                                                          </tbody>
+                                                        </table>
+                                                      </div>
                                             </div>
                                         </div>
                                         
@@ -90,19 +106,20 @@
 
                             <div class="tile-footer">
                                 <button class="btn btn-primary" type="submit"><i
-                                    class="fa fa-fw fa-lg fa-check-circle"></i>Thêm mới</button>
+                                    class="fa fa-fw fa-lg fa-check-circle"></i>Sửa</button>
                             
                                 
                                 
                             </div>
 
                         </div>
-                        @endforeach
+                       
                     </div>
                 </div>
             </div>
         </div>
     </form>
+     @endforeach
 </main>
 <script>
     function deathclick(){

@@ -1,6 +1,6 @@
 @extends('welcome')
 @section('content')
-<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({{URL::to('public/frontend/images/bg-img/40.jpg')}});">
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({{URL::to('public/frontend/images/40.jpg')}});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="icons">
                                     <a href="{{URL::to('/auth/redirect/facebook')}}" class="facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                                    <a href="{{URL::to('/auth/redirect/google')}}" class="google-plus"><i class="fa fa-google-plus"></i></a>
                                     <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
                                 </div>
 
