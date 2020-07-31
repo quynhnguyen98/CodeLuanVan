@@ -47,8 +47,8 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <div class="form-group">
-                                                <label class="control-label">Hình Thumbnail</label> 
-                                                <input name="filehinh" type="file" value=""/>
+                                                <label class="control-label">Hình bài tin</label> 
+                                                <input name="filehinh[]" type="file" value="" multiple />
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>

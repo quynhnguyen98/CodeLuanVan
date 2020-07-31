@@ -76,9 +76,11 @@
     filebrowserFlashUploadUrl: '{{ asset('./public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
 });
 </script>
+<!-- <script> CKEDITOR.replace('editor1');
+</script> -->
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/bootstrap-datepicker.min.js')}}"></script>
-
+<script type="text/javascript" src="{{asset('public/adminFE/js/plugins/sweetalert.min.js')}}"></script>
 <script type="text/javascript">
     $('#FatherID').select2();
     $('#MotherID').select2();
@@ -145,6 +147,42 @@
     $('#photo').click(function (e) {
         $("#PhotoFileSelector").trigger("click");
     });
+$(document).on("click", ".DeleteImage", function () {
+          var $button = $(this);
+          swal({
+              title: "Bạn có chắc muốn xóa?",
+              text: "Hình ảnh này sẽ không phục hồi lại được!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonText: "Có, xóa hình này!",
+              cancelButtonText: "Không, hủy thao tác!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          }, function (isConfirm) {
+              if (isConfirm) {
+                  var ImageID = $button.closest("tr").find("#ImageID").val();
+                  var viewModel1 = {
+                      id: parseInt(ImageID)
+                  };
+                     console.log(viewModel1);
+                  $.ajax({
+                      type: "GET",
+                      url: "../xoa-hinh-anh/"+viewModel1.id,
+                      data: JSON.stringify(viewModel1),
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data) {
+                       
+                          var tableRow = $button.closest('tr');
+                          tableRow.remove();
+                          swal("Deleted!", "Selected image has been deleted.", "success");
+                      }
+                  });
+                 
+              } else {
+                  swal("Hủy Thao tác", "Xóa hình không thành công", "error");
+              }
+          });
+      });
 </script>
 
     <!-- Data table plugin-->

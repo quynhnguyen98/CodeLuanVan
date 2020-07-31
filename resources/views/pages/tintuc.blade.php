@@ -1,6 +1,6 @@
 @extends('welcome')
 @section('content')
-<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url('public/frontend/images/bg-img/41.jpg');">
+<section class="breadcrumb-area bg-img bg-overlay" style="background-image: url('public/frontend/images/41.jpg');">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
@@ -34,7 +34,7 @@
                         <!-- Single Catagory Post -->
                         <div class="single-catagory-post d-flex flex-wrap">
                             <!-- Thumbnail -->
-                            <div class="post-thumbnail bg-img" style="background-image: url('public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
+                            <div class="post-thumbnail bg-img" style="background-image: url('public/frontend/images/<?php $data=(explode(',',$tintuc[$i]->images));
                                     echo $data[0];
                                             ?>');">
                             </div>
@@ -108,7 +108,7 @@
 
                         <!-- Sidebar Widget -->
                         <div class="single-sidebar-widget">
-                            <a href="#" class="add-img"><img src="img/bg-img/add2.png" alt=""></a>
+                            <a href="#" class="add-img"><img src="img/add2.png" alt=""></a>
                         </div>
 
                         <!-- Sidebar Widget -->

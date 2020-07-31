@@ -12,8 +12,8 @@ class ThemThanhVienController extends Controller
 {
     public function them_thanh_vien()
     {
-        $admin = Session::get('hoten');
-        if ($admin) {
+        $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
             $all_thanhvien = DB::table('nguoi')->join('tinh', 'nguoi.id_tinh', '=', 'tinh.id_tinh')->get();
             $tinh = DB::table('tinh')->get();
             return view('admin.addperson', compact('all_thanhvien', 'tinh'));

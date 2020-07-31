@@ -9,8 +9,8 @@ use DB;
 class TreeController extends Controller
 {
     public function cay_gia_pha(){
-		$admin = Session::get('hoten');
-        if($admin){
+		 $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
 			return view('admin.tree');
         }else
 		    return Redirect('/login_');

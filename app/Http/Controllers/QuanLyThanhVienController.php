@@ -11,8 +11,8 @@ class QuanLyThanhVienController extends Controller
 {
     public function ck_login()
     {
-        $admin = Session::get('hoten');
-        if($admin){
+        $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
             return view('admin.qltv');
         }else
             return Redirect('/login_');

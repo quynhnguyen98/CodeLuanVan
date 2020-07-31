@@ -9,8 +9,8 @@ use Session;
 class TimKiemThongTinController extends Controller
 {
     public function tim_kiem_thong_tin(){
-		$admin = Session::get('hoten');
-        if($admin){
+		 $admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
 			return view('admin.searchinformation');
         }else
 		    return Redirect('/login_');

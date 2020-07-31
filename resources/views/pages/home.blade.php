@@ -4,7 +4,7 @@
         <!-- Single Blog Post -->
 
         @foreach($slide as $s)
-        <div class="hero-blog-post bg-img bg-overlay" style="background-image: url('public/frontend/images/bg-img/{{$s->url}}');">
+        <div class="hero-blog-post bg-img bg-overlay" style="background-image: url('public/frontend/images/{{$s->url}}');">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
@@ -64,7 +64,7 @@
 
             <!-- Sidebar Widget -->
             <div class="single-sidebar-widget">
-                <a href="#" class="add-img"><img src="{{('public/frontend/images/bg-img/add.png')}}" alt=""></a>
+                <a href="#" class="add-img"><img src="{{('public/frontend/images/add.png')}}" alt=""></a>
             </div>
 
             <!-- Sidebar Widget -->
@@ -77,7 +77,7 @@
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/bg-img/9.jpg')}}" alt="">
+                        <img src="{{('public/frontend/images/9.jpg')}}" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Coventry City Guide Including Coventry</a>
@@ -92,7 +92,7 @@
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/bg-img/10.jpg')}}" alt="">
+                        <img src="{{('public/frontend/images/10.jpg')}}" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Choose The Perfect Accommodations</a>
@@ -107,7 +107,7 @@
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/bg-img/11.jpg')}}" alt="">
+                        <img src="{{('public/frontend/images/11.jpg')}}" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Get Ready Fast For Fall Leaf Viewing</a>
@@ -122,7 +122,7 @@
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/bg-img/12.jpg')}}" alt="">
+                        <img src="{{('public/frontend/images/12.jpg')}}" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Global Resorts Network Grn Putting</a>
@@ -137,7 +137,7 @@
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/bg-img/13.jpg')}}" alt="">
+                        <img src="{{('public/frontend/images/13.jpg')}}" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">Travel Prudently Luggage And Carry</a>
@@ -167,7 +167,7 @@
                     <!-- Single Trending Post -->
                     @foreach($hinhanh as $ha)
                     <div class="single-trending-post" style="height: 310px;">
-                        <img src="public/frontend/images/bg-img/{{$ha->tenhinh}}" alt="">
+                        <img src="public/frontend/images/{{$ha->tenhinh}}" alt="">
                     </div>
                     @endforeach
                     <!-- Single Trending Post -->
@@ -191,7 +191,7 @@
                                 <!-- Thumbnail -->
                                 <div class="post-thumbnail mb-50">
                                     <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}">
-                                    <img id="hinhtintuc" src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[0]->images));
+                                    <img id="hinhtintuc" src="public/frontend/images/<?php $data=(explode(',',$tintuc[0]->images));
                                                    echo $data[0];
                                             ?>" alt=""></a>
                                 </div>
@@ -250,7 +250,7 @@
                                     <div class="single-blog-post d-flex style-3">
                                         <div class="post-thumbnail">
                                             <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}">
-                                            <img id="hinhtintuccon" src="public/frontend/images/bg-img/<?php $data=(explode(',',$tintuc[$i]->images));
+                                            <img id="hinhtintuccon" src="public/frontend/images/<?php $data=(explode(',',$tintuc[$i]->images));
                                                    echo $data[0];
                                             ?>" alt="">
                                             </a>
@@ -285,7 +285,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/28.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/28.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
@@ -302,7 +302,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/29.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/29.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
@@ -319,7 +319,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/30.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/30.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
@@ -336,7 +336,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/28.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/28.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
@@ -353,7 +353,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/29.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/29.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
@@ -370,7 +370,7 @@
                     <!-- Single Blog Post -->
                     <div class="single-blog-post style-4">
                         <div class="post-thumbnail">
-                            <img src="{{('public/frontend/images/bg-img/30.jpg')}}" alt="">
+                            <img src="{{('public/frontend/images/30.jpg')}}" alt="">
                             <a href="video-post.html" class="video-play"><i class="fa fa-play"></i></a>
                             <span class="video-duration">09:27</span>
                         </div>
