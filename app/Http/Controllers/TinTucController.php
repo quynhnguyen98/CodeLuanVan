@@ -13,11 +13,7 @@ class TinTucController extends Controller
     public function ck_login()
     {
         $admin = Session::get('admin')->tendangnhap;
-        if ($admin!='') {
-            return view('admin.qltintuc');
-        } else {
-            return Redirect('/login_');
-         }
+       
     }
     public function getIndex(){
             $this->ck_login();

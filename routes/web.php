@@ -26,7 +26,6 @@ Route::post('/fullcalendar/delete','NgaySuKienController@destroy');
 
 
 Route::get('/dashboard','AdminController@getLogin');
-Route::get('/tim-kiem-thong-tin','TimKiemThongTinController@tim_kiem_thong_tin');
 Route::get('/thong-tin-thanh-vien','ThongTinThanhVienController@thong_tin_thanh_vien');
 
 Route::get('/cklogin','QuanLyThanhVienController@ck_login');

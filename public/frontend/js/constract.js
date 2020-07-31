@@ -12,7 +12,7 @@ $(document).ready(function() {
                 '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="public/img_person/{val}" x="30" y="100" width="120" height="120">' +
                 '</image>';
             var chart = new OrgChart(document.getElementById("orgchart"), {
-                mouseScrool: OrgChart.action.scroll,
+                mouseScrool: OrgChart.action.none,
                 template: "rony",
                 enableSearch: true,
                 toolbar: {
@@ -21,7 +21,7 @@ $(document).ready(function() {
                 },
                 nodeBinding: {
                     field_0: "hoten",
-                    field_1: "tieusu",
+                    field_1: "tinhtrang",
                     img_0: "hinhanh"
                 },
                 nodes: msg

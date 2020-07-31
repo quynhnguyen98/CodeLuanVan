@@ -1188,6 +1188,7 @@ a.fc-more:hover {
 
 .fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
     float: right;
+    font-size: 30px;
 }
 
 .fc-rtl .fc-basic-view .fc-day-top .fc-day-number {

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+
+<head>
+    <meta name="description"
+        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
@@ -12,7 +14,8 @@
     <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta property="og:description"
+        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <title>Invoice - Vali Admin</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,13 +23,15 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('public/adminFE/css/main.css')}}">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  </head>
-  <body class="app sidebar-mini">
+</head>
+
+<body class="app sidebar-mini">
     @include('admin.menu');
     @yield('content');
-   
+
     <!-- Essential javascripts for application to work-->
     <script src="{{asset('public/adminFE/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('public/adminFE/js/popper.min.js')}}"></script>
@@ -37,7 +42,7 @@
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
+        if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -46,15 +51,15 @@
       	ga('send', 'pageview');
       }
     </script>
-    
+
 
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jszip.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/vfs_fonts.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/dataTables.bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/sweetalert.min.js')}}"></script>
-     <script type="text/javascript">
-      var oTable = $('#peopleTable').DataTable({
+    <script type="text/javascript">
+        var oTable = $('#peopleTable').DataTable({
           dom: 'Blfrtip',
           //"searching": false,
           "lengthMenu": [[6, 10, 20, 40, -1], [6, 10, 20, 40, "All"]],
@@ -175,6 +180,12 @@
               }
           });
       });
-      </script>
-  </body>
+            $(document).ready(function() {
+            $('#sampleTable').dataTable( {
+            "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "All"]]
+            } );
+            } );
+    </script>
+</body>
+
 </html>

@@ -25,7 +25,7 @@ $(document).ready(function() {
                 },
                 nodeBinding: {
                     field_0: "hoten",
-                    field_1: "tieusu",
+                    field_1: "tinhtrang",
                     img_0: "hinhanh",
                 },
                 nodes: msg
