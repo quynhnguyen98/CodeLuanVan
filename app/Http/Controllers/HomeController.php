@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->limit(8)
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
-        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat')->join('nguoi','sukien.id','=','nguoi.id')->orderBy('nguoi.ngaymat','asc')->get();
+        $sukien=DB::table('sukien')->select('sukien.title','nguoi.ngaymat','sukien.start')->join('nguoi','sukien.id','=','nguoi.id')->orderBy('nguoi.ngaymat','asc')->get();
         $mang1 = array();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
@@ -104,6 +104,16 @@ class HomeController extends Controller
         {
             return Redirect('/login')->with('loi','Đăng Nhập khi bình luận');
         }
+    }
+
+    public function getPhaDo()
+    {
+        return view('pages.phado');
+    }
+    public function getLich()
+    {
+        
+        return view('pages.lich');
     }
 
 }

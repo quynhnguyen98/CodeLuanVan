@@ -55,12 +55,10 @@ class UserController extends Controller
         $ht=$rq->hoten;
         $ns=$rq->ngaysinh;
         $sex=$rq->gioitinh;
-        $tthn=$rq->tinhtranghonnhan;
         $arr1=[
             'hoten'=>$ht,
             'gioitinh'=>$sex,
             'ngaysinh'=>$ns,
-            'tinhtrang_honnhan'=>$tthn,
         ];
         $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user1)

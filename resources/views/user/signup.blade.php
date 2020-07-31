@@ -44,9 +44,7 @@
                              <div class="form-group">
                                 <input type="date" name="ngaysinh" class="form-control"  required>
                             </div>
-                             <div class="form-group">
-                                <input type="text" name="tinhtranghonnhan" class="form-control"  placeholder="Tình Trạng Hôn Nhân" required>
-                            </div>
+                            
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" name="checkbox" class="custom-control-input" id="customControlAutosizing">
