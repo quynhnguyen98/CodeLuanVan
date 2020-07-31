@@ -49,6 +49,30 @@
     <!-- Active js -->
     <script src="{{asset('public/frontend/js/active.js')}}"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=989952378125349&autoLogAppEvents=1" nonce="fYVhDFeB"></script>
+    <script>
+        $(document).ready(function() {
+    
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.profile-pic').attr('src', e.target.result);
+                    }
+            
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+           
+            $(".file-upload").on('change', function(){
+                readURL(this);
+            });
+            
+            $(".upload-button").on('click', function() {
+               $(".file-upload").click();
+            });
+        });
+    </script>
 </body>
 
 </html>

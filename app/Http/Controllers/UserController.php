@@ -16,7 +16,10 @@ class UserController extends Controller
         return view('user.login');
     }
      public function getSignup(){
-        return view('user.signup');
+        $tinh=DB::table('tinh')->get();
+        $all_thanhvien = DB::table('nguoi')->join('tinh', 'nguoi.id_tinh', '=', 'tinh.id_tinh')->get();
+        //return $all_thanhvien;
+        return view('user.signup',compact('tinh','all_thanhvien'));
     }
     public function Login(Request $rq){
         $validatedData = $rq->validate([
@@ -33,6 +36,7 @@ class UserController extends Controller
         if(Auth::attempt($arr,$remember))
         {
             Session::put('tk',auth()->user());
+            //print_r(Session::all());
             return redirect('/');
             
         }
@@ -47,7 +51,12 @@ class UserController extends Controller
                 'email'=>'email',
                 'ngaysinh'=>'before:today|nullable',
                 'checkbox'=>'required',
+                'tieusu'=>'required|min:6',
                 ]);
+        $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
+        $_id = $_nguoi[0]->Auto_increment;
+        $id = (int) $_id;
+
         $user=$rq->username;
         $pass=$rq->password;
         $cfpass=$rq->cfpassword;
@@ -55,13 +64,17 @@ class UserController extends Controller
         $ht=$rq->hoten;
         $ns=$rq->ngaysinh;
         $sex=$rq->gioitinh;
-        $tthn=$rq->tinhtranghonnhan;
+        $tinh=$rq->tinh;
+        $tieusu=$rq->tieusu;
         $arr1=[
             'hoten'=>$ht,
             'gioitinh'=>$sex,
             'ngaysinh'=>$ns,
-            'tinhtrang_honnhan'=>$tthn,
+            'tinhtrang'=>'Sống',
+            'tieusu'=>strip_tags($tieusu),
+            'id_tinh'=>$tinh,
         ];
+       
         $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user1)
         {
@@ -78,9 +91,13 @@ class UserController extends Controller
             'email'=>$ema,
             'vaitro'=>0,
             'avatar'=>"user.png",
-            'id'=>$new->id,
+            'id'=>$id,
             ];
             DB::table('taikhoan')->insert($arr);
+             $dataNguonGoc['id'] =$id ;
+            $dataNguonGoc['pid'] = $rq->FatherID;
+
+            DB::table('nguongoc')->insert($dataNguonGoc);
               return redirect('/signup')->with('mess','Đăng Ký Thành Công');
         }
     }
@@ -122,5 +139,61 @@ class UserController extends Controller
         $result=DB::table('taikhoan')->where('id_taikhoan',$input['id_taikhoan'])->update(['password'=>bcrypt($input['password'])]);
         return redirect()->back()->with('mess','Đổi Mật Khẩu Thành Công');
 
+    }
+    public function edituser($id_taikhoan)
+    {   $taikhoan=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')->where('id_taikhoan',$id_taikhoan)->get();
+        $tinh=DB::table('tinh')->get();
+        return view('user.edituser',compact('taikhoan','tinh'));    
+    }
+     public function checkedit(Request $rq,$id_taikhoan)
+    {  
+        $file=$rq->filehinh;
+        $hoten=$rq->hoten;
+        $gioitinh=$rq->gioitinh;
+        $ngaysinh=$rq->ngaysinh;
+        if($file)
+        {
+        $arr=[
+            'avatar'=>$file,
+        ];
+        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+        Session::put('tk',auth()->user());
+        }
+        $arr1=[
+            'hoten'=>$rq->hoten,
+            'tieusu'=>$rq->tieusu,
+            'ngaysinh'=>$ngaysinh,
+            'gioitinh'=>$gioitinh,
+            'id_tinh'=>$rq->tinh,
+        ];
+    $id=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+    DB::table('nguoi')->where('id',$id->id)->update($arr1);
+    return Redirect()->back()->with('mess','Sửa thành công');
+    }
+    public function getIndex(){
+        $taikhoan=DB::table('taikhoan')->get();
+        return view('admin.qltaikhoan',compact('taikhoan'));
+    }
+    public function doimatkhau($id_taikhoan)
+    {
+        $id=$id_taikhoan;
+        return view('admin.changepassword',compact('id'));
+    }
+    public function doipass(Request $rq,$id)
+    {
+         $validatedData = $rq->validate([              
+                'password' => 'required_with:password_confirmation|same:password_confirm',
+                'password_confirm' => 'min:6',
+                ]);
+        $pw=$rq->password;
+        $pwcf=$rq->password_confirm;
+        echo $pw;
+        echo $pwcf;
+        $arr=[
+            'password'=>bcrypt($pw),
+        ];
+        $a=DB::table('taikhoan')->where('id_taikhoan',$id)->update($arr);
+        print_r($arr);
+        return Redirect('/quan-ly-tai-khoan')->with('mess','Đổi Mật Khẩu Thành Công');
     }
 }

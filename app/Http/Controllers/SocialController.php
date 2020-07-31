@@ -24,8 +24,8 @@ class SocialController extends Controller
  		$user = $this->createUser($getInfo,$provider); 			 	
    		Auth::login($user);
    		Session::put('tk',auth()->user());
+   		//print_r(Session::get('tk')->provider);
    		return redirect()->to('/');
- 		dd($getInfo);
  	}
  	function createUser($getInfo,$provider){
 		 $user = User::where('provider_id', $getInfo->id)->first();

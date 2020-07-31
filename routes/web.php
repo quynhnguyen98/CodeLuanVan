@@ -55,6 +55,13 @@ Route::get('/xoa-hinh-anh/{id_hinh}','HinhAnhController@xoahinh');
 Route::get('/them-hinh-anh/{id_tintuc}','TinTucController@themhinh');
 Route::post('/save-image/{id_tintuc}','TinTucController@saveimage');
 
+Route::get('/quan-ly-hinh-anh','HinhAnhController@getIndex');
+Route::get('/them-hinh-anh','HinhAnhController@themhinh');
+Route::post('/save-image','HinhAnhController@savehinh');
+
+Route::get('/quan-ly-tai-khoan','UserController@getIndex');
+Route::any('/doi-mat-khau/{id_taikhoan}','UserController@doimatkhau');
+Route::post('/doipass/{id_taikhoan}','UserController@doipass');
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');
@@ -64,6 +71,7 @@ Route::get('/gioi-thieu','HomeController@getGioithieu');
 Route::get('/tintuc/{id}/{tieudekhongdau}.html','HomeController@getPost');
 Route::post('/tintuc/{id}/{tieudekhongdau}.html','HomeController@postComment');
 
+Route::get('/chi-tiet-su-kien/{id}','NgaySuKienController@getChitiet');
 
 //User
 Route::any('/login','UserController@getLogin')->name('getLogin');
@@ -79,3 +87,5 @@ Route::post('/resest-pass/check','UserController@ResestPass');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 Route::post('/resest-pass/check','UserController@ResestPass');
+Route::get('/sua-thong-tin/{id_taikhoan}','UserController@edituser');
+Route::post('/edituser/check/{id_taikhoan}','UserController@checkedit');

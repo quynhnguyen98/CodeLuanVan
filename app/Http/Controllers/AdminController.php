@@ -12,17 +12,9 @@ use Redirect;
 class AdminController extends Controller
 {
 	public function getLogin(){
-		$admin = Session::get('hoten');
-        if($admin){
-			return view('admin.dashboard');
-        }else
 		return Redirect('/login_');
 	}
 	public function getLogin_(){
-		$admin = Session::get('hoten');
-        if($admin){
-            return Redirect::to('/admin');
-        }else
 		return view('admin.loginadmin');
 	}
     public function getIndex(Request $request)

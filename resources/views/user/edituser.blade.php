@@ -5,7 +5,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content">
-                        <h2>ĐĂNG KÝ</h2>
+                        <h2>THAY ĐỔI THÔNG TIN CÁ NHÂN</h2>
                     </div>
                 </div>
             </div>
@@ -18,62 +18,57 @@
                     <div class="login-content bg-white p-30 box-shadow">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h5>WELCOME!</h5>
+                            <h5>THÔNG TIN CÁ NHÂN!</h5>
                         </div>
-
-                        <form action="{{URL::to('/signup/check')}}" method="post">@csrf
-                            <div class="form-group">
-                                <input type="text" name="username" class="form-control"  placeholder="Tài Khoản" required>
+                        @foreach($taikhoan as $tk)
+                        <form action="{{URL::to('/edituser/check/'.$tk->id_taikhoan)}}" method="post">@csrf
+                            <div class="avatar-wrapper">
+                                <img class="profile-pic" src="{{URL::to('public/frontend/images/core-img/'.$tk->avatar)}}" />
+                                <div class="upload-button">
+                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                </div>
+                                <input class="file-upload" type="file" name="filehinh" accept="image/*"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control"  placeholder="Mật Khẩu" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password_confirmation" class="form-control"  placeholder="Xác Nhận Mật Khẩu" required>
+                                <input type="text" name="username" class="form-control"  value="{{$tk->tendangnhap}}" disabled>
                             </div>
                              <div class="form-group">
-                                <input type="email" name="email" class="form-control"  placeholder="Email" required>
+                                <input type="email" name="email" class="form-control" value="{{$tk->email}}" disabled>
                             </div>
                              <div class="form-group">
-                                <input type="text" name="hoten" class="form-control"  placeholder="Họ Tên" required>
+                                <input type="text" name="hoten" class="form-control" value="{{$tk->hoten}}">
                             </div>
                             <div class="form-group" style="font-size: 15px">
-                                        <label class="asd"><input type="radio" name="gioitinh" value="Nam" checked> Nam   </label>                            
-                                        <label class="asd"><input type="radio" name="gioitinh" value="Nữ"> Nữ</label>      
+                                        @if($tk->gioitinh=='Nam')
+                                        <label class="asd"><input type="radio" name="gioitinh" value="Nam" checked> Nam   </label>
+                                        <label class="asd"><input type="radio" name="gioitinh" value="Nữ"> Nữ</label> 
+
+                                        @else
+                                        <label class="asd"><input type="radio" name="gioitinh" value="Nam"> Nam   </label>                           
+                                        <label class="asd"><input type="radio" name="gioitinh" value="Nữ" checked> Nữ</label>
+                                        @endif      
                             </div>
                              <div class="form-group">
-                                <input type="date" name="ngaysinh" class="form-control"  required>
+                                <input type="date" name="ngaysinh" class="form-control"  value="{{$tk->ngaysinh}}">
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                  <select class="form-control" data-val="true"
                                                     data-val-number="The field MotherID must be a number." id="MotherID"
                                                     name="tinh">
-                                                    <option selected="true" ">Chọn Tỉnh?</option>
                                                     @foreach($tinh as $k)
+                                                        @if($tk->id_tinh==$k->id_tinh)
+                                                        <option value="{{$k->id_tinh}}" selected="true">{{$k->tinh_tp}}</option>
+                                                        @else
                                                         <option value="{{$k->id_tinh}}">{{$k->tinh_tp}}</option>
+                                                        @endif
                                                     @endforeach
                                 </select>
                             </div>
-                             <div class="form-group">
-                                 <select class="form-control" data-val="true"
-                                     data-val-number="The field MotherID must be a number." id="MotherID"
-                                    name="FatherID">
-                                            <option selected="true" ">Cha bạn là ai?</option>
-                                                    @foreach($all_thanhvien as $k)
-                                                        <option value="{{$k->id}}">{{$k->hoten}}</option>
-                                                    @endforeach
-                                </select>
-                            </div>
-                              <div class="form-group">
-                                <textarea class="form-control" name="tieusu" rows="5" cols="66" placeholder="Tiểu Sử"></textarea>
+                            <div class="form-group">
+                                <textarea class="form-control" name="tieusu" rows="5" cols="66" placeholder="Tiểu Sử">{{$tk->tieusu}}</textarea>
                             </div>
                              
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" name="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">I agreed the Terms&Condition</label>
-                                </div>
-                            </div>
+                            
                               @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -91,6 +86,7 @@
                                 </div>
                             @endif
                             <button type="submit" class="btn mag-btn mt-30">Submit</button>
+                            @endforeach
                         </form>
                     </div>
                 </div>

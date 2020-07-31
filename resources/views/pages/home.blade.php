@@ -36,12 +36,12 @@
                 <div class="section-heading">
                     <h5>Sự Kiện Sắp Tới</h5>
                 </div>
-                @foreach($mang1 as $sk)
+                @foreach($sortedArr as $sk)
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <i class="fa fa-calendar" style="font-size: 20px;"></i>
-                    <div class="post-content">
-                        <a href="" class="post-title">{{$sk->title}}</a>
+                    <div class="post-content"><a href="{{URL::to('/chi-tiet-su-kien/'.$sk->id)}}" style="font-size:17px;">{{$sk->title}}</a>
+                  
                         <div class="post-meta d-flex justify-content-between">
                             Ngày:
                             <?php
@@ -71,83 +71,26 @@
             <div class="single-sidebar-widget p-30">
                 <!-- Section Title -->
                 <div class="section-heading">
-                    <h5>Latest Videos</h5>
+                    <h5>TIN TỨC NỔI BẬT</h5>
                 </div>
-
+                @foreach($tintucnoibat as $tt)
                 <!-- Single Blog Post -->
                 <div class="single-blog-post d-flex">
                     <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/9.jpg')}}" alt="">
+                        <img src="public/frontend/images/<?php $data=(explode(',',$tt->images));
+                                                   echo $data[0];
+                                            ?>" alt="" style="height: auto;width: 1000px;">
                     </div>
                     <div class="post-content">
-                        <a href="single-post.html" class="post-title">Coventry City Guide Including Coventry</a>
+                        <a href="single-post.html" class="post-title">{{$tt->tieude}}</a>
                         <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="#" style="font-family:  'Alegreya Sans SC', sans-serif;"><i class="fa fa-eye" aria-hidden="true">  {{$tt->luotxem}}</i></a>
                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Single Blog Post -->
-                <div class="single-blog-post d-flex">
-                    <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/10.jpg')}}" alt="">
-                    </div>
-                    <div class="post-content">
-                        <a href="single-post.html" class="post-title">Choose The Perfect Accommodations</a>
-                        <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Post -->
-                <div class="single-blog-post d-flex">
-                    <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/11.jpg')}}" alt="">
-                    </div>
-                    <div class="post-content">
-                        <a href="single-post.html" class="post-title">Get Ready Fast For Fall Leaf Viewing</a>
-                        <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Post -->
-                <div class="single-blog-post d-flex">
-                    <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/12.jpg')}}" alt="">
-                    </div>
-                    <div class="post-content">
-                        <a href="single-post.html" class="post-title">Global Resorts Network Grn Putting</a>
-                        <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Post -->
-                <div class="single-blog-post d-flex">
-                    <div class="post-thumbnail">
-                        <img src="{{('public/frontend/images/13.jpg')}}" alt="">
-                    </div>
-                    <div class="post-content">
-                        <a href="single-post.html" class="post-title">Travel Prudently Luggage And Carry</a>
-                        <div class="post-meta d-flex justify-content-between">
-                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 34</a>
-                            <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>

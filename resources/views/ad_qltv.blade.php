@@ -139,6 +139,42 @@
               }
           });
       });
+      $(document).on("click", ".DeleteImage", function () {
+          var $button = $(this);
+          swal({
+              title: "Bạn có chắc muốn xóa?",
+              text: "Hình ảnh này sẽ không phục hồi lại được!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonText: "Có, xóa hình này!",
+              cancelButtonText: "Không, hủy thao tác!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          }, function (isConfirm) {
+              if (isConfirm) {
+                  var ImageID = $button.closest("tr").find("#ImageID").val();
+                  var viewModel1 = {
+                      id: parseInt(ImageID)
+                  };
+                     console.log(viewModel1);
+                  $.ajax({
+                      type: "GET",
+                      url: "xoa-hinh-anh/"+viewModel1.id,
+                      data: JSON.stringify(viewModel1),
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data) {
+                       
+                          var tableRow = $button.closest('tr');
+                          tableRow.remove();
+                          swal("Deleted!", "Selected image has been deleted.", "success");
+                      }
+                  });
+                 
+              } else {
+                  swal("Hủy Thao tác", "Xóa hình không thành công", "error");
+              }
+          });
+      });
       </script>
   </body>
 </html>

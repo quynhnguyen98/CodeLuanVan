@@ -58,5 +58,10 @@ class NgaySuKienController extends Controller
         $event = DB::table('sukien')->where('id',$request->id)->delete();
    
         return response()->json($event);
-    }    
+    }
+    public function getChitiet($id)
+    {
+        $sukien=DB::table('sukien')->where('id',$id)->get();
+        return view('pages.chitietsukien',compact('sukien'));
+            }
 }

@@ -144,6 +144,7 @@ class TinTucController extends Controller
             for($i=0;$i<count($file);$i++)
             {
                 $name=$file[$i]->getClientOriginalName();
+                 $file[$i]->move("public/frontend/images/bg-img",$name);
                 array_push($tenhinh, $name);
             }
             for($i=0;$i<count($file);$i++)
@@ -164,7 +165,7 @@ class TinTucController extends Controller
         ];
         DB::table('tintuc')->where('id_tintuc',$id_tintuc)->update($arrayinsert);
         return Redirect('/quan-ly-tin-tuc');
-        //return $id;
+
     }
 
 }

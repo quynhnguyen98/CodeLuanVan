@@ -66,13 +66,18 @@
                                 <a href="{{URL::to('/user-logout')}}">
                                     <i class="fa fa-sign-out"></i>Logout</a>
                                 </div>
+                               
                                 <div  id="js-show-detail" ><img src="{{asset('public/frontend/images/core-img/'.Session::get('tk')->avatar)}}" alt="">
-                                              <div id="detail">
-                                    <ul>
-                                        <a href="{{URL::to('/resest-pass/'.Session::get('tk')->id_taikhoan)}}"><li>Đổi Mật Khẩu</li></a>
-                                         <a href="#"><li>Sửa thông tin</li></a>
-                                    </ul>
-                                </div></div>
+                                     @if(Session::get('tk')->provider=='')
+                                    <div id="detail">
+                                        <ul>
+                                            <a href="{{URL::to('/resest-pass/'.Session::get('tk')->id_taikhoan)}}"><li>Đổi Mật Khẩu</li></a>
+                                             <a href="{{URL::to('/sua-thong-tin/'.Session::get('tk')->id_taikhoan)}}"><li>Sửa thông tin</li></a>
+                                        </ul>
+                                    </div>
+                                       @endif
+                                </div>
+                             
                    
                             </div>
                            

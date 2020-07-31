@@ -20,7 +20,12 @@ class HomeController extends Controller
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->limit(8)
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
-        $sukien=DB::table('sukien')->select('sukien.title','sukien.start')->join('nguoi','sukien.id_nguoi','=','nguoi.id')->get();
+        $sukien=DB::table('sukien')->select('sukien.title','sukien.start','sukien.id','sukien.noidung')->leftjoin('nguoi','sukien.id_nguoi','=','nguoi.id')->get();
+         $tintucnoibat=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','tintuc.noibat',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->where('tintuc.noibat',1)
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','tintuc.noibat')->limit(8)
+            ->get();
         $mang1 = array();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)
@@ -35,9 +40,8 @@ class HomeController extends Controller
             }                   
         }
         $sortedArr = collect($mang1)->sortBy('start')->all();
-        //dd($sortedArr);
-        return $mang1;
-        return view('pages.home',compact('slide','tintuc','hinhanh','mang1','now'));
+        array_splice($sortedArr,3);
+        return view('pages.home',compact('slide','tintuc','hinhanh','sortedArr','now','tintucnoibat'));
     }
 
     public function getPost($id,Request $rq){
