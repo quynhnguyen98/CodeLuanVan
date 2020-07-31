@@ -37,8 +37,8 @@
                                 <ul>
                                     <li class="active"><a href="{{URL::to('/')}}">Trang Chủ</a></li>
                                     <li><a href="{{URL::to('/tin-tuc')}}">Tin Tức</a></li>
-                                    <li><a href="#">Phả Đồ</a> </li>
-                                    <li><a href="#">Lịch</a></li>
+                                    <li><a href="{{URL::to('pha-do')}}">Phả Đồ</a> </li>
+                                    <li><a href="{{URL::to('lich')}}">Lịch</a></li>
                                     <li><a href="{{URL::to('/gioi-thieu')}}">Giới Thiệu</a></li>
                                 </ul>
                             </div>

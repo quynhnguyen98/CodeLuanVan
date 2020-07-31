@@ -106,4 +106,34 @@ class HomeController extends Controller
         }
     }
 
+    public function getPhaDo()
+    {
+        return view('pages.phado');
+    }
+    public function getLich()
+    {
+         $sukien=DB::table('sukien')->select('sukien.title','sukien.start','sukien.id','sukien.noidung')->leftjoin('nguoi','sukien.id_nguoi','=','nguoi.id')->get();
+         $mang1 = array();
+        $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
+        foreach($sukien as $sk)
+        {
+            $start=date('d-m',strtotime($sk->start)).'-'.Carbon::now()->year.'00:00:00';
+            $end=date('d-m',strtotime($sk->start)).'-'.Carbon::now()->year.'23:59:59';
+            $eventstart=strtotime($start);
+            $eventend=strtotime($end);
+            if($eventend>=$now)
+            {
+                    array_push($mang1,$sk);
+            }                   
+        }
+        $sortedArr = collect($mang1)->sortBy('start')->all();
+        array_splice($sortedArr,3);
+         $tintucnoibat=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','tintuc.noibat',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->where('tintuc.noibat',1)
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','tintuc.noibat')->limit(8)
+            ->get();
+        return view('pages.lich',compact('sortedArr','now','tintucnoibat'));
+    }
+
 }

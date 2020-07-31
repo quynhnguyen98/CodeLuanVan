@@ -45,13 +45,21 @@ class ThemThanhVienController extends Controller
             'gioitinh' => $request->gioitinh,
             'ngaysinh' => date('yy-m-d', strtotime($request->ngaysinh)),
             'ngaymat' => $ngay,
-            'hinh' => $request->PhotoFileName,
-            'tieusu' => $request->tieusu,
+            'hinhanh' => $request->PhotoFileName,
+            'tieusu' => strip_tags($request->tieusu),
             'id_tinh' => $request->tinh,
             'tinhtrang' => $t,
         ];
+      
+     
+            $destinationPath = 'public/img_person/';
+            $files = $request->file('PhotoFileSelector');
+            $file_name = $files->getClientOriginalName();
+            $files->move($destinationPath , $file_name);
+ 
+       
         // print_r($request->all());
-        print_r($arr);
+        // print_r($arr);
         // print_r($arr);
         DB::table('nguoi')->insert($arr);
 

@@ -37,6 +37,11 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
 Route::get('/data-tree','TreeController@data_tree');
+Route::post('/change-data-tree/{id}/{pid}','TreeController@changedata_tree');
+// Route::get('/change-data-tree/{$id}','TreeController@x');
+// Route::get('xxx/{id}','TreeController@xxx');
+
+
 
 Route::post('/mail-event','NgaySuKienController@mailevent');
 Route::get('/quan-ly-comment','CommentController@getComment');
@@ -66,6 +71,8 @@ Route::post('/doipass/{id_taikhoan}','UserController@doipass');
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');
 Route::get('/tin-tuc','HomeController@getTintuc');
+Route::get('/pha-do','HomeController@getPhaDo');
+Route::get('/lich','HomeController@getLich');
 Route::get('/gop-y','HomeController@getGopy');
 Route::get('/gioi-thieu','HomeController@getGioithieu');
 Route::get('/tintuc/{id}/{tieudekhongdau}.html','HomeController@getPost');

@@ -35,8 +35,8 @@
                             <tr>
                                 <th width="70">Id</th>
                                 <th width="300">Họ và tên</th>
-                                <th>Cha</th>
-                                <th>Mẹ</th>
+                                <th>Người thân</th>
+                                <th>Hình ảnh</th>
                                 <th width="35">Trạng thái</th>
                                 <th width="55"></th>
                             </tr>
@@ -85,22 +85,8 @@
                                 ?>
                             </td>
                             <td>
-                               
-                                <?php
-                                $fl = false;
-                                foreach($nguongoc as $gt){
-                                    if($gt->pid == $k->id){
-                                        
-                                        foreach($all_thanhvien as $v){
-                                            if($gt->id == $v->id && $v->gioitinh=="Nữ"){
-                                                echo $v->hoten;
-                                                $fl = true;
-                                            }
-                                        }
-                                    }
-                                }
-                                if(!$fl) echo "Không có";
-                                ?>
+                              
+                               <img src="public/img_person/{{$k->hinhanh}}" alt="" height="50" width="50" >
                             </td>
                                 
 

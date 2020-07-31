@@ -64,7 +64,7 @@
 
             <!-- Sidebar Widget -->
             <div class="single-sidebar-widget">
-                <a href="#" class="add-img"><img src="{{('public/frontend/images/add.png')}}" alt=""></a>
+                <a href="#" class="add-img"><img src="{{('public/frontend/images/add.jpg')}}" alt=""></a>
             </div>
 
             <!-- Sidebar Widget -->
@@ -79,18 +79,29 @@
                     <div class="post-thumbnail">
                         <img src="public/frontend/images/<?php $data=(explode(',',$tt->images));
                                                    echo $data[0];
-                                            ?>" alt="" style="height: auto;width: 1000px;">
+                                            ?>" alt="" style="height: auto;width: 1000px;" alt="">
                     </div>
                     <div class="post-content">
                         <a href="single-post.html" class="post-title">{{$tt->tieude}}</a>
                         <div class="post-meta d-flex justify-content-between">
-                            <a href="#" style="font-family:  'Alegreya Sans SC', sans-serif;"><i class="fa fa-eye" aria-hidden="true">  {{$tt->luotxem}}</i></a>
+                            <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>{{$tt->luotxem}}</a>
                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 14</a>
                         </div>
                     </div>
                 </div>
                 @endforeach
+                <!-- Single Blog Post -->
+                
+
+                <!-- Single Blog Post -->
+                
+
+                <!-- Single Blog Post -->
+                
+
+                <!-- Single Blog Post -->
+                
 
             </div>
         </div>

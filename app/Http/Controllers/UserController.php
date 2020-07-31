@@ -161,7 +161,7 @@ class UserController extends Controller
         }
         $arr1=[
             'hoten'=>$rq->hoten,
-            'tieusu'=>$rq->tieusu,
+            'tieusu'=>strip_tags($rq->tieusu),
             'ngaysinh'=>$ngaysinh,
             'gioitinh'=>$gioitinh,
             'id_tinh'=>$rq->tinh,
