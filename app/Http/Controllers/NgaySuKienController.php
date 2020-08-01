@@ -36,7 +36,7 @@ class NgaySuKienController extends Controller
     {  
         $insertArr = [ 'title' => $request->title,
                        'start' => $request->start,
-                       
+                       'noidung'=>$request->noidung,
                     ];
         $event = DB::table('sukien')->insert($insertArr);   
         return response()->json($event);

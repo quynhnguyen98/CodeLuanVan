@@ -23,8 +23,26 @@ class ThemThanhVienController extends Controller
 
     public function save_person(Request $request)
     {
-        //  dd($request->all());
-
+        $validatedData = $request->validate([
+            'username' => 'required|min:6|max:12',
+            'password' => 'required|min:6',
+            'tieusu'=>'required|min:12',
+            'ngaysinh'=>'before:today|date',
+            'ngaymat'=>'before:today|nullable|date|after:ngaysinh',
+            'PhotoFileSelector' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'username.required' => 'Bắt Buộc Nhập Tên',
+            'username.min'=>'Độ dài tên ít nhất 6 ký tự',
+            'username.max'=>'Độ dài tên dài nhất 12 ký tự',
+            'password.required'=>'Password ít nhất 6 ký tự',
+            'tieusu.required'=>'Bắt buộc nhập tiểu sử',
+            'ngaysinh.before' => 'Ngày sinh phải trước hiện tại',
+            'ngaysinh.date'=>'Ngày sinh không được bỏ trống',
+            'ngaymat.before' => 'Ngày mất phải trước hiện tại',
+            'ngaymat.after' => 'Năm mất phải sau năm sinh',
+            'PhotoFileSelector.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
+        ]);
+       
         $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
         $_id = $_nguoi[0]->Auto_increment;
         $id = (int) $_id;

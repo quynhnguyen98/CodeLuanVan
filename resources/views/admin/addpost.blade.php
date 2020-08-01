@@ -15,6 +15,15 @@
     <form action="{{URL::to('/save-post')}}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="tile mt-4 mb-4">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $err)
+                        <li>{{ $err }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-3">
@@ -37,7 +46,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Tiêu Đề</label>
                                                 <input class="form-control" id="PersonName" name="tieude"
-                                                    placeholder="Nhập tiêu đề" type="text" value=""/>
+                                                    placeholder="Nhập tiêu đề" type="text" value="" required="true"/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -48,7 +57,7 @@
                                         <div class="col-lg-10">
                                             <div class="form-group">
                                                 <label class="control-label">Hình bài tin</label> 
-                                                <input name="filehinh[]" type="file" value="" multiple />
+                                                <input name="filehinh[]" type="file" value="" multiple required="true"/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -60,7 +69,7 @@
 
                             <div class="form-group">
                                 <label for="exampleTextarea">Nội Dung</label>
-                                <textarea class="form-control" id="editor1" rows="15" name="noidung_tt"></textarea>
+                                <textarea class="form-control" id="editor1" rows="15" name="noidung_tt" required="required"></textarea>
                             </div>
 
                             <div class="tile-footer">

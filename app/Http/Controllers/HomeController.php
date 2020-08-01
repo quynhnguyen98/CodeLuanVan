@@ -16,7 +16,7 @@ class HomeController extends Controller
         $slide=DB::table('slide')->get();
         $tintuc=DB::table('tintuc')
             ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
-            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')->orderBy('tintuc.id_tintuc','desc')
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem')->limit(8)
             ->get();
         $hinhanh=DB::table('hinhanh')->get();
@@ -97,6 +97,7 @@ class HomeController extends Controller
                 $comment->id_tintuc=$id;
                 $comment->noidung=$rq->noidung;
                 $comment->id_taikhoan=Session::get('tk')->id_taikhoan;
+                $comment->status=1;
                 $comment->save();
                 return back();
         }

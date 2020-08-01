@@ -74,6 +74,15 @@ class TinTucController extends Controller
         return $text;
 }
     public function save(Request $rq){
+        $validatedData = $this->validate($rq,[                 
+            'filehinh.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'noidung'=>'required',
+        ],[
+            'filehinh.*.required'=>"Hình chưa được chọn",
+            'filehinh.*.image'=>'Không đúng định dàng hình',
+            'filehinh.*.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
+            'noidung.required'=>"Phải Nhập Nội dung",
+        ]);
         $noidung= htmlentities($rq->noidung_tt) ;
         $a=html_entity_decode($noidung);
         $file=$rq->filehinh; 
@@ -85,6 +94,7 @@ class TinTucController extends Controller
             'ngaydang'=>Carbon::now('Asia/Ho_Chi_Minh'),
             'id_taikhoan'=>Session::get('admin')->id_taikhoan,
             'luotxem'=>0,
+            'noibat'=>0,
         ];
         DB::table('tintuc')->insert($array);
         $id=DB::table('tintuc')->latest('id_tintuc')->first();
