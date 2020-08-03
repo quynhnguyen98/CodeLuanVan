@@ -2362,6 +2362,40 @@ textarea.form-control {
 .upload-button:hover .fa-arrow-circle-up{
       opacity: .9;
     }
+    .form-control1 {
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  width: 100%;
+  background-color: #ffffff;
+  font-size: 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ebebeb;
+  padding: 10px 30px;
+  color: #777777;
+  -webkit-transition-duration: 500ms;
+  -o-transition-duration: 500ms;
+  transition-duration: 500ms; }
+  .form-control1:focus {
+    box-shadow: none;
+    border-color: #ed3974; }
+
+select.form-control1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.map-area {
+  position: relative;
+  z-index: 2; }
+  .map-area iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    margin-bottom: 0; }
+    @media only screen and (max-width: 767px) {
+      .map-area iframe {
+        height: 250px; } }
 /* ====== The End ====== */
 
 /*# sourceMappingURL=style.css.map */

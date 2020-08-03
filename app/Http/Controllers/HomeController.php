@@ -55,7 +55,7 @@ class HomeController extends Controller
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->whereNotIn('tintuc.id_tintuc',[$id])
             ->limit(3)->get();
-        $comment=DB::table('gopy')->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')->where('gopy.id_tintuc',$id)->where('gopy.status','1')->get();
+        $comment=Comment::with('replies')->join('taikhoan','gopy.id_taikhoan','=','taikhoan.id_taikhoan')->where('id_tintuc','=',$id)->where('comment_id','=',null)->get();
         $sessionKey='tintuc_'.$id;
         $sessionview=Session::get('sessionKey');
         if(!$sessionview)
@@ -71,7 +71,7 @@ class HomeController extends Controller
             $meta_content=$tt->noidung_tt;
             $meta_img=$data[0];
         }
-        //  return $url_canonical;
+        //return $comment;
         return view('pages.singlepost',compact('meta_desc','meta_content','meta_img','tintuc','tintuclq','comment','url_canonical'));
     }
     public function getTinTuc(){
@@ -93,11 +93,36 @@ class HomeController extends Controller
     {
         if(Session::has('tk'))
         {
+                $rq->validate([
+                    'noidung'=>'required',
+                ]);
                 $comment=new Comment;
                 $comment->id_tintuc=$id;
                 $comment->noidung=$rq->noidung;
                 $comment->id_taikhoan=Session::get('tk')->id_taikhoan;
+                $comment->status=1;
                 $comment->save();
+                return back();
+        }
+        else
+        {
+            return Redirect('/login')->with('loi','Đăng Nhập khi bình luận');
+        }
+    }
+    public function postReply($id,Request $rq)
+    {
+        if(Session::has('tk'))
+        {
+                $rq->validate([
+                    'binhluan'=>'required',
+                ]);
+                $reply=new Comment;
+                $reply->id_tintuc=$id;
+                $reply->noidung=$rq->binhluan;
+                $reply->id_taikhoan=Session::get('tk')->id_taikhoan;
+                $reply->comment_id=$rq->idgopy;
+                $reply->status=1;
+                $reply->save();
                 return back();
         }
         else

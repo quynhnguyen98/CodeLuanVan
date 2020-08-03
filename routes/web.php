@@ -77,9 +77,11 @@ Route::get('/gop-y','HomeController@getGopy');
 Route::get('/gioi-thieu','HomeController@getGioithieu');
 Route::get('/tintuc/{id}/{tieudekhongdau}.html','HomeController@getPost');
 Route::post('/tintuc/{id}/{tieudekhongdau}.html','HomeController@postComment');
+Route::post('/tintuc1/{id}/{tieudekhongdau}.html','HomeController@postReply');
 
 Route::get('/chi-tiet-su-kien/{id}','NgaySuKienController@getChitiet');
-
+Route::post('/tim-kiem-tin-tuc','TinTucController@timkiem');
+Route::post('/gui-gop-y','CommentController@postGopy');
 //User
 Route::any('/login','UserController@getLogin')->name('getLogin');
 Route::post('/login/check','UserController@Login')->name('login');

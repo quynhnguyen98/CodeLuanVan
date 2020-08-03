@@ -143,18 +143,22 @@ class UserController extends Controller
     public function edituser($id_taikhoan)
     {   $taikhoan=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')->where('id_taikhoan',$id_taikhoan)->get();
         $tinh=DB::table('tinh')->get();
+        //return $taikhoan;
         return view('user.edituser',compact('taikhoan','tinh'));    
     }
      public function checkedit(Request $rq,$id_taikhoan)
     {  
-        $file=$rq->filehinh;
+        $file=$rq->file('filehinh');
+        $name=$file->getClientOriginalName();
         $hoten=$rq->hoten;
         $gioitinh=$rq->gioitinh;
         $ngaysinh=$rq->ngaysinh;
-        if($file)
+        if(isset($file))
         {
+        $name=$file->getClientOriginalName();
+        $file->move("public/frontend/images/core-img",$name);
         $arr=[
-            'avatar'=>$file,
+            'avatar'=>$name,
         ];
         DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
         Session::put('tk',auth()->user());

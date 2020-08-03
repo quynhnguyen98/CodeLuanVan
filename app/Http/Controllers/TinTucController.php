@@ -125,6 +125,8 @@ class TinTucController extends Controller
         return view('admin.addhinh',compact('id'));
     }
     public function saveimage(Request $rq,$id_tintuc){
+        $input=$rq->all();
+        print_r($input);
           $file=$rq->file('filehinh');
           $name=$file->getClientOriginalName();
           $file->move("public/frontend/images/bg-img",$name);
@@ -166,6 +168,17 @@ class TinTucController extends Controller
         DB::table('tintuc')->where('id_tintuc',$id_tintuc)->update($arrayinsert);
         return Redirect('/quan-ly-tin-tuc');
 
+    }
+    public function timkiem(Request $rq)
+    {
+        $keyword=$rq->keyword;
+        $tintuctk=DB::table('tintuc')
+            ->select('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','taikhoan.tendangnhap',DB::raw('GROUP_CONCAT(hinhanh.tenhinh) as images'))
+            ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
+            ->join('taikhoan','tintuc.id_taikhoan','=','taikhoan.id_taikhoan')->where('tintuc.tieude','like','%'.$keyword.'%')
+            ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang','tintuc.luotxem','taikhoan.tendangnhap')
+            ->paginate(4);
+         return view('pages.timkiem',compact('tintuctk'));
     }
 
 }

@@ -48,8 +48,8 @@
                         <div class="top-meta-data d-flex align-items-center">
                             <!-- Top Search Area -->
                             <div class="top-search-area">
-                                <form action="index.html" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Tìm họ tộc...">
+                                <form action="{{URL::to('/tim-kiem-tin-tuc')}}" method="post">
+                                    <input type="search" name="keyword" id="topSearch" placeholder="Tìm Tin Tức...">@csrf
                                     <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>

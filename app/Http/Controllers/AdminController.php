@@ -25,7 +25,7 @@ class AdminController extends Controller
 		->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
 		if($result!='')
 		{
-			Session::put('hoten',$result->hoten);
+			Session::put('admin',$result);
 			//return Session::has('admin');
 			return view('admin.dashboard');
 		}else {

@@ -35,7 +35,12 @@
                       <td>{{$c->noidung}}</td>
                       <td>{{$c->created_at}}</td>
                       <td>{{$c->tendangnhap}}</td>
-                      <td>{{$c->tieude}}</td>
+                      <td><?php if($c->tieude)
+                                echo $c->tieude;
+                                else
+                                  echo 'Không thuộc tin tức';
+                       ?>
+                      </td>
                       <td>
                         <?php
                           if($c->status==1){

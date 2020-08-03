@@ -21,13 +21,13 @@
                             <h5>THÔNG TIN CÁ NHÂN!</h5>
                         </div>
                         @foreach($taikhoan as $tk)
-                        <form action="{{URL::to('/edituser/check/'.$tk->id_taikhoan)}}" method="post">@csrf
+                        <form action="{{URL::to('/edituser/check/'.$tk->id_taikhoan)}}" enctype="multipart/form-data" method="post">@csrf
                             <div class="avatar-wrapper">
                                 <img class="profile-pic" src="{{URL::to('public/frontend/images/core-img/'.$tk->avatar)}}" />
                                 <div class="upload-button">
                                     <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                 </div>
-                                <input class="file-upload" type="file" name="filehinh" accept="image/*"/>
+                                <input class="file-upload" type="file" id="file" name="filehinh" value="" required />
                             </div>
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control"  value="{{$tk->tendangnhap}}" disabled>

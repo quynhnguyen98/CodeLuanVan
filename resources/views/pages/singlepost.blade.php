@@ -35,7 +35,7 @@
                 <div class="col-12 col-xl-8">
                     <div class="post-details-content bg-white mb-30 p-30 box-shadow">
                         <div class="blog-thumb mb-30">
-                            <img src="{{URL::to('public/frontend/images/bg-img')}}/<?php $data=(explode(',',$tt->images));
+                            <img src="{{URL::to('public/frontend/images')}}/<?php $data=(explode(',',$tt->images));
                                                    echo $data[0];
                                             ?>" alt="">
 
@@ -98,7 +98,7 @@
                                 <div class="single-blog-post style-4 mb-30">
                                     <div class="post-thumbnail">
                                         <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.'/'.$ttlq->tieudekhongdau.'.html')}}">
-                                       <img src="{{URL::to('public/frontend/images/bg-img')}}/<?php $data=(explode(',',$ttlq->images));
+                                       <img src="{{URL::to('public/frontend/images')}}/<?php $data=(explode(',',$ttlq->images));
                                                    echo $data[0];
                                             ?>" alt="" style="height: 300px;">
 
@@ -151,10 +151,73 @@
                                             <p>{{$cmt->noidung}}</p>
                                             <div class="d-flex align-items-center">
                                                 <a href="#" class="like">like</a>
-                                                <a href="#" class="reply">Reply</a>
+                                                <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
+        
+                                            </div>
+                                            <div id="form-{{$cmt->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none">
+                                                <form action="{{URL::to('/tintuc1/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" method="post" id="commentForm">@csrf
+                                                    <textarea name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
+                                                    <input type="hidden" value="{{$cmt->id_gopy}}" name="idgopy">
+                                                     <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                    <script>
+                                        function myFunction(x) {
+                                                  var a=document.getElementById("form-"+x).style.display;
+                                                  if(a=='none')
+                                                  {
+                                                    document.getElementById("form-"+x).style.display='block';
+                                                  }
+                                                  else
+                                                    document.getElementById("form-"+x).style.display='none';
+                                                }
+                                    </script>
+                                    @if($cmt->replies)
+                                    @foreach($cmt->replies as $rep)
+                                    <ol class="children">
+                                    <li class="single_comment_area">
+                                        <!-- Comment Content -->
+                                        <div class="comment-content d-flex">
+                                            <!-- Comment Author -->
+                                            <div class="comment-author">
+                                                <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->user->avatar)}}" alt="author">
+                                            </div>
+                                            <!-- Comment Meta -->
+                                            <div class="comment-meta">
+                                                <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($rep->created_at))}}</a>
+                                                <h6>{{$rep->tendangnhap}}</h6>
+                                                <p>{{$rep->noidung}}</p>
+                                                <div class="d-flex align-items-center">
+                                                    <a href="#" class="like">like</a>
+                                                     <a class="reply" onclick="myFunction1({{$rep->id_gopy}})">Reply</a>
+                                                </div>
+                                                <div id="form1-{{$rep->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none;">
+                                                <form action="{{URL::to('/tintuc1/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" method="post" id="commentForm">@csrf
+                                                    <textarea name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
+                                                    <input type="hidden" value="{{$cmt->id_gopy}}" name="idgopy">
+                                                     <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
+                                                </form>
+                                            </div>
+    
+                                            </div>
+                                        </div>
+                                         <script>
+                                        function myFunction1(x) {
+                                                  var a=document.getElementById("form1-"+x).style.display;
+                                                  if(a=='none')
+                                                  {
+                                                    document.getElementById("form1-"+x).style.display='block';
+                                                  }
+                                                  else
+                                                    document.getElementById("form1-"+x).style.display='none';
+                                                }
+                                    </script>
+                                    </li>
+                                </ol>
+                                @endforeach
+                                @endif
 
                                 </li>
                                 @endforeach
@@ -202,4 +265,9 @@
                 
             </div>
         </div>
+        <script>
+          function click() {
+               alert('asdasd');
+            }
+        </script>
 @endsection
