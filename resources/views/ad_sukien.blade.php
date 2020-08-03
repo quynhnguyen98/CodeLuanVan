@@ -77,7 +77,7 @@
         var calendar = $('#calendar').fullCalendar({
             editable: true,
             events:"fullcalendar",
-            
+            eventLimit: true,
             displayEventTime: true,
             editable: true,
             

@@ -36,6 +36,29 @@ class TreeController extends Controller
 			}
 		}
 	}
-	
-
+	public function remove_tree($id){
+		// print_r($id);
+		$nguongoc=DB::table('nguongoc')->get();
+		foreach($nguongoc as $v)
+		{
+			if($id==$v->id)
+			{
+				$temp=$v->pid;
+				break;
+			}
+		}
+		foreach($nguongoc as $v)
+		{
+			if($id==$v->pid)
+			{
+				$temp=$v->pid=$temp;
+				DB::table('nguongoc')->where('pid',$id)->update(['pid'=>$temp]);
+			}
+		}
+		DB::table('nguoi')->where('id',$id)->delete();
+   }
+   public function edit_tree(Request $rq, $id)
+   {
+	//    print_r($rq);
+   }
 }

@@ -17,7 +17,7 @@ $(document).ready(function() {
                 enableSearch: true,
                 toolbar: {
                     zoom: true,
-                    fit: true
+                    fit: true,
                 },
                 nodeBinding: {
                     field_0: "hoten",

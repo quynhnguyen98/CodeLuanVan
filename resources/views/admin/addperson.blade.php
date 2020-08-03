@@ -67,7 +67,7 @@
                                                             data-isalive="DEAD" data-toggle-on="SỐNG"
                                                             data-toggle-off="CHẾT"></span>
                                                     </label>
-                                                    <input id="IsAlive" name="IsAlive" type="hidden" value="" />
+                                                    <input id="IsAlive" name="IsAlive" type="hidden" value=""/>
                                                 </div>
                                             </div>
                                         </div>

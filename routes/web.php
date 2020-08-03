@@ -37,8 +37,9 @@ Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
 Route::get('/data-tree','TreeController@data_tree');
 Route::post('/change-data-tree/{id}/{pid}','TreeController@changedata_tree');
-// Route::get('/change-data-tree/{$id}','TreeController@x');
-// Route::get('xxx/{id}','TreeController@xxx');
+Route::get('/remove-tree/{id}','TreeController@remove_tree');
+Route::post('/edit-tree/{id}','TreeController@edit_tree');
+
 
 
 
