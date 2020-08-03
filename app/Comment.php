@@ -13,7 +13,9 @@ class Comment extends Model
     public function replies() {
 	         return $this->hasMany('App\Comment','comment_id','id_gopy');
 	}
-	 public function user() {
-	         return $this->belongsTo(User::class,'id_taikhoan','id_taikhoan');
+	public function user()
+	{
+		return $this->belongsTo(User::class,'id_taikhoan','id_taikhoan');
 	}
+
 }
