@@ -77,7 +77,7 @@
         var calendar = $('#calendar').fullCalendar({
             editable: true,
             events:"fullcalendar",
-            
+            eventLimit: true,
             displayEventTime: true,
             editable: true,
             
@@ -93,12 +93,15 @@
             selectHelper: true,
             select: function (start, end, allDay) {
                 var title = prompt('Nhập tên sự kiện:');
+                var noidung = prompt('Nhập nội dung sự kiện');
+                
+                
 
                 if (title) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
                     $.ajax({
                         url: "fullcalendar/create",
-                        data: {'title' : title, 'start': start},
+                        data: {'title' : title, 'start': start,'noidung':noidung},
                         type: "POST",
                        
                         success: function (data) {

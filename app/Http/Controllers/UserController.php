@@ -25,6 +25,7 @@ class UserController extends Controller
         $validatedData = $rq->validate([
                 'username' => 'required|min:6|max:12',
                 'password' => 'required|min:6',
+
             ]);
         $user=$rq->username;
         $pass=$rq->password;
@@ -73,6 +74,7 @@ class UserController extends Controller
             'tinhtrang'=>'Sống',
             'tieusu'=>strip_tags($tieusu),
             'id_tinh'=>$tinh,
+            'hinhanh'=>"user.png"
         ];
        
         $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();

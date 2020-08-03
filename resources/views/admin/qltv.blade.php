@@ -68,12 +68,13 @@
                                 <?php
                                 $fl = false;
                                 foreach($nguongoc as $gt){
-                                    if($gt->pid == $k->id){
+                                    if($gt->id == $k->id){
                                         
                                         foreach($all_thanhvien as $v){
-                                            if($gt->id == $v->id && $v->gioitinh=="Nam"){
+                                            if($gt->pid == $v->id){
                                                 echo $v->hoten;
                                                 $fl = true;
+                                            
                                             }
                                             
                                         }

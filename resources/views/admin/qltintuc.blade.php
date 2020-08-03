@@ -20,8 +20,6 @@
                 <div class="col-lg-12">
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control searchbox-input" name="searchbox-input"
-                            placeholder="Tìm kiếm...">
                         <a id="AddPerson" class="btn btn-success icon-btn" href="{{URL::to('/them-tin-tuc')}}"><i
                                 class="fa fa-plus"></i>Thêm Tin Tức</a>
                     </div>

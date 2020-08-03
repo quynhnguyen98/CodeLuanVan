@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Session;
 use DB;
 use Carbon\Carbon;
+use Mockery\Matcher\Contains;
 
 class ThemThanhVienController extends Controller
 {
@@ -23,17 +24,29 @@ class ThemThanhVienController extends Controller
 
     public function save_person(Request $request)
     {
-        //  dd($request->all());
-
+        $input=$request->all();
+        $validatedData = $request->validate([
+            'tieusu'=>'required|min:12',
+            'ngaysinh'=>'before:today|date',
+            'ngaymat'=>'before:today|nullable|date|after:ngaysinh',
+            'PhotoFileSelector' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'tieusu.required'=>'Bắt buộc nhập tiểu sử',
+            'ngaysinh.before' => 'Ngày sinh phải trước hiện tại',
+            'ngaysinh.date'=>'Ngày sinh không được bỏ trống',
+            'ngaymat.before' => 'Ngày mất phải trước hiện tại',
+            'ngaymat.after' => 'Năm mất phải sau năm sinh',
+            'PhotoFileSelector.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
+        ]);
+       
         $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
         $_id = $_nguoi[0]->Auto_increment;
         $id = (int) $_id;
-        if ($request->IsAlive)
+        if ($request->IsAlive=="true") 
             $t = 'Sống';
         else
             $t = 'Chết';
-
-
+       echo $t;
         if (strtotime($request->ngaymat) == '') {
             $ngay = null;
         } else {

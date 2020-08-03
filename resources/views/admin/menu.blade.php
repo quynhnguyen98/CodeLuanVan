@@ -70,7 +70,6 @@
       <ul class="app-menu">
         <li><a class="app-menu__item {{'dashboard' == request()->path() ? 'active' : ''}}" href="{{URL::to('/dashboard')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
         <li class="treeview"><a class="app-menu__item {{'ngay-su-kien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/ngay-su-kien')}}"><i class="app-menu__icon fa fa-laptop"></i>Ngày sự kiện</a></li>
-        <li><a class="app-menu__item {{'tim-kiem-thong-tin' == request()->path() ? 'active' : ''}}" href="{{URL::to('/tim-kiem-thong-tin')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Tìm kiếm & thông tin</span></a></li>
         <li class="treeview"><a class="app-menu__item {{'cay-gia-pha' == request()->path() ? 'active' : ''}}" href="{{URL::to('/cay-gia-pha')}}" ><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Cây gia phả</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Quản lý user</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">

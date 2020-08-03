@@ -23,6 +23,15 @@ class HinhAnhController extends Controller
     {
     	$file=$rq->filehinh;
         $tenhinh=array();
+        print_r($file);
+        $validatedData = $this->validate($rq,[         
+            'filehinh.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'filehinh.*.required'=>"Hình chưa được chọn",
+            'filehinh.*.image'=>'Không đúng định dàng hình',
+            'filehinh.*.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
+        ]);
+        //print_r($validatedData);
         if(isset($file))
         {
             $id=$rq->ImageID;

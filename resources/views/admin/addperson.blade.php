@@ -15,6 +15,15 @@
     <form action="{{URL::to('/save-person')}}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="tile mt-4 mb-4">
+            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $err)
+                                            <li>{{ $err }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-3">
@@ -58,7 +67,7 @@
                                                             data-isalive="DEAD" data-toggle-on="SỐNG"
                                                             data-toggle-off="CHẾT"></span>
                                                     </label>
-                                                    <input id="IsAlive" name="IsAlive" type="hidden" value="" />
+                                                    <input id="IsAlive" name="IsAlive" type="hidden" value=""/>
                                                 </div>
                                             </div>
                                         </div>
