@@ -59,6 +59,16 @@ class TreeController extends Controller
    }
    public function edit_tree(Request $rq, $id)
    {
+	   print_r($id);
+			//$arr = JSON.parse($id);
+			// $arr =json_decode($id);
+			// print_r($arr->hoten);
+   }
+   public function add_tree(Request $rq, $id)
+   {
 	//    print_r($rq);
+			//$arr = JSON.parse($id);
+			$arr =json_decode($id);
+			print_r($arr->hoten);
    }
 }

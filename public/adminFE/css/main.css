@@ -10973,7 +10973,7 @@ div.dataTables_wrapper div.dataTables_filter label {
 div.dataTables_wrapper div.dataTables_filter input {
     margin-left: 0.5em;
     display: inline-block;
-    width: 700px;
+    width: 300px;
 }
 
 div.dataTables_wrapper div.dataTables_info {

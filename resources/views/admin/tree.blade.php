@@ -16,8 +16,8 @@
     <div class="tile">
         <div class="tile-body">
 
-            
             <div style="width:100%; height:700px;" id="orgchart"/>
+    
             <div id="tree"/>
 
         </div>
