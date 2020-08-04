@@ -142,12 +142,12 @@
                                     <div class="comment-content d-flex">
                                         <!-- Comment Author -->
                                         <div class="comment-author">
-                                            <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->avatar)}}" alt="author">
+                                            <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->user->avatar)}}" alt="author">
                                         </div>
                                         <!-- Comment Meta -->
                                         <div class="comment-meta">
                                             <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($cmt->created_at))}}</a>
-                                            <h6>{{$cmt->tendangnhap}}</h6>
+                                            <h6>{{$cmt->user->tendangnhap}}</h6>
                                             <p>{{$cmt->noidung}}</p>
                                             <div class="d-flex align-items-center">
                                                 <a href="#" class="like">like</a>
@@ -182,12 +182,12 @@
                                         <div class="comment-content d-flex">
                                             <!-- Comment Author -->
                                             <div class="comment-author">
-                                                <img src="{{URL::to('public/frontend/images/core-img/'.$cmt->user->avatar)}}" alt="author">
+                                                <img src="{{URL::to('public/frontend/images/core-img/'.$rep->user->avatar)}}" alt="author">
                                             </div>
                                             <!-- Comment Meta -->
                                             <div class="comment-meta">
                                                 <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($rep->created_at))}}</a>
-                                                <h6>{{$rep->tendangnhap}}</h6>
+                                                <h6>{{$rep->user->tendangnhap}}</h6>
                                                 <p>{{$rep->noidung}}</p>
                                                 <div class="d-flex align-items-center">
                                                     <a href="#" class="like">like</a>
