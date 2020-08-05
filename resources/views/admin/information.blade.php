@@ -17,7 +17,7 @@
             <div class="profile">
                 <div class="info">
                     <img class="rounded-circle" style="height: 100px;display: block;width: 100px;margin: 30px auto;"
-                        src="public/img_person/{{$v->hinhanh}}">
+                        src="../public/img_person/{{$v->hinhanh}}">
                     <h4>{{$v->hoten}}</h4>
                     <p>Giới tính: {{$v->gioitinh}}</p>
                 </div>
@@ -86,7 +86,11 @@
                             <div class="list-group col-lg-4">
                                 <div class="alert alert-dismissible alert-warning">
                                     <h4>Thế hệ của tôi</h4>
-                                    <p>Trong gia đình, tôi thuộc <strong>thế hệ thứ 1</strong></p>
+                                    
+                                    <p>Trong gia đình, tôi thuộc <strong>thế hệ thứ <?php if(count($arr1)!=0) 
+                                                                                            echo count($arr1);
+                                                                                        else
+                                                                                            echo '1'; ?></strong></p>
                                 </div>
                             </div>
 
@@ -95,29 +99,29 @@
                                 <div class="list-group-item list-group-item-action">
                                     Tổng số con
                                     <span class="pull-right">
-                                        <span class="badge badge-secondary">0</span>
+                                        <span class="badge badge-secondary"><?php echo $sl ?></span>
                                     </span>
                                 </div>
                             </div>
 
                             <div class="list-group col-lg-4">
                                 <div class="list-group-item list-group-item-action">
-                                    Tổng số anh em
+                                    Tổng số Nam
                                     <span class="pull-right">
-                                        <span class="badge badge-secondary">1</span>
+                                        <span class="badge badge-secondary"><?php echo $tongnam ?></span>
                                     </span>
                                 </div>
                                 <div class="list-group-item list-group-item-action">
-                                    Tổng số chị em
+                                    Tổng số Nữ
                                     <span class="pull-right">
-                                        <span class="badge badge-secondary">2</span>
+                                        <span class="badge badge-secondary"><?php echo $tongnu ?></span>
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea">Tiểu sử</label>
-                            <textarea class="form-control" id="editor1" rows="15" name="tieusu">{{$v->tieusu}}</textarea>
+                            <textarea class="form-control" id="editor1" rows="15" name="tieusu">{!!$v->tieusu!!}</textarea>
                         </div>
 
                     </div>
