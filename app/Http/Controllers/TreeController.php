@@ -63,6 +63,7 @@ class TreeController extends Controller
 			//$arr = JSON.parse($id);
 			// $arr =json_decode($id);
 			// print_r($arr->hoten);
+	
    }
    public function add_tree(Request $rq, $id)
    {
