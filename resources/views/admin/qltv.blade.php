@@ -54,7 +54,7 @@
                                     <input id="PersonID" name="PersonID" type="hidden" value="{{$k->id}}" />
                                 </td>
                                 <td>
-                                    <a class="alert-link" href="{{URL::to('/thong-tin-thanh-vien')}}">{{$k->hoten}}</a>
+                                    <a class="alert-link" href="{{URL::to('/thong-tin-thanh-vien/'.$k->id)}}">{{$k->hoten}}</a>
                                 </td>
                                 
                               <?php

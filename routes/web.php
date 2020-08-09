@@ -26,7 +26,7 @@ Route::post('/fullcalendar/delete','NgaySuKienController@destroy');
 
 
 Route::get('/dashboard','AdminController@getLogin');
-Route::get('/thong-tin-thanh-vien','ThongTinThanhVienController@thong_tin_thanh_vien');
+Route::get('/thong-tin-thanh-vien/{id}','ThongTinThanhVienController@thong_tin_thanh_vien');
 
 Route::get('/cklogin','QuanLyThanhVienController@ck_login');
 Route::get('/quan-ly-thanh-vien','QuanLyThanhVienController@quan_ly_thanh_vien');
@@ -39,7 +39,7 @@ Route::get('/data-tree','TreeController@data_tree');
 Route::post('/change-data-tree/{id}/{pid}','TreeController@changedata_tree');
 Route::get('/remove-tree/{id}','TreeController@remove_tree');
 Route::post('/edit-tree/{id}','TreeController@edit_tree');
-
+Route::post('/add-tree/{id}','TreeController@add_tree');
 
 
 
