@@ -39,30 +39,57 @@ class TreeController extends Controller
 	public function remove_tree($id){
 		// print_r($id);
 		$nguongoc=DB::table('nguongoc')->get();
+		// foreach($nguongoc as $v)
+		// {
+		// 	if($id==$v->id)
+		// 	{
+		// 		$temp=$v->pid;
+		// 		break;
+		// 	}
+		// }
+		// foreach($nguongoc as $v)
+		// {
+		// 	if($id==$v->pid)
+		// 	{
+		// 		$temp=$v->pid=$temp;
+		// 		DB::table('nguongoc')->where('pid',$id)->update(['pid'=>$temp]);
+		// 	}
+		// }
+
+		$flag=0;
 		foreach($nguongoc as $v)
 		{
-			if($id==$v->id)
+			if($v->pid==$id)
 			{
-				$temp=$v->pid;
-				break;
+				$flag=1;
 			}
 		}
-		foreach($nguongoc as $v)
+		if($flag==0)
 		{
-			if($id==$v->pid)
-			{
-				$temp=$v->pid=$temp;
-				DB::table('nguongoc')->where('pid',$id)->update(['pid'=>$temp]);
-			}
+			DB::table('nguoi')->where('id',$id)->delete();
 		}
-		DB::table('nguoi')->where('id',$id)->delete();
-   }
+	}
    public function edit_tree(Request $rq, $id)
    {
-	   print_r($id);
-			//$arr = JSON.parse($id);
-			// $arr =json_decode($id);
-			// print_r($arr->hoten);
+	//    print_r($rq->all());
+	$arr = [
+		'hoten' => $rq->hoten,
+		'gioitinh' => $rq->gioitinh,
+		'ngaysinh' => date('yy-m-d', strtotime($rq->ngaysinh)),
+		'ngaymat' => date('yy-m-d', strtotime($rq->ngaymat)),
+		'hinhanh' => $rq->hinhanh,
+		'tieusu' => strip_tags($rq->tieusu),
+		'tinhtrang' => $rq->tinhtrang,
+	];
+		// $destinationPath = 'public/img_person/';
+		// $files = $rq->file('hinhanh');
+		// $file_name = $files->getClientOriginalName();
+		// $files->move($destinationPath , $file_name);
+		// print_r($files);
+	DB::table('nguoi')->where('id',$id)->update($arr);
+	
+	
+
 	
    }
    public function add_tree(Request $rq, $id)

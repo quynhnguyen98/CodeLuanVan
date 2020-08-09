@@ -9,10 +9,11 @@ $(document).ready(function() {
         type: 'GET',
         url: "data-tree",
         success: function(msg) {
-
+     
             OrgChart.templates.belinda.node = '<circle cx="90" cy="90" r="90" fill="#009688" stroke-width="1" stroke="#1C1C1C"></circle>';
             OrgChart.templates.belinda.img_0 = '<clipPath id="ulaImg">' + '<circle cx="90" cy="45" r="40"></circle>' + '</clipPath>' + '<image preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="public/img_person/{val}" x="50" y="5" width="80" height="80">' + '</image>';
-
+                
+          
 
 
 
@@ -46,28 +47,86 @@ $(document).ready(function() {
                 });
 
                 this.saveButton.addEventListener("click", function() {
+                     
                     var node = chart.get(that.nodeId);
-
                     node.hoten = that.nameInput.value;
-                    node.title = that.titleInput.value;
-
-                    chart.updateNode(node);
-                    that.hide();
-                });
+                    node.ngaysinh = that.startInput.value;
+                    node.tieusu=that.titleInput.value;
+                    // node.hinhanh=that.image.value;
+                    if(document.getElementById("male").checked==true)
+                        node.gioitinh="Nam" ;
+                    else
+                        node.gioitinh="Nữ" ;
+                    
+                    if(document.getElementById("live").checked==true)
+                    {
+                        node.tinhtrang="Sống";
+                    }
+                    else
+                    {
+                        node.tinhtrang="Chết";
+                        node.ngaymat = that.endInput.value;
+                    }
+                        chart.updateNode(node);
+                    $.ajax({
+                        url: 'edit-tree/' + that.nodeId,
+                        type: 'post',
+                        data: node,
+                        success: function(s) {
+                            console.log(s);
+                        }
+                    });
+                        that.hide();
+                    });
+                    
+                    
+                        
             };
 
             editForm.prototype.show = function(nodeId) {
+                
                 this.nodeId = nodeId;
 
                 var left = document.body.offsetWidth / 2 - 150;
                 this.editForm.style.display = "block";
                 this.editForm.style.left = left + "px";
                 var node = chart.get(nodeId);
-                console.log(node);
+                
                 this.nameInput.value = node.hoten;
                 this.startInput.value = node.ngaysinh;
                 this.endInput.value = node.ngaymat;
                 this.titleInput.value = node.tieusu;
+                // this.imageInput.value = node.hinhanh;
+                console.log();
+                if(node.gioitinh=="Nam")
+                    document.getElementById("male").checked=true;
+                else
+                    document.getElementById("female").checked=true;
+                    $( "#dead" ).click(function() {
+                        $( "#ngaymat" ).show();
+                      });
+                      $( "#live" ).click(function() {
+                        $( "#ngaymat" ).hide();
+                      });
+                
+                if(node.tinhtrang=="Sống")
+                {
+                    document.getElementById("live").checked=true;
+                    $( "#live" ).ready(function() {
+                        $( "#ngaymat" ).hide();
+                      });
+                }
+                   
+                else
+                {
+                    document.getElementById("dead").checked=true;
+                    $( "#live" ).ready(function() {
+                        $( "#ngaymat" ).show();
+                      });
+                }
+                
+                
+                    
 
             };
 
@@ -100,8 +159,6 @@ $(document).ready(function() {
                     add: { text: "Thêm" },
                     remove: { text: "Xóa" }
                 },
-
-
                 nodes: msg
             });
 
@@ -109,64 +166,61 @@ $(document).ready(function() {
 
 
 
+           
 
+            chart.nodeMenuUI.on('show', function(sender, args) 
+            {
+                var len =msg.length;
+                for(i=0;i<len;i++)
+                {
+                    // console.log(args.firstNodeId);
+                    // console.log(msg[i].pid);
+                    if(msg[i].pid==args.firstNodeId)
+                    {
+                        args.menu = {
 
-            chart.nodeMenuUI.on('show', function(sender, args) {
+                            edit: {
+                                text: "Sửa",
+                            },
+                            
+                            add: {
+                                text: "Thêm",
+                            },
+                        }  
+                        break;
+                     }
+                     else{
+                        args.menu = {
 
+                            edit: {
+                                text: "Sửa",
+                            },
+                            
+                            add: {
+                                text: "Thêm",
+                            },
+                            
+                            remove: {
+                                text: "Xóa",
+                                onClick: function(id) {
+                                    chart.removeNode(id),
+                                        $.ajax({
+                                            url: 'remove-tree/' + id,
+                                            type: 'get',
+                                            data: $('#orgchart').serializeArray(),
+                                            success: function(s) {
+                                                console.log(s);
+                                            }
+                                        });
+                                }
+                            },
+        
+                        }  
 
-                args.menu = {
-
-                    edit: {
-                        text: "Sửa",
-                        // onClick: function(id) {
-                        //     chart.removeNode(id),
-                        //         $.ajax({
-                        //             url: 'edit-tree/' + id,
-                        //             type: 'post',
-                        //             data: $('#orgchart').serializeArray(),
-                        //             success: function(s) {
-                        //                 console.log(s);
-                        //             }
-                        //         });
-                        // }
-
-
-                    },
-
-                    // add: {
-                    //     text: "Thêm",
-                    //     onClick: function(id) {
-
-                    //         var change = chart.get(id);
-                    //         console.log(change);
-                    //         $.ajax({
-                    //             url: 'add-tree/' + dataChange,
-                    //             type: 'post',
-                    //             data: $('#orgchart').serializeArray(),
-                    //             success: function(s) {
-                    //                 alert(s);
-                    //             }
-                    //         });
-                    //     }
-                    // },
-
-                    remove: {
-                        text: "Xóa",
-                        onClick: function(id) {
-                            chart.removeNode(id),
-                                $.ajax({
-                                    url: 'remove-tree/' + id,
-                                    type: 'get',
-                                    data: $('#orgchart').serializeArray(),
-                                    success: function(s) {
-                                        console.log(s);
-                                    }
-                                });
-                        }
-                    },
-
+                     }
                 }
-
+                
+               
             });
 
 

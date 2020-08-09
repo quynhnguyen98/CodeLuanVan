@@ -25,9 +25,9 @@
             </div>
             <div style="padding: 5px 0 10px 30px;">
                 <label style="color:#ffffff; width:50px; display:inline-block;" for="gender">Giới tính</label>
-                <input type="radio" id="male" name="gender" value="male">
+                <input type="radio" id="male" name="gender" value="Nam">
                 <label for="male" style="color:#ffffff">Nam</label>
-                <input type="radio" id="female" name="gender" value="female">
+                <input type="radio" id="female" name="gender" value="Nữ">
                 <label for="female"style="color:#ffffff">Nữ</label><br>
             </div>
             <div style="padding: 10px 0 5px 30px;">
@@ -41,13 +41,15 @@
                 <input type="radio" id="dead" name="Alive" value="Chết">
                 <label for="dead"style="color:#ffffff">Chết</label><br>
             </div>
-            <div style="padding: 10px 0 5px 30px;">
+            <div style="padding: 10px 0 5px 30px;" id="ngaymat">
                 <label style="color:#ffffff; width:50px; display:inline-block;" for="dead">Ngày mất</label>
                 <input  type="date" style="background-color:#ffffff" id="end" value="" />
             </div>
             <div style="padding: 10px 0 5px 30px;">
                 <label style="color:#ffffff; width:50px; display:inline-block;" for="image">Hình ảnh</label>
-                <input type="file" style="background-color:#ffffff" id="image" value="" />
+                <input type="file" id="image" value="" />
+                
+                {{-- <img src="public/img_person/" alt=""> --}}
             </div>
             <div style="padding: 10px 0 5px 30px;">
                 <label style="color:#ffffff; width:50px; display:inline-block;" for="title">Tiểu sử</label>
