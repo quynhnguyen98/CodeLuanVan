@@ -56,8 +56,11 @@
                                     <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                                 </div>
                                 <p> <?php
-                                        if(strlen($tintuc[$i]->noidung_tt)<=300) echo $str;
-                                        echo substr($tintuc[$i]->noidung_tt,0,300).'...';
+                                        if(strlen($tintuc[$i]->noidung_tt)<=300) 
+                                        {
+                                            echo $tintuc[$i]->noidung_tt;
+                                        }
+                                        else{echo substr($tintuc[$i]->noidung_tt,0,300).'...';}
 
                                         ?></p>
                             </div>

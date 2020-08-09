@@ -57,7 +57,7 @@
                                         <div class="col-lg-10">
                                             <div class="form-group">
                                                 <label class="control-label">Hình bài tin</label> 
-                                                <input name="filehinh[]" type="file" value="" multiple required="true"/>
+                                                <input name="filehinh" type="file" value="" required="true"/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -69,7 +69,7 @@
 
                             <div class="form-group">
                                 <label for="exampleTextarea">Nội Dung</label>
-                                <textarea class="form-control" id="editor1" rows="15" name="noidung_tt" required="required"></textarea>
+                                <textarea class="form-control" id="editor1" rows="15" name="noidung" required="required"></textarea>
                             </div>
 
                             <div class="tile-footer">

@@ -62,8 +62,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="control-label">Hình Tin Tức</label>
-                                                <a  class="btn btn-success icon-btn" href="{{URL::to('/them-hinh-anh/'.$tt->id_tintuc)}}"><i
-                                                        class="fa fa-plus"></i>Thêm Hình Ảnh</a>
+                                                
                                                <div class="table-responsive">
                                                         <table class="table table-hover table-bordered" id="sampleTable">
                                                           <thead>

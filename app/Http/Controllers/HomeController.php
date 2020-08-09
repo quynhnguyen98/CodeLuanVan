@@ -160,5 +160,8 @@ class HomeController extends Controller
             ->get();
         return view('pages.lich',compact('sortedArr','now','tintucnoibat'));
     }
+    public function getTimkiemten(){
+        return view('pages.timkiemten');
+    }
 
 }

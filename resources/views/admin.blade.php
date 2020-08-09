@@ -62,26 +62,39 @@
       		}
       	]
       };
-      var pdata = [
-      	{
-      		value: 300,
-      		color: "#46BFBD",
-      		highlight: "#5AD3D1",
-      		label: "Complete"
-      	},
-      	{
-      		value: 50,
-      		color:"#F7464A",
-      		highlight: "#FF5A5E",
-      		label: "In-Progress"
-      	}
-      ]
+       $(document).ready(function() {
+                                        $.ajax({
+                                            url:"{{URL::to('/getInformation')}}",
+                                            type:"GET",
+                                            success:function(ds)
+                                            {
+                                                var pdata = [
+                                                                {
+                                                                  value: ds.nam,
+                                                                  color: "#46BFBD",
+                                                                  highlight: "#5AD3D1",
+                                                                  label: "Nam"
+                                                                },
+                                                                {
+                                                                  value: ds.nu,
+                                                                  color:"#F7464A",
+                                                                  highlight: "#FF5A5E",
+                                                                  label: "Nữ"
+                                                                }
+                                                              ]
+                                              var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+                                              var pieChart = new Chart(ctxp).Pie(pdata);
+                                            }
+
+                                            })
+                                })
+
+
       
       var ctxl = $("#lineChartDemo").get(0).getContext("2d");
       var lineChart = new Chart(ctxl).Line(data);
       
-      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
-      var pieChart = new Chart(ctxp).Pie(pdata);
+
     </script>
     <!-- Google analytics script-->
     <script type="text/javascript">

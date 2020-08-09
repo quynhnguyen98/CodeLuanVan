@@ -54,5 +54,25 @@ class CommentController extends Controller
             return Redirect('/login')->with('loi','Đăng Nhập khi bình luận');
         }
     }
-
+    public function xoacomment($id_gopy)
+    {
+        DB::table('gopy')->where('id_gopy',$id_gopy)->delete();
+        return back();
+    }
+    public function suacomment($id_gopy,Request $req)
+    {   
+            $result=DB::table('gopy')->where('id_gopy',$id_gopy)->get();
+            return $result;
+        
+    }
+     public function updatecomment($id_gopy,Request $req)
+    {
+        $noidung=$req->binhluan;
+        DB::table('gopy')->where('id_gopy',$id_gopy)->update(['noidung'=>$noidung]);
+       return back();
+    }
+     public function xoacommentajax($id_gopy)
+    {
+        DB::table('gopy')->where('id_gopy',$id_gopy)->delete();
+    }
 }
