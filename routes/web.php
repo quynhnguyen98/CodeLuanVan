@@ -67,6 +67,8 @@ Route::post('/save-image','HinhAnhController@savehinh');
 Route::get('/quan-ly-tai-khoan','UserController@getIndex');
 Route::any('/doi-mat-khau/{id_taikhoan}','UserController@doimatkhau');
 Route::post('/doipass/{id_taikhoan}','UserController@doipass');
+Route::get('/getInformation','AdminController@getinfo');
+Route::get('/getInfor','AdminController@getinfo1');
 //Home
 Route::get('/','HomeController@index');
 Route::get('/post','HomeController@getPost');
@@ -82,6 +84,7 @@ Route::post('/tintuc1/{id}/{tieudekhongdau}.html','HomeController@postReply');
 Route::get('/chi-tiet-su-kien/{id}','NgaySuKienController@getChitiet');
 Route::post('/tim-kiem-tin-tuc','TinTucController@timkiem');
 Route::post('/gui-gop-y','CommentController@postGopy');
+Route::get('/tim-kiem-ten','HomeController@getTimkiemten');
 //User
 Route::any('/login','UserController@getLogin')->name('getLogin');
 Route::post('/login/check','UserController@Login')->name('login');
@@ -91,10 +94,16 @@ Route::get('/user-logout','UserController@Logout')->name('logout');
 Route::get('/forgot-password','UserController@getForgot');
 Route::post('/forgot-password/check','UserController@sendMail');
 Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
+Route::get('/change-password/{id_taikhoan}','UserController@getResest1');
 
+Route::post('/resest-pass1/check','UserController@ResestPass1');
 Route::post('/resest-pass/check','UserController@ResestPass');
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
 Route::post('/resest-pass/check','UserController@ResestPass');
 Route::get('/sua-thong-tin/{id_taikhoan}','UserController@edituser');
 Route::post('/edituser/check/{id_taikhoan}','UserController@checkedit');
+Route::any('/xoa-binh-luan/{id_gopy}','CommentController@xoacomment');
+Route::get('/sua-binh-luan/{id_gopy}','CommentController@suacomment');
+Route::post('/cap-nhat-binh-luan/{id_gopy}','CommentController@updatecomment');
+Route::get('/xoa-comment/{id_gopy}','CommentController@xoacommentajax');

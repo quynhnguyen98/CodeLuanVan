@@ -86,7 +86,6 @@ class TinTucController extends Controller
         $noidung= htmlentities($rq->noidung_tt) ;
         $a=html_entity_decode($noidung);
         $file=$rq->filehinh; 
-        $tenhinh=array();  
         $array=[
             'tieude'=>$rq->tieude,
             'tieudekhongdau'=>$this->utf8tourl($rq->tieude),
@@ -100,18 +99,13 @@ class TinTucController extends Controller
         $id=DB::table('tintuc')->latest('id_tintuc')->first();
         if(isset($file))
         {
-            for($i=0;$i<count($file);$i++)
             {
-                $name=$file[$i]->getClientOriginalName();
-                $file[$i]->move("public/frontend/images/",$name);
-                array_push($tenhinh, $name);
-            }
-            for($i=0;$i<count($file);$i++)
-            {
-                DB::table('hinhanh')->insert(['tenhinh'=>$tenhinh[$i],'id_tintuc'=>$id->id_tintuc]);
+                $name=$file->getClientOriginalName();
+                $file->move("public/frontend/images/",$name);
+                DB::table('hinhanh')->insert(['tenhinh'=>$name,'id_tintuc'=>$id->id_tintuc]);
             }
         } 
-        //return $tenhinh;
+        //return $file;
         return Redirect('/quan-ly-tin-tuc')->with('mess','Thêm thành công');
     }
     public function edit_post($id_tintuc)
@@ -124,11 +118,6 @@ class TinTucController extends Controller
             ->get();
         $hinhanh=DB::table('hinhanh')->where('hinhanh.id_tintuc',$id_tintuc)->get();
         return view('admin.editpost',compact('tintuc','hinhanh'));
-    }
-    public function themhinh($id_tintuc){
-        $id=$id_tintuc;
-        //return $id;
-        return view('admin.addhinh',compact('id'));
     }
     public function saveimage(Request $rq,$id_tintuc){
         $input=$rq->all();

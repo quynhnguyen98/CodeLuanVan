@@ -26,12 +26,14 @@
                       <th>Tài khoản</th>
                       <th>Bài đăng</th>
                       <th>Ẩn/Hiện</th>
+                      <th width="55"></th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($cmt as $c)
                     <tr>
-                      <td>{{$c->id_gopy}}</td>
+                      <td>{{$c->id_gopy}}
+                       <input id="CommentID" name="CommentID" type="hidden" value="{{$c->id_gopy}}" /></td>
                       <td>{{$c->noidung}}</td>
                       <td>{{$c->created_at}}</td>
                       <td>{{$c->tendangnhap}}</td>
@@ -57,6 +59,9 @@
                           }
                         ?>
                       </td>
+                      <td>
+                       <a class="btn btn-danger btn-sm DeleteComment" href="javascript:void(0);"><i
+                                                                         class="fa fa-trash-o"></i> Xóa</a>  </td>
                     </tr> 
                     @endforeach
                    

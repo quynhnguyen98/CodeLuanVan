@@ -9,6 +9,7 @@ use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Hash;
 
 class UserController extends Controller
 {
@@ -112,6 +113,9 @@ class UserController extends Controller
     public function getForgot(){
         return view('user.forgot');
     }
+    public function getResest1($id_taikhoan =null){
+        return view('user.resestpass1')->with('id_taikhoan',$id_taikhoan);
+    }
     public function getResest($id_taikhoan =null){
         return view('user/resestpass')->with('id_taikhoan',$id_taikhoan);
     }
@@ -141,6 +145,21 @@ class UserController extends Controller
         $result=DB::table('taikhoan')->where('id_taikhoan',$input['id_taikhoan'])->update(['password'=>bcrypt($input['password'])]);
         return redirect()->back()->with('mess','Đổi Mật Khẩu Thành Công');
 
+    }
+     public function ResestPass1(Request $rq)
+    {
+        $validatedData = $rq->validate([
+                'password' => 'required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6',
+                ]);
+        $input=$rq->all();
+            if(Hash::check($rq->passwordold, Session::get('tk')->password)) {
+                   
+                    $result=DB::table('taikhoan')->where('id_taikhoan',$input['id_taikhoan'])->update(['password'=>bcrypt($input['password'])]);
+                    return redirect()->back()->with('mess','Đổi Mật Khẩu Thành Công');
+            }
+            else
+                return redirect()->back()->with('mess','Đổi Không đúng mật khẩu');
     }
     public function edituser($id_taikhoan)
     {   $taikhoan=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')->where('id_taikhoan',$id_taikhoan)->get();

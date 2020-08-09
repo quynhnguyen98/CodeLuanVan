@@ -149,11 +149,26 @@
                                             <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($cmt->created_at))}}</a>
                                             <h6>{{$cmt->user->tendangnhap}}</h6>
                                             <p>{{$cmt->noidung}}</p>
-                                            <div class="d-flex align-items-center">
-                                                <a href="#" class="like">like</a>
-                                                <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
-        
-                                            </div>
+                                            @if(Session::has('tk'))
+                                                @if(Session::get('tk')->id_taikhoan==$cmt->id_taikhoan)
+                                                <div class="d-flex align-items-center">
+                                                    <a href="#" class="like">like</a>
+                                                    <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
+                                                    <a href="{{URL::to('/xoa-binh-luan/'.$cmt->id_gopy)}}" class="like">Xóa</a>
+                                                     <a class="reply" onclick="myFunctionSua({{$cmt->id_gopy}})" >Sửa</a>
+                                                    </div>
+                                                @else
+                                                <div class="d-flex align-items-center">
+                                                    <a href="#" class="like">like</a>
+                                                    <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
+                                                </div>
+                                                @endif
+                                                @else
+                                                    <div class="d-flex align-items-center">
+                                                    <a href="#" class="like">like</a>
+                                                    <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
+                                                </div>
+                                            @endif
                                             <div id="form-{{$cmt->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none">
                                                 <form action="{{URL::to('/tintuc1/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" method="post" id="commentForm">@csrf
                                                     <textarea name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
@@ -161,10 +176,41 @@
                                                      <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
                                                 </form>
                                             </div>
+                                            <div id="formsua-{{$cmt->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none">
+                                                <form action="{{URL::to('/cap-nhat-binh-luan/'.$cmt->id_gopy)}}" method="post" id="commentForm">@csrf
+                                                    <textarea id="noidungsua" name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
+                                                    <input type="hidden" value="{{$cmt->id_gopy}}" name="idgopy">
+                                                    <script>
+                                                    function myFunctionSua(x) {
+                                                        document.getElementById("form-"+x).style.display='none';
+                                                         var a=document.getElementById("formsua-"+x).style.display;
+                                                          if(a=='none')
+                                                          {
+                                                            document.getElementById("formsua-"+x).style.display='block';
+                                                            $.ajax({
+                                                                    url:"../../sua-binh-luan/"+x,
+                                                                    type:"GET",
+                                                                    success:function(ds)
+                                                                    {
+                                                                        console.log(ds);
+                                                                        $("textarea#noidungsua").html(ds[0].noidung);    
+                                                                    }
+
+                                                                    })
+                                                          }
+                                                          else
+                                                            
+                                                            document.getElementById("formsua-"+x).style.display='none';
+                                                    }
+                                                    </script>
+                                                     <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <script>
                                         function myFunction(x) {
+                                                    document.getElementById("formsua-"+x).style.display='none';
                                                   var a=document.getElementById("form-"+x).style.display;
                                                   if(a=='none')
                                                   {
@@ -189,22 +235,69 @@
                                                 <a href="#" class="comment-date">{{date('d/m/Y H:i',strtotime($rep->created_at))}}</a>
                                                 <h6>{{$rep->user->tendangnhap}}</h6>
                                                 <p>{{$rep->noidung}}</p>
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#" class="like">like</a>
-                                                     <a class="reply" onclick="myFunction1({{$rep->id_gopy}})">Reply</a>
-                                                </div>
+                                                @if(Session::has('tk'))
+                                                    @if(Session::get('tk')->id_taikhoan==$rep->id_taikhoan)
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="#" class="like">like</a>
+                                                             <a class="reply" onclick="myFunction1({{$rep->id_gopy}})">Trả lời</a>
+                                                              <a href="{{URL::to('/xoa-binh-luan/'.$cmt->id_gopy)}}" class="like">Xóa</a>
+                                                              <a class="reply" onclick="myFunctionSua1({{$rep->id_gopy}})" >Sửa</a>
+                                                        </div>
+                                                    @else
+                                                        <div class="d-flex align-items-center">
+                                                            <a href="#" class="like">like</a>
+                                                             <a class="reply" onclick="myFunction1({{$rep->id_gopy}})">Trả lời</a>
+                                                        </div>
+                                                    @endif
+                                                    @else
+                                                         <div class="d-flex align-items-center">
+                                                            <a href="#" class="like">like</a>
+                                                             <a class="reply" onclick="myFunction1({{$rep->id_gopy}})">Trả lời</a>
+                                                        </div>
+                                                @endif
                                                 <div id="form1-{{$rep->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none;">
                                                 <form action="{{URL::to('/tintuc1/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" method="post" id="commentForm">@csrf
                                                     <textarea name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
                                                     <input type="hidden" value="{{$cmt->id_gopy}}" name="idgopy">
                                                      <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
                                                 </form>
-                                            </div>
+                                                </div>
+                                                 <div id="formsua1-{{$rep->id_gopy}}" style="margin-bottom: -50px;margin-top: 20px;display: none;">
+                                                <form action="{{URL::to('/cap-nhat-binh-luan/'.$rep->id_gopy)}}" method="post" id="commentForm">@csrf
+                                                    <textarea id="text" name="binhluan" cols="90" rows="2" class="form-control1"></textarea>
+                                                    <input type="hidden" value="{{$rep->id_gopy}}" name="idgopy">
+                                                     <script>
+                                                    function myFunctionSua1(x) {
+                                                         document.getElementById("form1-"+x).style.display='none';
+                                                         var a=document.getElementById("formsua1-"+x).style.display;
+                                                          if(a=='none')
+                                                          {
+                                                            document.getElementById("formsua1-"+x).style.display='block';
+                                                            $.ajax({
+                                                                    url:"../../sua-binh-luan/"+x,
+                                                                    type:"GET",
+                                                                    success:function(ds)
+                                                                    {
+                                                                        console.log(ds);
+                                                                        $("textarea#text").html(ds[0].noidung);    
+                                                                    }
+
+                                                                    })
+                                                          }
+                                                          else
+                                                            
+                                                            document.getElementById("formsua1-"+x).style.display='none';
+                                                    }
+                                                    </script>
+                                                     <button type="submit" style="padding: 0 0 2px;position: relative;left: 85%;">Submit Comment</button>
+                                                </form>
+                                                </div>
     
                                             </div>
                                         </div>
                                          <script>
                                         function myFunction1(x) {
+                                                document.getElementById("formsua1-"+x).style.display='none';
                                                   var a=document.getElementById("form1-"+x).style.display;
                                                   if(a=='none')
                                                   {

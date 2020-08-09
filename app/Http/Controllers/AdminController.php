@@ -26,8 +26,30 @@ class AdminController extends Controller
 		if($result!='')
 		{
 			Session::put('admin',$result);
-			//return Session::has('admin');
-			return view('admin.dashboard');
+					$data=DB::table('nguoi')->get();
+						$nam=0;
+						$nu=0;
+						foreach($data as $dt)
+						{
+							if($dt->gioitinh=='Nam')
+							{
+								$nam+=1;
+							}
+							else
+								$nu+=1;
+						}
+						$arr=[
+							'nam'=>$nam,
+							'nu'=>$nu,
+							'tong'=>$nam+$nu,
+						];
+					$data1=DB::table('taikhoan')->where('vaitro',0)->get();
+					$count=count($data1);
+					$data2=DB::table('nguoi')->where('tinhtrang','Chết')->get();
+					$count1=count($data2);
+					$data3=DB::table('nguoi')->where('tinhtrang','Sống')->get();
+					$count2=count($data3);
+			return view('admin.dashboard',compact('arr','count','count1','count2'));
 		}else {
 			return Redirect('/admin');
 		}
@@ -41,5 +63,24 @@ class AdminController extends Controller
 		Session::flush();
 		return Redirect('/admin');
 	}
-		
+	public function getInfo(){
+		$data=DB::table('nguoi')->get();
+		$nam=0;
+		$nu=0;
+		foreach($data as $dt)
+		{
+			if($dt->gioitinh=='Nam')
+			{
+				$nam+=1;
+			}
+			else
+				$nu+=1;
+		}
+		$arr=[
+			'nam'=>$nam,
+			'nu'=>$nu,
+			'tong'=>$nam+$nu,
+		];
+		return $arr;
+	}
 }

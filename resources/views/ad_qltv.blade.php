@@ -180,6 +180,42 @@
               }
           });
       });
+      $(document).on("click", ".DeleteComment", function () {
+          var $button = $(this);
+          swal({
+              title: "Bạn có chắc muốn xóa?",
+              text: "Bình luận này sẽ không phục hồi lại được!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonText: "Có, xóa bình luận này!",
+              cancelButtonText: "Không, hủy thao tác!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+          }, function (isConfirm) {
+              if (isConfirm) {
+                  var CommentID = $button.closest("tr").find("#CommentID").val();
+                  var viewModel1 = {
+                      id: parseInt(CommentID)
+                  };
+                     console.log(viewModel1);
+                  $.ajax({
+                      type: "GET",
+                      url: "xoa-comment/"+viewModel1.id,
+                      data: JSON.stringify(viewModel1),
+                      contentType: "application/json; charset=utf-8",
+                      success: function (data) {
+                       
+                          var tableRow = $button.closest('tr');
+                          tableRow.remove();
+                          swal("Deleted!", "Selected image has been deleted.", "success");
+                      }
+                  });
+                 
+              } else {
+                  swal("Hủy Thao tác", "Xóa hình không thành công", "error");
+              }
+          });
+      });
             $(document).ready(function() {
             $('#sampleTable').dataTable( {
             "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "All"]]
