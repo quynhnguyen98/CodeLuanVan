@@ -73,11 +73,11 @@
             <tr>
               <td width="100">
                <img class="rounded-circle" style="height: 60px;display: block;width: 60px;margin:0px auto;"
-                  src="/Content/images/no-image.jpg" alt="Photo">
+                  src="public/adminFE/images/download.png" alt="Photo">
 
               </td>
               <td>
-                <a href="/People/PersonDetails/70">Test Abbas</a><br />
+                
                 <span style="font-size:11px;">
                   <strong>Chết: </strong>{{$count1}}<br />
                   <strong>Residency: </strong>ad<br />
@@ -92,7 +92,7 @@
 
 
                 <img class="rounded-circle" style="height: 60px;display: block;width: 60px;margin:0px auto;"
-                  src="/Content/images/no-image.jpg" alt="Photo">
+                  src="public/adminFE/images/heart.png" alt="Photo">
 
               </td>
               <td>

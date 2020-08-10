@@ -34,7 +34,7 @@
                              <div class="form-group">
                                 <input type="email" name="email" class="form-control"  placeholder="Email" required>
                             </div>
-                             <div class="form-group">
+                             {{-- <div class="form-group">
                                 <input type="text" name="hoten" class="form-control"  placeholder="Họ Tên" required>
                             </div>
                             <div class="form-group" style="font-size: 15px">
@@ -66,7 +66,7 @@
                             </div>
                               <div class="form-group">
                                 <textarea class="form-control" name="tieusu" rows="5" cols="66" placeholder="Tiểu Sử"></textarea>
-                            </div>
+                            </div> --}}
                              
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">

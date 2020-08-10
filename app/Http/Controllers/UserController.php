@@ -51,9 +51,6 @@ class UserController extends Controller
                 'password' => 'required_with:password_confirmation|same:password_confirmation',
                 'password_confirmation' => 'min:6',
                 'email'=>'email',
-                'ngaysinh'=>'before:today|nullable',
-                'checkbox'=>'required',
-                'tieusu'=>'required|min:6',
                 ]);
         $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
         $_id = $_nguoi[0]->Auto_increment;
@@ -63,20 +60,6 @@ class UserController extends Controller
         $pass=$rq->password;
         $cfpass=$rq->cfpassword;
         $ema=$rq->email;
-        $ht=$rq->hoten;
-        $ns=$rq->ngaysinh;
-        $sex=$rq->gioitinh;
-        $tinh=$rq->tinh;
-        $tieusu=$rq->tieusu;
-        $arr1=[
-            'hoten'=>$ht,
-            'gioitinh'=>$sex,
-            'ngaysinh'=>$ns,
-            'tinhtrang'=>'Sống',
-            'tieusu'=>strip_tags($tieusu),
-            'id_tinh'=>$tinh,
-            'hinhanh'=>"user.png"
-        ];
        
         $user1 = DB::table('taikhoan')->where('tendangnhap', $user)->first();
         if($user1)
@@ -85,22 +68,14 @@ class UserController extends Controller
         }
         else
         {
-            DB::table('nguoi')->insert($arr1);
-            $new=DB::table('nguoi')->latest('id')->first();
-
             $arr=[
             'tendangnhap'=>$user,
             'password'=>bcrypt($pass),
             'email'=>$ema,
             'vaitro'=>0,
             'avatar'=>"user.png",
-            'id'=>$id,
             ];
             DB::table('taikhoan')->insert($arr);
-             $dataNguonGoc['id'] =$id ;
-            $dataNguonGoc['pid'] = $rq->FatherID;
-
-            DB::table('nguongoc')->insert($dataNguonGoc);
               return redirect('/signup')->with('mess','Đăng Ký Thành Công');
         }
     }
@@ -162,18 +137,46 @@ class UserController extends Controller
                 return redirect()->back()->with('mess','Đổi Không đúng mật khẩu');
     }
     public function edituser($id_taikhoan)
-    {   $taikhoan=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')->where('id_taikhoan',$id_taikhoan)->get();
+    {   $taikhoan=DB::table('taikhoan')->leftjoin('nguoi','nguoi.id','=','taikhoan.id')->where('id_taikhoan',$id_taikhoan)->get();
+        if($taikhoan[0]->id==null)
+        {
+            $taikhoan[0]->id=1;
+        }
+        $cha=DB::table('nguoi')->select('nguoi.hoten','nguoi.id')->leftjoin('nguongoc','nguoi.id','=','nguongoc.pid')->where('nguongoc.id',$taikhoan[0]->id)->get(); 
+        $all_thanhvien=DB::table('nguoi')->get();
         $tinh=DB::table('tinh')->get();
-        //return $taikhoan;
-        return view('user.edituser',compact('taikhoan','tinh'));    
+        //return $cha;
+
+        return view('user.edituser',compact('taikhoan','tinh','cha','all_thanhvien'));    
     }
      public function checkedit(Request $rq,$id_taikhoan)
     {  
         $file=$rq->file('filehinh');
-        $name=$file->getClientOriginalName();
         $hoten=$rq->hoten;
         $gioitinh=$rq->gioitinh;
         $ngaysinh=$rq->ngaysinh;
+        $ts=strip_tags($rq->tieusu);
+        $tinh=$rq->tinh;
+        if(!isset($rq->id_nguoi))
+        {
+            $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
+            $_id = $_nguoi[0]->Auto_increment;
+            $id = (int) $_id;
+            $arr1=[
+                'hoten'=>$rq->hoten,
+                'tieusu'=>strip_tags($rq->tieusu),
+                'ngaysinh'=>$ngaysinh,
+                'gioitinh'=>$gioitinh,
+                'id_tinh'=>$rq->tinh,
+                'tinhtrang'=>'Sống',
+                'hinhanh'=>'user.png',
+            ];
+        DB::table('nguoi')->insert($arr1);
+        $dataNguonGoc['id'] =$id ;
+        $dataNguonGoc['pid'] = $rq->FatherID;
+        DB::table('nguongoc')->insert($dataNguonGoc);
+        // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
         if(isset($file))
         {
         $name=$file->getClientOriginalName();
@@ -182,18 +185,37 @@ class UserController extends Controller
             'avatar'=>$name,
         ];
         DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+        DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
         Session::put('tk',auth()->user());
         }
-        $arr1=[
-            'hoten'=>$rq->hoten,
-            'tieusu'=>strip_tags($rq->tieusu),
-            'ngaysinh'=>$ngaysinh,
-            'gioitinh'=>$gioitinh,
-            'id_tinh'=>$rq->tinh,
+        return Redirect()->back()->with('mess','Sửa thành công');
+        }
+        else{
+            $arr1=[
+                'hoten'=>$rq->hoten,
+                'tieusu'=>strip_tags($rq->tieusu),
+                'ngaysinh'=>$ngaysinh,
+                'gioitinh'=>$gioitinh,
+                'id_tinh'=>$rq->tinh,
+                'tinhtrang'=>'Sống',
+                'hinhanh'=>'user.png',
+            ];
+        DB::table('nguoi')->where('id',$rq->id_nguoi)->update($arr1);
+        // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+        if(isset($file))
+        {
+        $name=$file->getClientOriginalName();
+        $file->move("public/frontend/images/core-img",$name);
+        $arr=[
+            'avatar'=>$name,
         ];
-    $id=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
-    DB::table('nguoi')->where('id',$id->id)->update($arr1);
-    return Redirect()->back()->with('mess','Sửa thành công');
+        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+        DB::table('nguoi')->where('id',$rq->id_nguoi)->update(['hinhanh'=>$name]);
+        Session::put('tk',auth()->user());
+        }
+        return Redirect()->back()->with('mess','Sửa thành công');
+
+        }
     }
     public function getIndex(){
         $taikhoan=DB::table('taikhoan')->get();
