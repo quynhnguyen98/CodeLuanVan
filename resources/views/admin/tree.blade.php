@@ -47,7 +47,8 @@
             </div>
             <div style="padding: 10px 0 5px 30px;">
                 <label style="color:#ffffff; width:50px; display:inline-block;" for="image">Hình ảnh</label>
-                <input type="file" id="image" value="" />
+                <input type="file" id="image"/>
+               
                 
                 {{-- <img src="public/img_person/" alt=""> --}}
             </div>

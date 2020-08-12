@@ -17205,3 +17205,11 @@ span.fa-thumbs-styling.fa.fa-thumbs-down {
     top: 30px;
     bottom: initial !important;
 }
+
+.node.dead {
+    fill: #a05911;
+}
+
+.node.live {
+    fill: #009688;
+}

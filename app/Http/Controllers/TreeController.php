@@ -81,12 +81,15 @@ class TreeController extends Controller
 		'tieusu' => strip_tags($rq->tieusu),
 		'tinhtrang' => $rq->tinhtrang,
 	];
+
 		// $destinationPath = 'public/img_person/';
 		// $files = $rq->file('hinhanh');
 		// $file_name = $files->getClientOriginalName();
 		// $files->move($destinationPath , $file_name);
 		// print_r($files);
 	DB::table('nguoi')->where('id',$id)->update($arr);
+	//return view('admin.customer.listCustomer')->with('users',$users);
+ //	return view('admin.tree');
 	
 	
 
