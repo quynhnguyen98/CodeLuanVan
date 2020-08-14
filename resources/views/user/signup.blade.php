@@ -70,8 +70,8 @@
                              
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" name="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">I agreed the Terms&Condition</label>
+                                    <input type="checkbox" name="checkbox" class="custom-control-input" id="customControlAutosizing" required="true">
+                                    <label class="custom-control-label" for="customControlAutosizing">Tôi đồng ý với điều khoản</label>
                                 </div>
                             </div>
                               @if ($errors->any())

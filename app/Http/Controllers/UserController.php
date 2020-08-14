@@ -152,70 +152,73 @@ class UserController extends Controller
      public function checkedit(Request $rq,$id_taikhoan)
     {  
         $file=$rq->file('filehinh');
-        $hoten=$rq->hoten;
+        $hoten=strtoupper($rq->hoten);
         $gioitinh=$rq->gioitinh;
         $ngaysinh=$rq->ngaysinh;
         $ts=strip_tags($rq->tieusu);
         $tinh=$rq->tinh;
-        if(!isset($rq->id_nguoi))
-        {
-            $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
-            $_id = $_nguoi[0]->Auto_increment;
-            $id = (int) $_id;
-            $arr1=[
-                'hoten'=>$rq->hoten,
-                'tieusu'=>strip_tags($rq->tieusu),
-                'ngaysinh'=>$ngaysinh,
-                'gioitinh'=>$gioitinh,
-                'id_tinh'=>$rq->tinh,
-                'tinhtrang'=>'Sống',
-                'hinhanh'=>'user.png',
-            ];
-        DB::table('nguoi')->insert($arr1);
-        $dataNguonGoc['id'] =$id ;
-        $dataNguonGoc['pid'] = $rq->FatherID;
-        DB::table('nguongoc')->insert($dataNguonGoc);
-        // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
-        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
-        if(isset($file))
-        {
-        $name=$file->getClientOriginalName();
-        $file->move("public/frontend/images/core-img",$name);
-        $arr=[
-            'avatar'=>$name,
-        ];
-        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
-        DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
-        Session::put('tk',auth()->user());
-        }
-        return Redirect()->back()->with('mess','Sửa thành công');
-        }
-        else{
-            $arr1=[
-                'hoten'=>$rq->hoten,
-                'tieusu'=>strip_tags($rq->tieusu),
-                'ngaysinh'=>$ngaysinh,
-                'gioitinh'=>$gioitinh,
-                'id_tinh'=>$rq->tinh,
-                'tinhtrang'=>'Sống',
-                'hinhanh'=>'user.png',
-            ];
-        DB::table('nguoi')->where('id',$rq->id_nguoi)->update($arr1);
-        // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
-        if(isset($file))
-        {
-        $name=$file->getClientOriginalName();
-        $file->move("public/frontend/images/core-img",$name);
-        $arr=[
-            'avatar'=>$name,
-        ];
-        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
-        DB::table('nguoi')->where('id',$rq->id_nguoi)->update(['hinhanh'=>$name]);
-        Session::put('tk',auth()->user());
-        }
-        return Redirect()->back()->with('mess','Sửa thành công');
+        
+            if(!isset($rq->id_nguoi))
+            {
 
+                $_nguoi = DB::select("SHOW TABLE STATUS LIKE 'nguoi'");
+                $_id = $_nguoi[0]->Auto_increment;
+                $id = (int) $_id;
+                $arr1=[
+                    'hoten'=>$rq->hoten,
+                    'tieusu'=>strip_tags($rq->tieusu),
+                    'ngaysinh'=>$ngaysinh,
+                    'gioitinh'=>$gioitinh,
+                    'id_tinh'=>$rq->tinh,
+                    'tinhtrang'=>'Sống',
+                    'hinhanh'=>'user.png',
+                ];
+            DB::table('nguoi')->insert($arr1);
+            $dataNguonGoc['id'] =$id ;
+            $dataNguonGoc['pid'] = $rq->FatherID;
+            DB::table('nguongoc')->insert($dataNguonGoc);
+            // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+            DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
+            if(isset($file))
+            {
+            $name=$file->getClientOriginalName();
+            $file->move("public/frontend/images/core-img",$name);
+            $arr=[
+                'avatar'=>$name,
+            ];
+            DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+            DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
+            Session::put('tk',auth()->user());
+            }
+            return Redirect()->back()->with('mess','Sửa thành công');
+            }
+            else{
+                $arr1=[
+                    'hoten'=>$rq->hoten,
+                    'tieusu'=>strip_tags($rq->tieusu),
+                    'ngaysinh'=>$ngaysinh,
+                    'gioitinh'=>$gioitinh,
+                    'id_tinh'=>$rq->tinh,
+                    'tinhtrang'=>'Sống',
+                    'hinhanh'=>'user.png',
+                ];
+            DB::table('nguoi')->where('id',$rq->id_nguoi)->update($arr1);
+            // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+            if(isset($file))
+            {
+            $name=$file->getClientOriginalName();
+            $file->move("public/frontend/images/core-img",$name);
+            $arr=[
+                'avatar'=>$name,
+            ];
+            DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+            DB::table('nguoi')->where('id',$rq->id_nguoi)->update(['hinhanh'=>$name]);
+            Session::put('tk',auth()->user());
+            }
+            return Redirect()->back()->with('mess','Sửa thành công');
         }
+
+        
     }
     public function getIndex(){
         $taikhoan=DB::table('taikhoan')->get();

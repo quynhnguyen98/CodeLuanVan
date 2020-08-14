@@ -45,13 +45,31 @@
     <!-- Bootstrap js -->
     <script src="{{asset('public/frontend/js/bootstrap/bootstrap.min.js')}}"></script>
     <!-- All Plugins js -->
-    {{-- <script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script> --}}
+    <script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script>
     <!-- Active js -->
     <script src="{{asset('public/frontend/js/active.js')}}"></script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=989952378125349&autoLogAppEvents=1" nonce="fYVhDFeB"></script>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=989952378125349&autoLogAppEvents=1"
+        nonce="fYVhDFeB"></script>
 
+    {{-- <script src="{{asset('public/adminFE/js/jquery-3.3.1.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/adminFE/js/popper.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('public/adminFE/js/bootstrap.min.js')}}"></script> --}}
+    <script src="{{asset('public/adminFE/js/main.js')}}"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{{asset('public/adminFE/js/plugins/pace.min.js')}}"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/moment.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jquery-ui.custom.min.js')}}"></script>
+    <script src="{{asset('public/adminFE/js/fullcalendar.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+        <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/jszip.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/vfs_fonts.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('public/adminFE/js/plugins/sweetalert.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/frontend/js/orgchart.js')}}"></script>
     <script type="text/javascript" src="{{asset('public/frontend/js/constract.js')}}"></script>
 </body>

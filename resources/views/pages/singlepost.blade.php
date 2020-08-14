@@ -46,7 +46,6 @@
                                             $end=date('d-m-Y',strtotime($tt->ngaydang));
                                             echo $end;
                                             ?></a>
-                                <a href="archive.html">lifestyle</a>
                             </div>
                             <h4 class="post-title">{{$tt->tieude}}</h4>
                             <!-- Post Meta -->
@@ -100,7 +99,7 @@
                                         <a href="{{URL::to('/tintuc/'.$ttlq->id_tintuc.'/'.$ttlq->tieudekhongdau.'.html')}}">
                                        <img src="{{URL::to('public/frontend/images')}}/<?php $data=(explode(',',$ttlq->images));
                                                    echo $data[0];
-                                            ?>" alt="" style="height: 300px;">
+                                            ?>" alt="" style="height: 250px;">
 
                                             </a>
                                     </div>
@@ -130,7 +129,7 @@
                     <div class="comment_area clearfix bg-white mb-30 p-30 box-shadow">
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h5>COMMENTS</h5>
+                            <h5>BÌNH LUẬN</h5>
                         </div>
 
                         <ol>
@@ -335,7 +334,7 @@
                     <div class="post-a-comment-area bg-white mb-30 p-30 box-shadow clearfix" >
                         <!-- Section Title -->
                         <div class="section-heading">
-                            <h5>LEAVE A REPLY</h5>
+                            <h5>ĐỂ LẠI BÌNH LUẬN</h5>
                         </div>
 
                         <!-- Reply Form -->
