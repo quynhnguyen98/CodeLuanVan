@@ -39,7 +39,7 @@
                                     <li><a href="{{URL::to('/tin-tuc')}}">Tin Tức</a></li>
                                     <li><a href="{{URL::to('pha-do')}}">Phả Đồ</a> </li>
                                     <li><a href="{{URL::to('lich')}}">Lịch</a></li>
-                                    <li><a href="{{URL::to('/tim-kiem-ten')}}">Tìm Kiếm Tên</a></li>
+                                   <!--  <li><a href="{{URL::to('/tim-kiem-ten')}}">Tìm Kiếm Tên</a></li> -->
                                     <li><a href="{{URL::to('/gioi-thieu')}}">Giới Thiệu</a></li>
                                 </ul>
                             </div>

@@ -68,15 +68,15 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item {{'dashboard' == request()->path() ? 'active' : ''}}" href="{{URL::to('/dashboard')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
+        <li><a class="app-menu__item {{'getDash' == request()->path() ? 'active' : ''}}" href="{{URL::to('/getDash')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
         <li class="treeview"><a class="app-menu__item {{'ngay-su-kien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/ngay-su-kien')}}"><i class="app-menu__icon fa fa-laptop"></i>Ngày sự kiện</a></li>
         <li class="treeview"><a class="app-menu__item {{'cay-gia-pha' == request()->path() ? 'active' : ''}}" href="{{URL::to('/cay-gia-pha')}}" ><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Cây gia phả</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Quản lý user</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+       <!--  <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Quản lý user</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item " href="table-basic.html"><i class="icon fa fa-circle-o"></i>  Cấp quyền</a></li>
             <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Danh sách user</a></li>
           </ul>
-        </li>
+        </li> -->
         <li><a class="app-menu__item {{'quan-ly-thanh-vien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-thanh-vien')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Thành Viên</span></a></li>
         <li><a class="app-menu__item {{'quan-ly-comment' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-comment')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Comment</span></a></li>
         <li><a class="app-menu__item {{'quan-ly-tin-tuc' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tin-tuc')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tin Tức</span></a></li>

@@ -19,6 +19,7 @@ Route::post('/dashboard','AdminController@getIndex');
 Route::get('/logout','AdminController@getLogout');
 
 Route::get('/ngay-su-kien','NgaySuKienController@ngay_su_kien');
+Route::get('/getDash','AdminController@getDashboard');
 Route::get('/fullcalendar','NgaySuKienController@index');
 Route::post('/fullcalendar/create','NgaySuKienController@store');
 Route::post('/fullcalendar/update','NgaySuKienController@update');

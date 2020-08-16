@@ -25,7 +25,7 @@ class AdminController extends Controller
 		->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
 		if($result!='')
 		{
-			Session::put('admin',$result);
+					Session::put('admin',$result);
 					$data=DB::table('nguoi')->get();
 						$nam=0;
 						$nu=0;
@@ -53,12 +53,41 @@ class AdminController extends Controller
 		}else {
 			return Redirect('/admin');
 		}
-		
-
-
+	}
+	public function getDashboard()
+	{
+		$admin = Session::get('admin')->tendangnhap;
+        if ($admin!='') {
+        	$data=DB::table('nguoi')->get();
+						$nam=0;
+						$nu=0;
+						foreach($data as $dt)
+						{
+							if($dt->gioitinh=='Nam')
+							{
+								$nam+=1;
+							}
+							else
+								$nu+=1;
+						}
+						$arr=[
+							'nam'=>$nam,
+							'nu'=>$nu,
+							'tong'=>$nam+$nu,
+						];
+					$data1=DB::table('taikhoan')->where('vaitro',0)->get();
+					$count=count($data1);
+					$data2=DB::table('nguoi')->where('tinhtrang','Chết')->get();
+					$count1=count($data2);
+					$data3=DB::table('nguoi')->where('tinhtrang','Sống')->get();
+					$count2=count($data3);
+			return view('admin.dashboard',compact('arr','count','count1','count2'));
+        }else
+            return Redirect('/login_');
+	}
 			
 		
-	}
+	
 	public function getLogout(){
 		Session::flush();
 		return Redirect('/admin');
