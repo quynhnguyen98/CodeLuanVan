@@ -68,7 +68,7 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item {{'dashboard' == request()->path() ? 'active' : ''}}" href="{{URL::to('/dashboard')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
+        <li><a class="app-menu__item {{'getDash' == request()->path() ? 'active' : ''}}" href="{{URL::to('/getDash')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
         <li class="treeview"><a class="app-menu__item {{'ngay-su-kien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/ngay-su-kien')}}"><i class="app-menu__icon fa fa-laptop"></i>Ngày sự kiện</a></li>
         <li class="treeview"><a class="app-menu__item {{'cay-gia-pha' == request()->path() ? 'active' : ''}}" href="{{URL::to('/cay-gia-pha')}}" ><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Cây gia phả</span></a></li>
         <li><a class="app-menu__item {{'quan-ly-thanh-vien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-thanh-vien')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Thành Viên</span></a></li>

@@ -83,18 +83,18 @@ class TinTucController extends Controller
             'filehinh.*.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
             'noidung.required'=>"Phải Nhập Nội dung",
         ]);
-        $noidung= htmlentities($rq->noidung_tt) ;
-        $a=html_entity_decode($noidung);
+       // return $a;
         $file=$rq->filehinh; 
         $array=[
             'tieude'=>$rq->tieude,
             'tieudekhongdau'=>$this->utf8tourl($rq->tieude),
-            'noidung_tt'=>$a,
+            'noidung_tt'=>$rq->noidung,
             'ngaydang'=>Carbon::now('Asia/Ho_Chi_Minh'),
             'id_taikhoan'=>Session::get('admin')->id_taikhoan,
             'luotxem'=>0,
             'noibat'=>0,
         ];
+        //return $rq->noidung_tt;
         DB::table('tintuc')->insert($array);
         $id=DB::table('tintuc')->latest('id_tintuc')->first();
         if(isset($file))
@@ -154,6 +154,7 @@ class TinTucController extends Controller
         $tieudekd=$rq->tieudekhongdau;
         $ngaydang=$rq->ngaydang;
         $noidung=$rq->noidung_tt;
+        //return $noidung;
         $arrayinsert=[
             'tieude'=>$tieude,
             'tieudekhongdau'=>$this->utf8tourl($rq->tieude),

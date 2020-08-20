@@ -1156,12 +1156,15 @@ input:focus {
 
 .single-blog-post .post-thumbnail img {
     width: 100%;
+    object-fit: cover;
 }
 
 .single-blog-post .post-thumbnail #hinhtintuccon {
     display: block;
     width: auto;
     height: auto;
+    object-fit: cover;
+
 }
 
 .single-blog-post .post-content {

@@ -80,7 +80,7 @@
                 
                 <span style="font-size:11px;">
                   <strong>Chết: </strong>{{$count1}}<br />
-                  <strong>Residency: </strong>ad<br />
+
                 </span>
               </td>
               <td width="55px">
@@ -96,10 +96,9 @@
 
               </td>
               <td>
-                <a href="/People/PersonDetails/68">fans</a><br />
                 <span style="font-size:11px;">
                   <strong>Sống: </strong>{{$count2}}<br />
-                  <strong>Residency: </strong><br />
+      
                 </span>
               </td>
               <td width="55px">

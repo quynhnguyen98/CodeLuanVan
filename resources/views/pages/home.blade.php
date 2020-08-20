@@ -13,7 +13,7 @@
                             <div class="post-meta" data-animation="fadeInUp" data-delay="100ms">
                                 <a href="archive.html">{{$s->title}}</a>
                             </div>
-                            <a href="video-post.html" class="post-title" data-animation="fadeInUp" data-delay="300ms">{{$s->noidung}}</a>
+                            <a href="#" class="post-title" data-animation="fadeInUp" data-delay="300ms">{{$s->noidung}}</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                                             ?>" alt="" style="height: auto;width: 1000px;" alt="">
                     </div>
                     <div class="post-content">
-                        <a href="single-post.html" class="post-title">{{$tt->tieude}}</a>
+                        <a href="{{URL::to('/tintuc/'.$tt->id_tintuc.'/'.$tt->tieudekhongdau.'.html')}}" class="post-title">{{$tt->tieude}}</a>
                         <div class="post-meta d-flex justify-content-between">
                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>{{$tt->luotxem}}</a>
                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
@@ -162,11 +162,15 @@
                                     <a href="{{URL::to('/tintuc/'.$tintuc[0]->id_tintuc.'/'.$tintuc[0]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[0]->tieude}}</a>
                                     <p id="noidung">
                                         <?php
-                                            function mysubstr($str,$limit=500){
-                                                    if(strlen($str)<=$limit) return $str;
+                                            function mysubstr($str,$limit=300){
+                                                    if(strlen($str)<=$limit)
+                                                    {
+                                                        
+                                                        return $str;
+                                                    }
                                                     return substr($str,0,$limit).'...';
                                                 }
-                                            echo mysubstr($tintuc[0]->noidung_tt,350);        
+                                            echo mysubstr($tintuc[0]->noidung_tt,300);        
                                         ?>
 
                                     </p>

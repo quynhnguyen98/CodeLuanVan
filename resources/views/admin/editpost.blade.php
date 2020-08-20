@@ -70,7 +70,7 @@
                                                               <th>STT</th>
                                                               <th>Hình Ảnh</th>
                                                               <th>Chọn hình thay thế</th>
-                                                              <th></th>
+                                                              
                                                             </tr>
                                                           </thead>
                                                           <tbody>
@@ -81,9 +81,6 @@
                                                                <input id="ImageID" name="ImageID[]" type="hidden" value="{{$hinh->id_hinh}}" /></td>
                                                               <td><img id="hinhtintuccon" src="{{URL::to('public/frontend/images/'.$hinh->tenhinh)}}" style="width:auto;height: 200px;"></td>
                                                                <td><input name="filehinh[]" type="file" multiple/></td>
-                                                              <td> <a class="btn btn-danger btn-sm DeleteImage" href="javascript:void(0);"><i
-                                                                         class="fa fa-trash-o"></i> Xóa</a>
-                                                                     </td>
                                                                                                                     
                                                             </tr>
                                                         @endforeach
