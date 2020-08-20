@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-md-6">
       <div class="tile">
-        <h3 class="tile-title">Support Requests</h3>
+        <h3 class="tile-title">Tổng số Nam/Nữ</h3>
         <div class="embed-responsive embed-responsive-16by9">
           <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
         </div>

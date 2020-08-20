@@ -39,7 +39,7 @@ Route::get('/data-tree','TreeController@data_tree');
 Route::post('/change-data-tree/{id}/{pid}','TreeController@changedata_tree');
 Route::get('/remove-tree/{id}','TreeController@remove_tree');
 Route::post('/edit-tree/{id}','TreeController@edit_tree');
-Route::post('/add-tree/{id}','TreeController@add_tree');
+Route::get('/add-tree/{pid}','TreeController@add_tree');
 
 
 
@@ -95,6 +95,7 @@ Route::get('/forgot-password','UserController@getForgot');
 Route::post('/forgot-password/check','UserController@sendMail');
 Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
 Route::get('/change-password/{id_taikhoan}','UserController@getResest1');
+Route::get('/phan-quyen/{id_taikhoan}','UserController@phanquyen');
 
 Route::post('/resest-pass1/check','UserController@ResestPass1');
 Route::post('/resest-pass/check','UserController@ResestPass');

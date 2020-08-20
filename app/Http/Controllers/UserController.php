@@ -262,4 +262,19 @@ class UserController extends Controller
         print_r($arr);
         return Redirect('/quan-ly-tai-khoan')->with('mess','Đổi Mật Khẩu Thành Công');
     }
+    public function phanquyen($id)
+    {
+        $arr_function=[
+            'Tổng Quan',
+            'Ngày Sự Kiện',
+            'Cây Gia Phả',
+            'Quản Lý Thành Viên',
+            'Quản Lý Comment',
+            'Quản Lý Tin Tức',
+            'Quản Lý Hình Ảnh',
+            'Quản Lý Tài Khoản',
+        ];
+        // print_r( $arr_function);
+        return view('admin.phanquyen',compact('arr_function'));
+    }
 }

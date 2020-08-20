@@ -37,24 +37,9 @@ class TreeController extends Controller
 		}
 	}
 	public function remove_tree($id){
-		// print_r($id);
+
 		$nguongoc=DB::table('nguongoc')->get();
-		// foreach($nguongoc as $v)
-		// {
-		// 	if($id==$v->id)
-		// 	{
-		// 		$temp=$v->pid;
-		// 		break;
-		// 	}
-		// }
-		// foreach($nguongoc as $v)
-		// {
-		// 	if($id==$v->pid)
-		// 	{
-		// 		$temp=$v->pid=$temp;
-		// 		DB::table('nguongoc')->where('pid',$id)->update(['pid'=>$temp]);
-		// 	}
-		// }
+
 
 		$flag=0;
 		foreach($nguongoc as $v)
@@ -95,11 +80,10 @@ class TreeController extends Controller
 
 	
    }
-   public function add_tree(Request $rq, $id)
+   public function add_tree(Request $rq, $pid)
    {
-	//    print_r($rq);
-			//$arr = JSON.parse($id);
-			$arr =json_decode($id);
-			print_r($arr->hoten);
+	//    print_r($pid);
+	//    return view('admin.addperson');
+		
    }
 }
