@@ -25,23 +25,35 @@
       <div class="tile">
         <div class="tile-body">
           <div class="table-responsive">
-            <table class="table table-hover table-bordered" id="sampleTable">
-              <thead>
-                <tr>
-                  <th>Chức Năng</th>
-                  <th>Chọn Kích Hoạt</th>
-                </tr>
-              </thead>
-              <tbody>
-             
-                <tr>
-                  @foreach($arr_function as $value)
-                  <td>{{$value}}</td>
-                  <td><input type="checkbox" name="IdFunction" id="IdFunction"></td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+            <form action="{{URL::to('/cap-nhat-phan-quyen/'.$id)}} " method="get">
+              
+              <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                  <tr>
+                    <th>Chức Năng</th>
+                    <th>Chọn Kích Hoạt</th>
+                  </tr>
+                </thead>
+
+                <tbody>  
+                
+                 
+                  @foreach($arr_function as $k=>$v)
+                  <tr>
+                    <td>{{$v}}</td>
+                    <?php
+                  $mang=json_decode($vaitro, true);
+                      ?>
+                        <td><input type="checkbox" <?php if(isset($mang[$k])) echo "checked";?> name="{{$k}}" value="{{$k}}"></td>
+                    
+                    
+                  </tr>
+                  @endforeach
+                  <input type="hidden" name="id" value="{{$id}}">
+                </tbody>
+              </table>
+              <td> <i class="fa fa-pencil"><input type="submit" value="Cập Nhật"></i> 
+            </form>
           </div>
         </div>
       </div>
@@ -49,4 +61,5 @@
   </div>
 
 </main>
+
 @endsection

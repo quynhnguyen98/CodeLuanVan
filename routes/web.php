@@ -97,6 +97,9 @@ Route::post('/forgot-password/check','UserController@sendMail');
 Route::get('/resest-pass/{id_taikhoan}','UserController@getResest');
 Route::get('/change-password/{id_taikhoan}','UserController@getResest1');
 Route::get('/phan-quyen/{id_taikhoan}','UserController@phanquyen');
+Route::get('/cap-nhat-phan-quyen/{id_taikhoan}','UserController@capnhat_phanquyen');
+
+
 
 Route::post('/resest-pass1/check','UserController@ResestPass1');
 Route::post('/resest-pass/check','UserController@ResestPass');

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Hash;
+use Monolog\Registry;
 
 class UserController extends Controller
 {
@@ -275,6 +276,18 @@ class UserController extends Controller
             'Quản Lý Tài Khoản',
         ];
         // print_r( $arr_function);
-        return view('admin.phanquyen',compact('arr_function'));
+        $x=DB::table('taikhoan')->where('id_taikhoan',$id)->first();
+        $vaitro = $x->vaitro;
+        // $mang=json_decode($vaitro[0]['vaitro'], true);
+      print_r($vaitro);
+        return view('admin.phanquyen',compact('arr_function','id','vaitro'));
+    }
+    public function capnhat_phanquyen(Request $rq,$id)
+    {
+       $mang=$rq->all();
+       unset($mang['sampleTable_length']);
+       $js=json_encode($mang);
+       DB::table('taikhoan')->where('id_taikhoan',$id)->update(['vaitro'=>$js]);
+       return Redirect('/phan-quyen/'.$id);
     }
 }

@@ -67,15 +67,64 @@
           <p class="app-sidebar__user-designation">Frontend Developer</p>
         </div>
       </div>
+     
+      
       <ul class="app-menu">
-        <li><a class="app-menu__item {{'getDash' == request()->path() ? 'active' : ''}}" href="{{URL::to('/getDash')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
-        <li class="treeview"><a class="app-menu__item {{'ngay-su-kien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/ngay-su-kien')}}"><i class="app-menu__icon fa fa-laptop"></i>Ngày sự kiện</a></li>
-        <li class="treeview"><a class="app-menu__item {{'cay-gia-pha' == request()->path() ? 'active' : ''}}" href="{{URL::to('/cay-gia-pha')}}" ><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Cây gia phả</span></a></li>
-        <li><a class="app-menu__item {{'quan-ly-thanh-vien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-thanh-vien')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Thành Viên</span></a></li>
-        <li><a class="app-menu__item {{'quan-ly-comment' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-comment')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Comment</span></a></li>
-        <li><a class="app-menu__item {{'quan-ly-tin-tuc' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tin-tuc')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tin Tức</span></a></li>
-        <li><a class="app-menu__item {{'quan-ly-hinh-anh' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-hinh-anh')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Hình Ảnh</span></a></li>
-        <li><a class="app-menu__item {{'quan-ly-tai-khoan' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tai-khoan')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tài Khoản</span></a></li>
-        <li><a class="app-menu__item {{'' == request()->path() ? 'active' : ''}}" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
+        <?php 
+        $js=Session::get('admin')->vaitro;
+        $mang=json_decode($js, true);
+        foreach($mang as $k=>$k)
+        {
+          if($k==0)
+          {
+            ?>
+              <li><a class="app-menu__item {{'getDash' == request()->path() ? 'active' : ''}}" href="{{URL::to('/getDash')}}"><i class="app-menu__icon fa fa-dashboard"></i>Tổng Quan</a></li>
+            <?php
+          }
+          else if($k==1)
+          {
+            ?>
+              <li class="treeview"><a class="app-menu__item {{'ngay-su-kien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/ngay-su-kien')}}"><i class="app-menu__icon fa fa-laptop"></i>Ngày sự kiện</a></li>
+            <?php
+          }
+          else if($k==2)
+          {
+            ?>
+             <li class="treeview"><a class="app-menu__item {{'cay-gia-pha' == request()->path() ? 'active' : ''}}" href="{{URL::to('/cay-gia-pha')}}" ><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Cây gia phả</span></a></li>
+            <?php
+          }
+          else if($k==3)
+          {
+            ?>
+              <li><a class="app-menu__item {{'quan-ly-thanh-vien' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-thanh-vien')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Thành Viên</span></a></li>
+            <?php
+          }
+          else if($k==4)
+          {
+            ?>
+                      <li><a class="app-menu__item {{'quan-ly-comment' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-comment')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Comment</span></a></li>
+            <?php
+          }
+          else if($k==5)
+          {
+            ?>
+                <li><a class="app-menu__item {{'quan-ly-tin-tuc' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tin-tuc')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tin Tức</span></a></li>
+            <?php
+          }
+          else if($k==6)
+          {
+            ?>
+               <li><a class="app-menu__item {{'quan-ly-hinh-anh' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-hinh-anh')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Hình Ảnh</span></a></li>
+            <?php
+          }
+          else if($k==7)
+          {
+            ?>
+              <li><a class="app-menu__item {{'quan-ly-tai-khoan' == request()->path() ? 'active' : ''}}" href="{{URL::to('/quan-ly-tai-khoan')}}"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Quản Lý Tài Khoản</span></a></li>
+            <?php
+          }
+        }
+        ?>
       </ul>
+  
     </aside>
