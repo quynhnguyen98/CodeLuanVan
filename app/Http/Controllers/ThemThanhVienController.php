@@ -29,7 +29,7 @@ class ThemThanhVienController extends Controller
             'tieusu'=>'required|min:12',
             'ngaysinh'=>'before:today|date',
             'ngaymat'=>'before:today|nullable|date|after:ngaysinh',
-            'PhotoFileSelector' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'PhotoFileSelector' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ],[
             'tieusu.required'=>'Bắt buộc nhập tiểu sử',
             'ngaysinh.before' => 'Ngày sinh phải trước hiện tại',
@@ -46,7 +46,6 @@ class ThemThanhVienController extends Controller
             $t = 'Sống';
         else
             $t = 'Chết';
-       echo $t;
         if (strtotime($request->ngaymat) == '') {
             $ngay = null;
         } else {
@@ -74,39 +73,48 @@ class ThemThanhVienController extends Controller
         // print_r($request->all());
         // print_r($arr);
         // print_r($arr);
-        DB::table('nguoi')->insert($arr);
+        $tuoi=DB::table('nguoi')->select('nguoi.ngaysinh')->where('nguoi.id',$request->FatherID)->get();
+        $date=getdate(strtotime($tuoi[0]->ngaysinh));
+        $congtru=Carbon::now()->year-$date['year'];
+        if($congtru>=18)
+        {
+             DB::table('nguoi')->insert($arr);
+                $dataNguonGoc['id'] =$id ;
+                $dataNguonGoc['pid'] = $request->FatherID;
+                DB::table('nguongoc')->insert($dataNguonGoc);
 
+                if ($request->ngaymat == null) {
+                    $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
+                    $insertArr = [
+                        'title' => 'Sinh nhật của ' . $request->hoten,
+                        'start' => $start,
+                        'id_nguoi' => $id;
+                    ];
+                    DB::table('sukien')->insert($insertArr);
+                } else {
+                    $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
+                    $insertArr = [
+                        'title' => 'Sinh nhật của ' . $request->hoten,
+                        'start' => $start,
+                        'id_nguoi' => $id,
+                    ];
+                    DB::table('sukien')->insert($insertArr);
+                    $end = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaymat));
+                    $insertArr_ = [
+                        'title' => 'Giổ tổ của ' . $request->hoten,
+                        'start' => $end,
+                        'id_nguoi' => $id,
+                    ];
+                    DB::table('sukien')->insert($insertArr_);
+                }
 
-        $dataNguonGoc['id'] =$id ;
-        $dataNguonGoc['pid'] = $request->FatherID;
-        DB::table('nguongoc')->insert($dataNguonGoc);
-
-        if ($request->ngaymat == null) {
-            $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
-            $insertArr = [
-                'title' => 'Sinh nhật của ' . $request->hoten,
-                'start' => $start,
-                'id_nguoi' => $id,
-            ];
-            DB::table('sukien')->insert($insertArr);
-        } else {
-            $start = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaysinh));
-            $insertArr = [
-                'title' => 'Sinh nhật của ' . $request->hoten,
-                'start' => $start,
-                'id_nguoi' => $id,
-            ];
-            DB::table('sukien')->insert($insertArr);
-            $end = Carbon::now()->year . '-' . date('m-d', strtotime($request->ngaymat));
-            $insertArr_ = [
-                'title' => 'Giổ tổ của ' . $request->hoten,
-                'start' => $end,
-                'id_nguoi' => $id,
-            ];
-            DB::table('sukien')->insert($insertArr_);
+                
+                return redirect('/quan-ly-thanh-vien'); 
         }
-
-        
-        return redirect('/quan-ly-thanh-vien');
+        else
+        {
+            return redirect()->back()->with('mess','Không thể thêm con của người chưa đủ 18 tuổi');
+        }
+      
     }
 }

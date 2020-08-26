@@ -19,13 +19,20 @@ class AdminController extends Controller
 	}
     public function getIndex(Request $request)
     {
-		$adtext = $request->input('adtext');
-		$adpassword = md5($request->input('adpassword'));
-		$result=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')
-		->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
-		if($result!='')
+		// $adtext = $request->input('adtext');
+		// $adpassword = md5($request->input('adpassword'));
+		// $result=DB::table('taikhoan')->join('nguoi','taikhoan.id','=','nguoi.id')
+		// ->where('tendangnhap',$adtext)->where('password',$adpassword)->first();	
+		$user=$request->adtext;
+        $pass=$request->adpassword;
+        $arr=[
+            'tendangnhap'=>$user,
+            'password'=>$pass,
+        ];
+		if(Auth::attempt($arr))
 		{
-					Session::put('admin',$result);
+			if(auth()->user()->vaitro!='0'){
+					Session::put('admin',auth()->user());
 					$data=DB::table('nguoi')->get();
 						$nam=0;
 						$nu=0;
@@ -49,7 +56,12 @@ class AdminController extends Controller
 					$count1=count($data2);
 					$data3=DB::table('nguoi')->where('tinhtrang','Sống')->get();
 					$count2=count($data3);
-			return view('admin.dashboard',compact('arr','count','count1','count2'));
+				return view('admin.dashboard',compact('arr','count','count1','count2'));
+			}
+			else
+			{
+				return Redirect('/admin');
+			}
 		}else {
 			return Redirect('/admin');
 		}

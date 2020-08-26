@@ -24,6 +24,13 @@
                                     </ul>
                                 </div>
                             @endif
+              @if (session('mess'))
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {{session('mess')}}
+                                    </ul>
+                                </div>
+              @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-3">
@@ -53,7 +60,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Họ và tên</label>
                                                 <input class="form-control" id="PersonName" name="hoten"
-                                                    placeholder="Nhập họ tên" type="text" value=""/>
+                                                    placeholder="Nhập họ tên" type="text" value="" required="true"/>
                                                 <span class="field-validation-valid" data-valmsg-for="PersonName"
                                                     data-valmsg-replace="true"></span>
                                             </div>
@@ -63,7 +70,7 @@
                                                 <label class="control-label">Trạng thái</label>
                                                 <div class="toggle-flip">
                                                     <label>
-                                                        <input type="checkbox"><span class="flip-indecator"
+                                                        <input type="checkbox" ><span class="flip-indecator"
                                                             data-isalive="DEAD" data-toggle-on="SỐNG"
                                                             data-toggle-off="CHẾT"></span>
                                                     </label>

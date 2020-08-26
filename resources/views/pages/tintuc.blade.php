@@ -46,7 +46,6 @@
                                             $end=date('d-m-Y',strtotime($tintuc[$i]->ngaydang));
                                             echo $end;
                                             ?></a>
-                                    <a href="archive.html">lifestyle</a>
                                 </div>
                                 <a href="{{URL::to('/tintuc/'.$tintuc[$i]->id_tintuc.'/'.$tintuc[$i]->tieudekhongdau.'.html')}}" class="post-title">{{$tintuc[$i]->tieude}}</a>
                                 <!-- Post Meta -->

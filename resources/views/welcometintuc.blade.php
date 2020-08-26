@@ -3,18 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="{{$meta_desc}}">
+     <meta name="description" content="{{$meta_desc}}">
     <meta name="keywords" content="gia pha,website gia phả,web gia phả"/>
     <meta name="robots" content="INDEX,FOLLOW"/>
     <link  rel="canonical" href="{{$url_canonical}}" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta property="og:image" content="public/frontend/images/bg-img/{{$meta_img}}" />
-    <meta property="og:site_name" content="http://localhost/CodeLuanVan/" />
-    <meta property="og:description" content="{{$meta_content}}" />
-    <meta property="og:title" content="{{$meta_desc}}" />
-    <meta property="og:url" content="{{$url_canonical}}" />
+    <meta name="author" content="">
+    <link  rel="icon" type="image/x-icon" href="" />
+    
+      <meta property="og:image" content="https://giaphanq.online/public/frontend/images/{{$meta_img}}" />
+      <meta property="og:site_name" content="giaphanq.online" />
+      <meta property="og:description" content="{{$meta_content}}" />
+      <meta property="og:title" content="{{$meta_desc}}" />
+      <meta property="og:url" content="{{$url_canonical}}" />
+      <meta property="og:type" content="website" />
    
     <!-- Title -->
     <title>WEBSITE GIA PHẢ</title>
@@ -54,7 +55,7 @@
     <script src="{{asset('public/frontend/js/plugins/plugins.js')}}"></script>
     <!-- Active js -->
     <script src="{{asset('public/frontend/js/active.js')}}"></script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0&appId=989952378125349&autoLogAppEvents=1" nonce="fYVhDFeB"></script>
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0&appId=989952378125349&autoLogAppEvents=1" nonce="vO7b4ZDy"></script>
 </body>
 
 </html>

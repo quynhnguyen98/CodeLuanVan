@@ -52,7 +52,7 @@
                   <input type="hidden" name="id" value="{{$id}}">
                 </tbody>
               </table>
-              <td> <i class="fa fa-pencil"><input type="submit" value="Cập Nhật"></i> 
+              <td> <input type="submit" value="Cập Nhật" style="font-size:14px;width: 80px;height: 30px;background-color:#FF4FFA;color: white;font-weight:600;border-radius: 6px;border:2px solid;">
             </form>
           </div>
         </div>

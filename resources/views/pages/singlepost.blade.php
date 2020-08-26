@@ -67,7 +67,7 @@
 
                             <!-- Like Dislike Share -->
                             <div class="like-dislike-share my-5">
-                                <div class="fb-share-button" data-href="http://localhost/CodeLuanVan/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                               <div class="fb-share-button" data-href="https://giaphanq.online/tintuc/{{$tt->id_tintuc}}/{{$tt->tieudekhongdau}}.html" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{$url_canonical}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                             </div>
 
                             <!-- Post Author -->
@@ -75,10 +75,7 @@
                                 <div class="post-author-thumb">
                                     <img src="img/bg-img/52.jpg" alt="">
                                 </div>
-                                <div class="post-author-desc pl-4">
-                                    <a href="#" class="author-name">Alan Shaerer</a>
-                                    <p>Duis tincidunt turpis sodales, tincidunt nisi et, auctor nisi. Curabitur vulputate sapien eu metus ultricies fermentum nec vel augue. Maecenas eget lacinia est.</p>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

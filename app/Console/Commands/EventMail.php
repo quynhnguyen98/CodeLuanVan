@@ -39,7 +39,7 @@ class EventMail extends Command
      */
     public function handle()
     {
-        $sukien=DB::table('sukien')->select('nguoi.hoten','sukien.title','sukien.start')->join('nguoi','sukien.id_nguoi','=','nguoi.id_nguoi')->orderBy('sukien.start','asc')->get();
+        $sukien=DB::table('sukien')->select('nguoi.hoten','sukien.title','sukien.start')->join('nguoi','sukien.id_nguoi','=','nguoi.id')->orderBy('sukien.start','asc')->get();
         $nguoi=DB::table('taikhoan')->get();
         $now=strtotime(Carbon::now('Asia/Ho_Chi_Minh'));
         foreach($sukien as $sk)

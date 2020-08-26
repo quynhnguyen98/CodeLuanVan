@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        $data=[
-       		'tendangnhap'=>'asdasdasd',
-       		'password'=>bcrypt('123456'),
-       		'vaitro'=>'tanhvien',
-            'id_nguoi'=>1,
-            'email'=>'asdasd@gmail.com',
+       		'tendangnhap'=>'user123',
+       		'password'=>bcrypt('user123'),
+       		'vaitro'=>'{"4":"4","6":"6","3":"3","0":"0"}',
+          'id'=>111,
+          'email'=>'abc@gmail.com',
        ];
        DB::table('taikhoan')->insert($data);
     }

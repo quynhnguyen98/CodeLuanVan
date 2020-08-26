@@ -14,7 +14,7 @@
                         
                         <p>Với xu thế hiện đại, internet đã có ở khắp nơi và hiệu quả của mạng máy tính mang lại cho con người là vô cùng to lớn. Nếu các dòng họ chọn thêm một giải pháp là số hóa và lưu trữ bộ gia phả “cổ kính” của dòng họ mình trên internet thì hoàn toàn có thể tránh được những nỗi lo mất mát, thất lạc, do yếu tố khách quan hay chủ quan, không những thế, việc thông báo tin tức lễ hội lớn, hoạt động dòng họ, kêu gọi đóng góp, bổ sung hoặc thay đổi thông tin gia phả…sẽ dễ dàng hơn rất nhiều nhất là với những người thân ở khắp nơi trên thế giới. Bên cạnh đó, các dòng họ ở khắp nơi còn có thể tìm lại được nguồn gốc họ tộc mình đã thất lạc nhiều đời và nối kết lại với nhau.</p>
                         <p>Với ý nghĩa như vậy, Công ty CP Cộng Đồng Việt đã quyết định nghiên cứu và triển khai xây dựng trang web www.giaphavietnam.vn với nhiều những tiện ích phục vụ cho họ tộc người Việt Nam trong nước cũng như trên thế giới.</p>
-                        <img class="mt-15" src="{{('public/frontend/images/35.jpg')}}" alt="">
+                    
 
                         <!-- Team Member Area -->
                         

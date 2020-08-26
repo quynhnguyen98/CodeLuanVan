@@ -41,6 +41,7 @@ class HomeController extends Controller
         }
         $sortedArr = collect($mang1)->sortBy('start')->all();
         array_splice($sortedArr,3);
+        //return $tintuc;
         return view('pages.home',compact('slide','tintuc','hinhanh','sortedArr','now','tintucnoibat'));
     }
 

@@ -79,7 +79,7 @@
                     <div class="post-thumbnail">
                         <img src="public/frontend/images/<?php $data=(explode(',',$tt->images));
                                                    echo $data[0];
-                                            ?>" alt="" style="height: auto;width: 1000px;" alt="">
+                                            ?>" alt="" style="height: auto;width: 100px;" alt="">
                     </div>
                     <div class="post-content">
                         <a href="{{URL::to('/tintuc/'.$tt->id_tintuc.'/'.$tt->tieudekhongdau.'.html')}}" class="post-title">{{$tt->tieude}}</a>
@@ -170,7 +170,7 @@
                                                     }
                                                     return substr($str,0,$limit).'...';
                                                 }
-                                            echo mysubstr($tintuc[0]->noidung_tt,300);        
+                                            echo mysubstr($tintuc[0]->noidung_tt,250);        
                                         ?>
 
                                     </p>
