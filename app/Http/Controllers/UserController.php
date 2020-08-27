@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Hash;
 use Monolog\Registry;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -185,24 +186,34 @@ class UserController extends Controller
                             'tinhtrang'=>'Sống',
                             'hinhanh'=>'user.png',
                         ];
-                    DB::table('nguoi')->insert($arr1);
-                    $dataNguonGoc['id'] =$id ;
-                    $dataNguonGoc['pid'] = $rq->FatherID;
-                    DB::table('nguongoc')->insert($dataNguonGoc);
-                    // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
-                    DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
-                    if(isset($file))
+                    $tuoi=DB::table('nguoi')->select('nguoi.ngaysinh')->where('nguoi.id',$rq->FatherID)->get();
+                    $date=getdate(strtotime($tuoi[0]->ngaysinh));
+                    $congtru=Carbon::now()->year-$date['year'];
+                    if($congtru>=18)
                     {
-                    $name=$file->getClientOriginalName();
-                    $file->move("public/frontend/images/core-img",$name);
-                    $arr=[
-                        'avatar'=>$name,
-                    ];
-                    DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
-                    DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
-                    Session::put('tk',auth()->user());
+                        DB::table('nguoi')->insert($arr1);
+                        $dataNguonGoc['id'] =$id ;
+                        $dataNguonGoc['pid'] = $rq->FatherID;
+                        DB::table('nguongoc')->insert($dataNguonGoc);
+                        // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
+                        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
+                        if(isset($file))
+                        {
+                        $name=$file->getClientOriginalName();
+                        $file->move("public/frontend/images/core-img",$name);
+                        $arr=[
+                            'avatar'=>$name,
+                        ];
+                        DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+                        DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
+                        Session::put('tk',auth()->user());
+                        }
+                        return Redirect()->back()->with('mess','Sửa thành công');
                     }
-                    return Redirect()->back()->with('mess','Sửa thành công');
+                    else
+                    {
+                        return redirect()->back()->with('mess','Cha chưa đủ 18 tuổi');
+                    }
                 }
                 else
                 {
