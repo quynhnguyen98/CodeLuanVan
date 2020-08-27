@@ -11,7 +11,7 @@ use Mockery\Matcher\Contains;
 
 class ThemThanhVienController extends Controller
 {
-    public function them_thanh_vien()
+    public function them_thanh_vien(Request $request)
     {
         $admin = Session::get('admin')->tendangnhap;
         if ($admin!='') {
@@ -25,6 +25,7 @@ class ThemThanhVienController extends Controller
     public function save_person(Request $request)
     {
         $input=$request->all();
+      
         $validatedData = $request->validate([
             'tieusu'=>'required|min:12',
             'ngaysinh'=>'before:today|date',
@@ -70,9 +71,7 @@ class ThemThanhVienController extends Controller
             $files->move($destinationPath , $file_name);
  
        
-        // print_r($request->all());
-        // print_r($arr);
-        // print_r($arr);
+
         $tuoi=DB::table('nguoi')->select('nguoi.ngaysinh')->where('nguoi.id',$request->FatherID)->get();
         $date=getdate(strtotime($tuoi[0]->ngaysinh));
         $congtru=Carbon::now()->year-$date['year'];
@@ -88,7 +87,7 @@ class ThemThanhVienController extends Controller
                     $insertArr = [
                         'title' => 'Sinh nhật của ' . $request->hoten,
                         'start' => $start,
-                        'id_nguoi' => $id;
+                        'id_nguoi' => $id,
                     ];
                     DB::table('sukien')->insert($insertArr);
                 } else {
@@ -116,5 +115,11 @@ class ThemThanhVienController extends Controller
             return redirect()->back()->with('mess','Không thể thêm con của người chưa đủ 18 tuổi');
         }
       
+    }
+    public function them_thanh_vien_cay(Request $request,$pid)
+    {
+        $all_thanhvien = DB::table('nguoi')->join('tinh', 'nguoi.id_tinh', '=', 'tinh.id_tinh')->get();
+        $tinh = DB::table('tinh')->get();
+        return view('admin.addpersontree', compact('all_thanhvien', 'tinh','pid'));
     }
 }

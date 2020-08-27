@@ -35,12 +35,14 @@ Route::get('/xoa-thanh-vien/{id_nguoi}','QuanLyThanhVienController@xoa_thanh_vie
 
 
 Route::get('/them-thanh-vien','ThemThanhVienController@them_thanh_vien');
+Route::post('/save-person','ThemThanhVienController@save_person');
 Route::get('/cay-gia-pha','TreeController@cay_gia_pha');
 Route::get('/data-tree','TreeController@data_tree');
 Route::post('/change-data-tree/{id}/{pid}','TreeController@changedata_tree');
 Route::get('/remove-tree/{id}','TreeController@remove_tree');
 Route::post('/edit-tree/{id}','TreeController@edit_tree');
-Route::get('/add-tree/{pid}','TreeController@add_tree');
+Route::post('/add-tree/{pid}','TreeController@add_tree');
+Route::get('/them-thanh-vien-cay/{pid}','ThemThanhVienController@them_thanh_vien_cay');
 
 
 
@@ -49,7 +51,6 @@ Route::get('/quan-ly-comment','CommentController@getComment');
 Route::get('/active/{id_gopy}','CommentController@active');
 Route::get('/unactive/{id_gopy}','CommentController@unactive');
 Route::get('/nguoi','TreeController@getnguoi');
-Route::post('/save-person','ThemThanhVienController@save_person');
 Route::get('/quan-ly-tin-tuc','TinTucController@getIndex');
 Route::get('/xoa-tin-tuc/{id_tintuc}','TinTucController@xoa_post');
 Route::get('/them-tin-tuc','TinTucController@save_post');

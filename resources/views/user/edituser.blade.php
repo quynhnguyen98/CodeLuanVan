@@ -82,7 +82,7 @@
                                 <select class="form-control" data-val="true"
                                                     data-val-number="The field MotherID must be a number." id="MotherID"
                                                     name="tinh">
-                                                    <option selected="true" ">Chọn Tỉnh?</option>
+                                                    <option selected="true" >Chọn Tỉnh?</option>
                                                     @foreach($tinh as $k)
                                                         <option value="{{$k->id_tinh}}">{{$k->tinh_tp}}</option>
                                                     @endforeach
@@ -94,7 +94,7 @@
                                  <select class="form-control" data-val="true"
                                      data-val-number="The field MotherID must be a number." id="MotherID"
                                     name="FatherID">
-                                            <option selected="true" ">Cha bạn là ai?</option>
+                                            <option selected="true" >Cha bạn là ai?</option>
                                                     @foreach($all_thanhvien as $k)
                                                         @if($k->id==$cha[0]->id)
                                                             <option value="{{$k->id}}" selected="true">{{$k->hoten}}</option>
