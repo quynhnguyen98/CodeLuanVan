@@ -220,18 +220,19 @@ $(document).ready(function() {
                 
     
           
-            // chart.on('add', function (sender, node) {
-            //     chart.addNode(node);
-            //     console.log(node);
-            //     $.ajax({
-            //         url: 'add-tree/'+node.pid,
-            //         type: 'get',
-            //         data: $('#orgchart').serializeArray(),
-            //         success: function(s) {
-            //             console.log(s);
-            //         }
-            //     });
-            // });  
+            chart.on('add', function (sender, node) {
+                // console.log(node.pid);
+                $.ajax({
+                    url: 'add-tree/'+node.pid,
+                    type: 'post',
+                    data:node.pid,
+                    success: function(pid) {
+                        window.location.href = './them-thanh-vien-cay/'+pid;
+                        // console.log(node);
+                        
+                    }
+                });
+            });
 
 
 

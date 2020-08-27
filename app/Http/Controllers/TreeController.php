@@ -80,10 +80,9 @@ class TreeController extends Controller
 
 	
    }
-   public function add_tree(Request $rq, $pid)
+   public function add_tree(Request $rq,$pid)
    {
 	//    print_r($pid);
-	//    return view('admin.addperson');
-		
+		return $pid;	
    }
 }

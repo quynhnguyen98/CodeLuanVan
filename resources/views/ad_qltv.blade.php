@@ -222,7 +222,6 @@
             } );
             } );
     </script>
-    <script type="text/javascript" src="{{asset('public/adminFE/js/phanquyen.js')}}"></script>
 </body>
 
 </html>
