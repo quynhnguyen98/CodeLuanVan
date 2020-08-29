@@ -63,8 +63,10 @@ class ThemThanhVienController extends Controller
             'id_tinh' => $request->tinh,
             'tinhtrang' => $t,
         ];
+
+       
       
-     
+        
             $destinationPath = 'public/img_person/';
             $files = $request->file('PhotoFileSelector');
             $file_name = $files->getClientOriginalName();

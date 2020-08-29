@@ -137,9 +137,8 @@
                                             <div class="form-group">
                                                 <label class="control-label">Ngày sinh</label>
                                                 <input class="form-control" data-val="true"
-                                                    data-val-date="The field DateOfBirth must be a date."
-                                                    id="DateOfBirth" name="ngaysinh" placeholder="Chọn Ngày"
-                                                    type="text" value="" />
+                                                   name="ngaysinh" placeholder="Chọn Ngày"
+                                                    type="date" value="" />
                                                 <span class="field-validation-valid" data-valmsg-for="DateOfBirth"
                                                     data-valmsg-replace="true"></span>
                                             </div>
