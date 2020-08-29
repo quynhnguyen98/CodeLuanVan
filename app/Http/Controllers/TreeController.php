@@ -60,8 +60,8 @@ class TreeController extends Controller
 	$arr = [
 		'hoten' => $rq->hoten,
 		'gioitinh' => $rq->gioitinh,
-		'ngaysinh' => date('yy-m-d', strtotime($rq->ngaysinh)),
-		'ngaymat' => date('yy-m-d', strtotime($rq->ngaymat)),
+		'ngaysinh' => date('Y-m-d', strtotime($rq->ngaysinh)),
+		'ngaymat' => date('Y-m-d', strtotime($rq->ngaymat)),
 		'hinhanh' => $rq->hinhanh,
 		'tieusu' => strip_tags($rq->tieusu),
 		'tinhtrang' => $rq->tinhtrang,
