@@ -149,7 +149,7 @@
                                                 @if(Session::get('tk')->id_taikhoan==$cmt->id_taikhoan)
                                                 <div class="d-flex align-items-center">
                                                     <a href="#" class="like">like</a>
-                                                    <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Reply</a>
+                                                    <a class="reply" onclick="myFunction({{$cmt->id_gopy}})">Trả Lời</a>
                                                     <a href="{{URL::to('/xoa-binh-luan/'.$cmt->id_gopy)}}" class="like">Xóa</a>
                                                      <a class="reply" onclick="myFunctionSua({{$cmt->id_gopy}})" >Sửa</a>
                                                     </div>

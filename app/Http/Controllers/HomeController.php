@@ -56,7 +56,7 @@ class HomeController extends Controller
             ->leftjoin('hinhanh','hinhanh.id_tintuc','=','tintuc.id_tintuc')
             ->groupBy('tintuc.id_tintuc','tintuc.tieudekhongdau','tintuc.tieude','tintuc.noidung_tt','tintuc.ngaydang')->whereNotIn('tintuc.id_tintuc',[$id])
             ->limit(3)->get();
-        $comment=Comment::with('replies')->where('id_tintuc','=',$id)->where('comment_id','=',null)->get();
+        $comment=Comment::with('replies')->where('id_tintuc','=',$id)->where('comment_id','=',null)->where('status','=',1)->get();
         $sessionKey='tintuc_'.$id;
         $sessionview=Session::get('sessionKey');
         if(!$sessionview)

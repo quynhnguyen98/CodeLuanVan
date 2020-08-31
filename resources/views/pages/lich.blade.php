@@ -81,7 +81,7 @@
                                             ?>" alt="" style="height: auto;width: 1000px;" alt="">
                     </div>
                     <div class="post-content">
-                        <a href="single-post.html" class="post-title">{{$tt->tieude}}</a>
+                        <a href="{{URL::to('/tintuc/'.$tt->id_tintuc.'/'.$tt->tieudekhongdau.'.html')}}" class="post-title">{{$tt->tieude}}</a>
                         <div class="post-meta d-flex justify-content-between">
                             <a href="#"><i class="fa fa-eye" aria-hidden="true"></i>{{$tt->luotxem}}</a>
                             <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 84</a>
