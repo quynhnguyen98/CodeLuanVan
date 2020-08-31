@@ -40,6 +40,7 @@ class UserController extends Controller
         if(Auth::attempt($arr,$remember))
         {
             Session::put('tk',auth()->user());
+            echo Auth::check();
             //print_r(Session::all());
             return redirect('/');
             
@@ -153,16 +154,8 @@ class UserController extends Controller
     }
      public function checkedit(Request $rq,$id_taikhoan)
     {  
-          $validatedData = $rq->validate([
-            'tieusu'=>'required|min:12',
-            'ngaysinh'=>'before:today|date',
-            'filehinh' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'tieusu.required'=>'Bắt buộc nhập tiểu sử',
-            'ngaysinh.before' => 'Ngày sinh phải trước hiện tại',
-            'ngaysinh.date'=>'Ngày sinh không được bỏ trống',
-            'filehinh.mimes' => 'Phải thuộc định dạng:jpeg,png,jpg',
-        ]);
+        //echo Auth::check();
+         
         $file=$rq->file('filehinh');
         $hoten=$rq->hoten;
         $gioitinh=$rq->gioitinh;
@@ -195,6 +188,13 @@ class UserController extends Controller
                         $dataNguonGoc['id'] =$id ;
                         $dataNguonGoc['pid'] = $rq->FatherID;
                         DB::table('nguongoc')->insert($dataNguonGoc);
+                        $start = Carbon::now()->year . '-' . date('m-d', strtotime($rq->ngaysinh));
+                                $insertArr = [
+                                'title' => 'Sinh nhật của ' . $rq->hoten,
+                                'start' => $start,
+                                'id_nguoi' => $id,
+                            ];
+                         DB::table('sukien')->insert($insertArr);
                         // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
                         DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update(['id'=>$id]);
                         if(isset($file))
@@ -206,7 +206,8 @@ class UserController extends Controller
                         ];
                         DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
                         DB::table('nguoi')->where('id',$id)->update(['hinhanh'=>$name]);
-                        Session::put('tk',auth()->user());
+                        if(Auth::check()==1)
+                            Session::put('tk',auth()->user());
                         }
                         return Redirect()->back()->with('mess','Sửa thành công');
                     }
@@ -231,6 +232,8 @@ class UserController extends Controller
                     'hinhanh'=>'user.png',
                 ];
             DB::table('nguoi')->where('id',$rq->id_nguoi)->update($arr1);
+            $start = Carbon::now()->year . '-' . date('m-d', strtotime($rq->ngaysinh));
+            DB::table('sukien')->where('id_nguoi',$rq->id_nguoi)->update(['start'=>$start]);
             // $id1=DB::table('taikhoan')->select('taikhoan.id')->where('id_taikhoan',$id_taikhoan)->first();
             if(isset($file))
             {
@@ -240,10 +243,12 @@ class UserController extends Controller
                 'avatar'=>$name,
             ];
             DB::table('taikhoan')->where('id_taikhoan',$id_taikhoan)->update($arr);
+
             DB::table('nguoi')->where('id',$rq->id_nguoi)->update(['hinhanh'=>$name]);
-            Session::put('tk',auth()->user());
+            if(Auth::check()==1)
+                Session::put('tk',auth()->user());
             }
-            return Redirect()->back()->with('mess','Sửa thành công');
+            return Redirect()->back()->with('mess','Cập nhật thành công');
         }
 
         
