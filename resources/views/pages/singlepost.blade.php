@@ -218,6 +218,7 @@
                                     </script>
                                     @if($cmt->replies)
                                     @foreach($cmt->replies as $rep)
+                                    @if($rep->status==1)
                                     <ol class="children">
                                     <li class="single_comment_area">
                                         <!-- Comment Content -->
@@ -305,6 +306,7 @@
                                     </script>
                                     </li>
                                 </ol>
+                                @endif
                                 @endforeach
                                 @endif
 
