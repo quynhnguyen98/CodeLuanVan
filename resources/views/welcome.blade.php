@@ -88,7 +88,7 @@
                   editable: false,
                   
                   eventRender: function (event, element, view) {
-                      
+                    $(element).tooltip({title: event.title});
                       if (event.allDay == 'true') {
                           event.allDay = true;
                       } else {

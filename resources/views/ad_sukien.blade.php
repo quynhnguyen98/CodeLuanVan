@@ -82,7 +82,7 @@
             editable: true,
             
             eventRender: function (event, element, view) {
-                
+                $(element).tooltip({title: event.title});   
                 if (event.allDay == 'true') {
                     event.allDay = true;
                 } else {
@@ -150,12 +150,16 @@
             }
 
         });
+        
     });
 
     function displayMessage(message) {
         $(".response").html("<div class='success'>"+message+"</div>");
         setInterval(function() { $(".success").fadeOut(); }, 1000);
     }
+  
+
+  
     
 </script>
   </body>
