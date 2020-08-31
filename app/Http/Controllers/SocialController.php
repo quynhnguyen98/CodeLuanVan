@@ -20,11 +20,14 @@ class SocialController extends Controller
  	}
  	public function callback($provider)
  	{
- 		$getInfo=Socialite::driver($provider)->user();
- 		$user = $this->createUser($getInfo,$provider); 			 	
-   		Auth::login($user);
+ 		try{
+            $getInfo = Socialite::driver($provider)->user();
+        } catch (\Exception $e) {
+            $getInfo = Socialite::driver($provider)->stateless()->user();
+        }
+ 		$user = $this->createUser($getInfo,$provider); 		 	
+   		Auth::login($user,true);
    		Session::put('tk',auth()->user());
-   		//print_r(Session::get('tk')->provider);
    		return redirect()->to('/');
  	}
  	function createUser($getInfo,$provider){
@@ -33,16 +36,14 @@ class SocialController extends Controller
 		 	$fileContents=file_get_contents($getInfo->avatar);
  			File::put(public_path() . '/frontend/images/core-img/avt' . $getInfo->id . ".jpg", $fileContents);
  			$picture = public_path('/frontend/images/core-img/avt' . $getInfo->id . ".jpg");
-		      $array = [	
-		         'email'    => $getInfo->email,
-		         'vaitro'=>0,
-		         'avatar'=>"avt". $getInfo->id . ".jpg",
-		         'provider' => $provider,
-		         'provider_id' => $getInfo->id
-		     ];
-		     $check=DB::table('taikhoan')->insert($array);
-
-	}
+		     return User::create([
+		            'email' => $getInfo->email,
+		            'vaitro' => 0,
+		            'avatar'=>"avt". $getInfo->id . ".jpg",
+		        ]);
+		}
+		else{
 		   return $user;
+		}
  	}
 }
